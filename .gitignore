@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+
+# Logs & runtime artifacts
+*.log
+data/*.log
+data/refresh.err.log
+
+# Large raw research dumps (not needed by the app)
+data/raw_*.txt
+
+# OS noise
+.DS_Store
+
+# Local launchd (use GitHub Actions instead when hosted)
+# com.neuro.cns.refresh.plist  # keep in repo as reference

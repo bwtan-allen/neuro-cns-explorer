@@ -1,0 +1,1808 @@
+[
+ {
+  "name": "Mark Andermann",
+  "institution": "Beth Israel Deaconess Medical Center",
+  "award": "McKnight Scholar",
+  "year": 2016
+ },
+ {
+  "name": "John Cunningham",
+  "institution": "Columbia University",
+  "award": "McKnight Scholar",
+  "year": 2016
+ },
+ {
+  "name": "Roozbeh Kiani",
+  "institution": "New York University",
+  "award": "McKnight Scholar",
+  "year": 2016
+ },
+ {
+  "name": "Yuki Oka",
+  "institution": "California Institute of Technology",
+  "award": "McKnight Scholar",
+  "year": 2016
+ },
+ {
+  "name": "Abigail Person",
+  "institution": "University of Colorado Denver",
+  "award": "McKnight Scholar",
+  "year": 2016
+ },
+ {
+  "name": "Wei Wei",
+  "institution": "University of Chicago",
+  "award": "McKnight Scholar",
+  "year": 2016
+ },
+ {
+  "name": "Martha Bagnall",
+  "institution": "Washington University in St. Louis",
+  "award": "McKnight Scholar",
+  "year": 2017
+ },
+ {
+  "name": "Stephen Brohawn",
+  "institution": "University of California, Berkeley",
+  "award": "McKnight Scholar",
+  "year": 2017
+ },
+ {
+  "name": "Mehrdad Jazayeri",
+  "institution": "Massachusetts Institute of Technology",
+  "award": "McKnight Scholar",
+  "year": 2017
+ },
+ {
+  "name": "Katherine Nagel",
+  "institution": "New York University",
+  "award": "McKnight Scholar",
+  "year": 2017
+ },
+ {
+  "name": "Matthew Pecot",
+  "institution": "Harvard Medical School",
+  "award": "McKnight Scholar",
+  "year": 2017
+ },
+ {
+  "name": "Michael Yartsev",
+  "institution": "University of California, Berkeley",
+  "award": "McKnight Scholar",
+  "year": 2017
+ },
+ {
+  "name": "Eiman Azim",
+  "institution": "Salk Institute for Biological Studies",
+  "award": "McKnight Scholar",
+  "year": 2018
+ },
+ {
+  "name": "Rudy Behnia",
+  "institution": "Columbia University",
+  "award": "McKnight Scholar",
+  "year": 2018
+ },
+ {
+  "name": "Felice Dunn",
+  "institution": "University of California, San Francisco",
+  "award": "McKnight Scholar",
+  "year": 2018
+ },
+ {
+  "name": "John Tuthill",
+  "institution": "University of Washington",
+  "award": "McKnight Scholar",
+  "year": 2018
+ },
+ {
+  "name": "Mingshan Xue",
+  "institution": "Baylor College of Medicine",
+  "award": "McKnight Scholar",
+  "year": 2018
+ },
+ {
+  "name": "Brad Zuchero",
+  "institution": "Stanford University",
+  "award": "McKnight Scholar",
+  "year": 2018
+ },
+ {
+  "name": "Jayeeta Basu",
+  "institution": "New York University",
+  "award": "McKnight Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Juan Du",
+  "institution": "Van Andel Research Institute",
+  "award": "McKnight Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Mark Harnett",
+  "institution": "Massachusetts Institute of Technology",
+  "award": "McKnight Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Weizhe Hong",
+  "institution": "University of California, Los Angeles",
+  "award": "McKnight Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Rachel Roberts-Galbraith",
+  "institution": "University of Georgia",
+  "award": "McKnight Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Shigeki Watanabe",
+  "institution": "Johns Hopkins University",
+  "award": "McKnight Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Steven Flavell",
+  "institution": "Massachusetts Institute of Technology",
+  "award": "McKnight Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Nuo Li",
+  "institution": "Baylor College of Medicine",
+  "award": "McKnight Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Lauren O'Connell",
+  "institution": "Stanford University",
+  "award": "McKnight Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Zhaozhu Qiu",
+  "institution": "Johns Hopkins University",
+  "award": "McKnight Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Maria Antonietta Tosches",
+  "institution": "Columbia University",
+  "award": "McKnight Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Daniel Wacker",
+  "institution": "Icahn School of Medicine at Mount Sinai",
+  "award": "McKnight Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Lucas Cheadle",
+  "institution": "Cold Spring Harbor Laboratory",
+  "award": "McKnight Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Josie Clowney",
+  "institution": "University of Michigan",
+  "award": "McKnight Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Shaul Druckmann",
+  "institution": "Stanford University",
+  "award": "McKnight Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Laura Lewis",
+  "institution": "Boston University",
+  "award": "McKnight Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Ashok Litwin-Kumar",
+  "institution": "Columbia University",
+  "award": "McKnight Scholar",
+  "year": 2021
+ },
+ {
+  "name": "David Schneider",
+  "institution": "New York University",
+  "award": "McKnight Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Swathi Yadlapalli",
+  "institution": "University of Michigan",
+  "award": "McKnight Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Christine Constantinople",
+  "institution": "New York University",
+  "award": "McKnight Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Bradley Dickerson",
+  "institution": "Princeton University",
+  "award": "McKnight Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Markita Landry",
+  "institution": "University of California, Berkeley",
+  "award": "McKnight Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Lauren Orefice",
+  "institution": "Massachusetts General Hospital",
+  "award": "McKnight Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Kanaka Rajan",
+  "institution": "Icahn School of Medicine at Mount Sinai",
+  "award": "McKnight Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Weiwei Wang",
+  "institution": "University of Texas Southwestern Medical Center",
+  "award": "McKnight Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Ishmail Abdus-Saboor",
+  "institution": "Columbia University",
+  "award": "McKnight Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Yasmine El-Shamayleh",
+  "institution": "Columbia University",
+  "award": "McKnight Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Vikram Gadagkar",
+  "institution": "Columbia University",
+  "award": "McKnight Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Hidehiko Inagaki",
+  "institution": "Max Planck Florida Institute for Neuroscience",
+  "award": "McKnight Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Peri Kurshan",
+  "institution": "Albert Einstein College of Medicine",
+  "award": "McKnight Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Scott Linderman",
+  "institution": "Stanford University",
+  "award": "McKnight Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Swetha Murthy",
+  "institution": "Oregon Health & Science University",
+  "award": "McKnight Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Karthik Shekhar",
+  "institution": "University of California, Berkeley",
+  "award": "McKnight Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Annegret Falkner",
+  "institution": "Princeton University",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Andrea Gomez",
+  "institution": "University of California, Berkeley",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Sinisa Hrvatin",
+  "institution": "Whitehead Institute for Biomedical Research",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Xin Jin",
+  "institution": "Scripps Research",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Ann Kennedy",
+  "institution": "Northwestern University",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Sung Soo Kim",
+  "institution": "University of California, Santa Barbara",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Bianca Jones Marlin",
+  "institution": "Columbia University",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Nancy Padilla-Coreano",
+  "institution": "University of Florida",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Mubarak Hussain Syed",
+  "institution": "University of New Mexico",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Longzhi Tan",
+  "institution": "Stanford University",
+  "award": "McKnight Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Arkarup Banerjee",
+  "institution": "Cold Spring Harbor Laboratory",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Josefina del Marmol",
+  "institution": "Harvard Medical School",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Chantell Evans",
+  "institution": "Duke University",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Yvette Fisher",
+  "institution": "University of California, Berkeley",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Christine Grienberger",
+  "institution": "Brandeis University",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Theanne Griffith",
+  "institution": "University of California, Davis",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Matthew Lovett-Barron",
+  "institution": "University of California, San Diego",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Lucas Pinto",
+  "institution": "Northwestern University",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Sergey Stavisky",
+  "institution": "University of California, Davis",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Alex Williams",
+  "institution": "New York University",
+  "award": "McKnight Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Stephen Brohawn",
+  "institution": "University of California, Berkeley",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Monica Dus",
+  "institution": "University of Michigan",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Evan Feinberg",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Biyu He",
+  "institution": "New York University",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Andrew Kruse",
+  "institution": "Harvard Medical School",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Conor Liston",
+  "institution": "Weill Cornell Medical College",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Evan W. Miller",
+  "institution": "University of California, Berkeley",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Tiffany Schmidt",
+  "institution": "Northwestern University",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "John Tuthill",
+  "institution": "University of Washington",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Michael Yartsev",
+  "institution": "University of California, Berkeley",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Yuki Oka",
+  "institution": "California Institute of Technology",
+  "award": "Klingenstein-Simons",
+  "year": 2016
+ },
+ {
+  "name": "Susanne Ahmari",
+  "institution": "University of Pittsburgh",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Matthew Banghart",
+  "institution": "University of California, San Diego",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Jayeeta Basu",
+  "institution": "New York University",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Benjamin de Bivort",
+  "institution": "Harvard University",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Richard Daneman",
+  "institution": "University of California, San Diego",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Gul Dolen",
+  "institution": "Johns Hopkins University",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Jeff Donlea",
+  "institution": "University of California, Los Angeles",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Harrison W. Gabel",
+  "institution": "Washington University in St. Louis",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Catherine Hartley",
+  "institution": "New York University",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Michael Hoppa",
+  "institution": "Dartmouth College",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Elaine Y. Hsiao",
+  "institution": "University of California, Los Angeles",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Christine Merlin",
+  "institution": "Texas A&M University",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Kate Meyer",
+  "institution": "University of North Carolina at Chapel Hill",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Wei Xu",
+  "institution": "UT Southwestern Medical Center",
+  "award": "Klingenstein-Simons",
+  "year": 2017
+ },
+ {
+  "name": "Andres Bendesky",
+  "institution": "Columbia University",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "J. Nicholas Betley",
+  "institution": "University of Pennsylvania",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Denise Cai",
+  "institution": "Icahn School of Medicine at Mount Sinai",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Xin Duan",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Junjie Guo",
+  "institution": "UT Southwestern Medical Center",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Mark Harnett",
+  "institution": "Massachusetts Institute of Technology",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Weizhe Hong",
+  "institution": "University of California, Los Angeles",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Aashish Manglik",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Joseph Parker",
+  "institution": "California Institute of Technology",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Priya Rajasethupathy",
+  "institution": "Rockefeller University",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Celine Riera",
+  "institution": "Cedars-Sinai Medical Center",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Simon Sponberg",
+  "institution": "Georgia Institute of Technology",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Hongdian Yang",
+  "institution": "University of California, Riverside",
+  "award": "Klingenstein-Simons",
+  "year": 2018
+ },
+ {
+  "name": "Nicholas Bellono",
+  "institution": "Harvard University",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Juan Du",
+  "institution": "Van Andel Institute",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Erica Korb",
+  "institution": "University of Pennsylvania",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Elias Issa",
+  "institution": "Columbia University",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Hiroyuki Kato",
+  "institution": "University of North Carolina at Chapel Hill",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Aubrey Kelly",
+  "institution": "Fordham University",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Mazen Kheirbek",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Mark Howe",
+  "institution": "Northwestern University",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Lauren Orefice",
+  "institution": "Massachusetts General Hospital",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Zhaozhu Qiu",
+  "institution": "Johns Hopkins University",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Caroline Runyan",
+  "institution": "University of Pittsburgh",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Francois St-Pierre",
+  "institution": "Baylor College of Medicine",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Shigeki Watanabe",
+  "institution": "Johns Hopkins University",
+  "award": "Klingenstein-Simons",
+  "year": 2019
+ },
+ {
+  "name": "Amber Alhadeff",
+  "institution": "Monell Chemical Senses Center",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Ghazaleh Ashrafi",
+  "institution": "Washington University in St. Louis",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Christine Constantinople",
+  "institution": "New York University",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Laura Duvall",
+  "institution": "Brandeis University",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Michael Economo",
+  "institution": "Boston University",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "James Jeanne",
+  "institution": "Yale University",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Liang Liang",
+  "institution": "Harvard University",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Qili Liu",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Derek Southwell",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Summer Thyme",
+  "institution": "Icahn School of Medicine at Mount Sinai",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Nicholas Steinmetz",
+  "institution": "University of Washington",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Amanda Whipple",
+  "institution": "Harvard University",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Moriel Zelikowsky",
+  "institution": "University of Utah",
+  "award": "Klingenstein-Simons",
+  "year": 2020
+ },
+ {
+  "name": "Aparna Bhaduri",
+  "institution": "University of California, Los Angeles",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Frederick Bennett",
+  "institution": "University of Pennsylvania",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Lucas Cheadle",
+  "institution": "Cold Spring Harbor Laboratory",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Laura DeNardo",
+  "institution": "University of California, Los Angeles",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Annegret Falkner",
+  "institution": "Princeton University",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Hidehiko Inagaki",
+  "institution": "Max Planck Florida Institute for Neuroscience",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Isha Jain",
+  "institution": "Gladstone Institutes",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Tomasz Nowakowski",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Yi-Rong Peng",
+  "institution": "University of California, Los Angeles",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Hongying Shen",
+  "institution": "Yale University",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Nikhil Sharma",
+  "institution": "Columbia University",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Nicolas Tritsch",
+  "institution": "New York University",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Ross Williamson",
+  "institution": "University of Pittsburgh",
+  "award": "Klingenstein-Simons",
+  "year": 2021
+ },
+ {
+  "name": "Marie Bechler",
+  "institution": "SUNY Upstate Medical University",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Antonio Fernandez-Ruiz",
+  "institution": "Cornell University",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Yvette Fisher",
+  "institution": "University of California, Berkeley",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Robert Hill",
+  "institution": "Dartmouth College",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Xin Jin",
+  "institution": "Scripps Research",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Justus Kebschull",
+  "institution": "Johns Hopkins University",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Sung Soo Kim",
+  "institution": "University of California, Santa Barbara",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Aakanksha Singhvi",
+  "institution": "Fred Hutchinson Cancer Center",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Hume Stroud",
+  "institution": "UT Southwestern Medical Center",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Steffen Wolff",
+  "institution": "University of Maryland School of Medicine",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Meg Younger",
+  "institution": "Boston University",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Eviatar Yemini",
+  "institution": "UMass Chan Medical School",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Lejla Zubcevic",
+  "institution": "University of Kansas Medical Center",
+  "award": "Klingenstein-Simons",
+  "year": 2022
+ },
+ {
+  "name": "Sarah Ackerman",
+  "institution": "Washington University in St. Louis",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Arkarup Banerjee",
+  "institution": "Cold Spring Harbor Laboratory",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Ritchie Chen",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "SueYeon Chung",
+  "institution": "New York University",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Yasmine El-Shamayleh",
+  "institution": "Columbia University",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Vikram Gadagkar",
+  "institution": "Columbia University",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Fenna Krienen",
+  "institution": "Princeton University",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Ken Loh",
+  "institution": "Yale University",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Brittany D. Needham",
+  "institution": "Indiana University",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Lu Sun",
+  "institution": "UT Southwestern Medical Center",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Emily Sylwestrak",
+  "institution": "University of Oregon",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Brady Weissbourd",
+  "institution": "Massachusetts Institute of Technology",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Kevin Yackle",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2023
+ },
+ {
+  "name": "Vineet Augustine",
+  "institution": "University of California, San Diego",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Jeeyun Chung",
+  "institution": "Harvard University",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Linlin Fan",
+  "institution": "Massachusetts Institute of Technology",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Jordan Farrell",
+  "institution": "Boston Children's Hospital",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Anna K. Gillespie",
+  "institution": "University of Washington",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Eirene Markenscoff-Papadimitriou",
+  "institution": "Cornell University",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Vijay Mohan K. Namboodiri",
+  "institution": "University of California, San Francisco",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Anders Nelson",
+  "institution": "New York University",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Neset Ozel",
+  "institution": "Stowers Institute for Medical Research",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Jessica Osterhout",
+  "institution": "University of Utah",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Nancy Padilla-Coreano",
+  "institution": "University of Florida",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Kartik Pattabiraman",
+  "institution": "Yale University",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Elizabeth Pollina",
+  "institution": "Washington University in St. Louis",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Kapil V. Ramachandran",
+  "institution": "Columbia University",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Herbert Zheng Wu",
+  "institution": "Icahn School of Medicine at Mount Sinai",
+  "award": "Klingenstein-Simons",
+  "year": 2024
+ },
+ {
+  "name": "Salil Bidaye",
+  "institution": "Max Planck Florida Institute for Neuroscience",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Sebastian Choi",
+  "institution": "UT Southwestern Medical Center",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Carolyn Elya",
+  "institution": "Harvard University",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Tristan Geiller",
+  "institution": "Yale University",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Xin Gu",
+  "institution": "Dana-Farber Cancer Institute",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Laura Gwilliams",
+  "institution": "Stanford University",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Danique Jeurissen",
+  "institution": "New York University",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Aaron Kuan",
+  "institution": "Yale University",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Changyang Linghu",
+  "institution": "University of Michigan",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Quynh Anh Nguyen",
+  "institution": "Vanderbilt University",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Justin O'Hare",
+  "institution": "University of Colorado",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Debosmita Sardar",
+  "institution": "University of Colorado",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Carl Schoonover",
+  "institution": "Allen Institute for Brain Science",
+  "award": "Klingenstein-Simons",
+  "year": 2025
+ },
+ {
+  "name": "Yevgenia Kozorovitskiy",
+  "institution": "Northwestern University",
+  "award": "Searle Scholar",
+  "year": 2016
+ },
+ {
+  "name": "Michael Yartsev",
+  "institution": "University of California, Berkeley",
+  "award": "Searle Scholar",
+  "year": 2016
+ },
+ {
+  "name": "Eiman Azim",
+  "institution": "Salk Institute for Biological Studies",
+  "award": "Searle Scholar",
+  "year": 2017
+ },
+ {
+  "name": "Weizhe Hong",
+  "institution": "University of California, Los Angeles",
+  "award": "Searle Scholar",
+  "year": 2017
+ },
+ {
+  "name": "John Tuthill",
+  "institution": "University of Washington",
+  "award": "Searle Scholar",
+  "year": 2017
+ },
+ {
+  "name": "Andres Bendesky",
+  "institution": "Columbia University",
+  "award": "Searle Scholar",
+  "year": 2018
+ },
+ {
+  "name": "Kathryn D. Meyer",
+  "institution": "Duke University",
+  "award": "Searle Scholar",
+  "year": 2018
+ },
+ {
+  "name": "Priya Rajasethupathy",
+  "institution": "The Rockefeller University",
+  "award": "Searle Scholar",
+  "year": 2018
+ },
+ {
+  "name": "Mark Sheffield",
+  "institution": "University of Chicago",
+  "award": "Searle Scholar",
+  "year": 2018
+ },
+ {
+  "name": "Nick Bellono",
+  "institution": "Harvard University",
+  "award": "Searle Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Paul Greer",
+  "institution": "UMass Medical School",
+  "award": "Searle Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Andrew Miri",
+  "institution": "Northwestern University",
+  "award": "Searle Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Caroline Runyan",
+  "institution": "University of Pittsburgh",
+  "award": "Searle Scholar",
+  "year": 2019
+ },
+ {
+  "name": "Hidehiko Inagaki",
+  "institution": "Max Planck Florida Institute for Neuroscience",
+  "award": "Searle Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Sung Soo Kim",
+  "institution": "University of California, Santa Barbara",
+  "award": "Searle Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Laura D. Lewis",
+  "institution": "Boston University",
+  "award": "Searle Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Lauren L. Orefice",
+  "institution": "Massachusetts General Hospital",
+  "award": "Searle Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Xiao Wang",
+  "institution": "Broad Institute",
+  "award": "Searle Scholar",
+  "year": 2020
+ },
+ {
+  "name": "Ahmed Abdelfattah",
+  "institution": "Brown University",
+  "award": "Searle Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Fei Chen",
+  "institution": "Broad Institute",
+  "award": "Searle Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Bradley H. Dickerson",
+  "institution": "Princeton University",
+  "award": "Searle Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Yun Ding",
+  "institution": "University of Pennsylvania",
+  "award": "Searle Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Vikram Gadagkar",
+  "institution": "Columbia University",
+  "award": "Searle Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Matthew Lovett-Barron",
+  "institution": "University of California, San Diego",
+  "award": "Searle Scholar",
+  "year": 2021
+ },
+ {
+  "name": "Arkarup Banerjee",
+  "institution": "Cold Spring Harbor Laboratory",
+  "award": "Searle Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Ian C. Fiebelkorn",
+  "institution": "University of Rochester",
+  "award": "Searle Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Christina Kim",
+  "institution": "University of California, Davis",
+  "award": "Searle Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Guangyu Robert Yang",
+  "institution": "Massachusetts Institute of Technology",
+  "award": "Searle Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Meg A. Younger",
+  "institution": "Boston University",
+  "award": "Searle Scholar",
+  "year": 2022
+ },
+ {
+  "name": "Sinisa Hrvatin",
+  "institution": "Whitehead Institute for Biomedical Research",
+  "award": "Searle Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Sergey Stavisky",
+  "institution": "University of California, Davis",
+  "award": "Searle Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Humsa Venkatesh",
+  "institution": "Harvard Medical School",
+  "award": "Searle Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Brittany Needham",
+  "institution": "Indiana University",
+  "award": "Searle Scholar",
+  "year": 2023
+ },
+ {
+  "name": "Caroline Albertin",
+  "institution": "Marine Biological Laboratory",
+  "award": "Searle Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Vineet Augustine",
+  "institution": "University of California, San Diego",
+  "award": "Searle Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Ian Oldenburg",
+  "institution": "Rutgers University",
+  "award": "Searle Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Brandon Weissbourd",
+  "institution": "Massachusetts Institute of Technology",
+  "award": "Searle Scholar",
+  "year": 2024
+ },
+ {
+  "name": "Carolyn Elya",
+  "institution": "Harvard University",
+  "award": "Searle Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Linlin Fan",
+  "institution": "Massachusetts Institute of Technology",
+  "award": "Searle Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Chen Ran",
+  "institution": "Scripps Research",
+  "award": "Searle Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Weizhen Xie",
+  "institution": "University of Maryland",
+  "award": "Searle Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Andrew Yang",
+  "institution": "Gladstone Institutes",
+  "award": "Searle Scholar",
+  "year": 2025
+ },
+ {
+  "name": "Martha W. Bagnall",
+  "institution": "Washington University School of Medicine",
+  "award": "Pew Biomedical",
+  "year": 2016
+ },
+ {
+  "name": "Marco Gallio",
+  "institution": "Northwestern University",
+  "award": "Pew Biomedical",
+  "year": 2016
+ },
+ {
+  "name": "Roozbeh Kiani",
+  "institution": "NYU Langone Medical Center",
+  "award": "Pew Biomedical",
+  "year": 2016
+ },
+ {
+  "name": "Dragana Rogulja",
+  "institution": "Harvard Medical School",
+  "award": "Pew Biomedical",
+  "year": 2016
+ },
+ {
+  "name": "Michael M. Yartsev",
+  "institution": "University of California, Berkeley",
+  "award": "Pew Biomedical",
+  "year": 2016
+ },
+ {
+  "name": "Eiman Azim",
+  "institution": "Salk Institute for Biological Studies",
+  "award": "Pew Biomedical",
+  "year": 2017
+ },
+ {
+  "name": "Michael A. Crickmore",
+  "institution": "Boston Children's Hospital",
+  "award": "Pew Biomedical",
+  "year": 2017
+ },
+ {
+  "name": "Michael M. Halassa",
+  "institution": "New York University",
+  "award": "Pew Biomedical",
+  "year": 2017
+ },
+ {
+  "name": "Anna Victoria R. Molofsky",
+  "institution": "University of California, San Francisco",
+  "award": "Pew Biomedical",
+  "year": 2017
+ },
+ {
+  "name": "Nilay Yapici",
+  "institution": "Cornell University",
+  "award": "Pew Biomedical",
+  "year": 2017
+ },
+ {
+  "name": "Hiroyuki Kato",
+  "institution": "University of North Carolina at Chapel Hill",
+  "award": "Pew Biomedical",
+  "year": 2018
+ },
+ {
+  "name": "Nuo Li",
+  "institution": "Baylor College of Medicine",
+  "award": "Pew Biomedical",
+  "year": 2018
+ },
+ {
+  "name": "Kassandra Ori-McKenney",
+  "institution": "University of California, Davis",
+  "award": "Pew Biomedical",
+  "year": 2018
+ },
+ {
+  "name": "Erin L. Rich",
+  "institution": "Icahn School of Medicine at Mount Sinai",
+  "award": "Pew Biomedical",
+  "year": 2018
+ },
+ {
+  "name": "Jos\u00e9 A. Rodriguez",
+  "institution": "University of California, Los Angeles",
+  "award": "Pew Biomedical",
+  "year": 2018
+ },
+ {
+  "name": "Victoria Abraira",
+  "institution": "Rutgers University",
+  "award": "Pew Biomedical",
+  "year": 2019
+ },
+ {
+  "name": "Rudy Behnia",
+  "institution": "Columbia University",
+  "award": "Pew Biomedical",
+  "year": 2019
+ },
+ {
+  "name": "Mazen Kheirbek",
+  "institution": "University of California, San Francisco",
+  "award": "Pew Biomedical",
+  "year": 2019
+ },
+ {
+  "name": "Caroline Runyan",
+  "institution": "University of Pittsburgh",
+  "award": "Pew Biomedical",
+  "year": 2019
+ },
+ {
+  "name": "John Tuthill",
+  "institution": "University of Washington School of Medicine",
+  "award": "Pew Biomedical",
+  "year": 2019
+ },
+ {
+  "name": "Gilad D. Evrony",
+  "institution": "NYU Grossman School of Medicine",
+  "award": "Pew Biomedical",
+  "year": 2020
+ },
+ {
+  "name": "Evan Macosko",
+  "institution": "Massachusetts General Hospital",
+  "award": "Pew Biomedical",
+  "year": 2020
+ },
+ {
+  "name": "Lauren O'Connell",
+  "institution": "Stanford University",
+  "award": "Pew Biomedical",
+  "year": 2020
+ },
+ {
+  "name": "Lauren Orefice",
+  "institution": "Massachusetts General Hospital",
+  "award": "Pew Biomedical",
+  "year": 2020
+ },
+ {
+  "name": "Nicholas Steinmetz",
+  "institution": "University of Washington",
+  "award": "Pew Biomedical",
+  "year": 2020
+ },
+ {
+  "name": "E. Josephine Clowney",
+  "institution": "University of Michigan",
+  "award": "Pew Biomedical",
+  "year": 2021
+ },
+ {
+  "name": "Laura B. Duvall",
+  "institution": "Columbia University",
+  "award": "Pew Biomedical",
+  "year": 2021
+ },
+ {
+  "name": "Laura Lewis",
+  "institution": "Boston University",
+  "award": "Pew Biomedical",
+  "year": 2021
+ },
+ {
+  "name": "Qili Liu",
+  "institution": "University of California, San Francisco",
+  "award": "Pew Biomedical",
+  "year": 2021
+ },
+ {
+  "name": "Cressida Madigan",
+  "institution": "University of California, San Diego",
+  "award": "Pew Biomedical",
+  "year": 2021
+ },
+ {
+  "name": "Summer Thyme",
+  "institution": "University of Alabama at Birmingham",
+  "award": "Pew Biomedical",
+  "year": 2021
+ },
+ {
+  "name": "Ishmail Abdus-Saboor",
+  "institution": "Columbia University",
+  "award": "Pew Biomedical",
+  "year": 2022
+ },
+ {
+  "name": "Amber L. Alhadeff",
+  "institution": "Monell Chemical Senses Center",
+  "award": "Pew Biomedical",
+  "year": 2022
+ },
+ {
+  "name": "Matthew Lovett-Barron",
+  "institution": "University of California, San Diego",
+  "award": "Pew Biomedical",
+  "year": 2022
+ },
+ {
+  "name": "Alban Ordureau",
+  "institution": "Memorial Sloan Kettering Cancer Center",
+  "award": "Pew Biomedical",
+  "year": 2022
+ },
+ {
+  "name": "Steve Ramirez",
+  "institution": "Boston University",
+  "award": "Pew Biomedical",
+  "year": 2022
+ },
+ {
+  "name": "Josefina del M\u00e1rmol",
+  "institution": "Harvard Medical School",
+  "award": "Pew Biomedical",
+  "year": 2023
+ },
+ {
+  "name": "Christine Grienberger",
+  "institution": "Brandeis University",
+  "award": "Pew Biomedical",
+  "year": 2023
+ },
+ {
+  "name": "Sini\u0161a Hrvatin",
+  "institution": "Whitehead Institute for Biomedical Research",
+  "award": "Pew Biomedical",
+  "year": 2023
+ },
+ {
+  "name": "Kara Marshall",
+  "institution": "Baylor College of Medicine",
+  "award": "Pew Biomedical",
+  "year": 2023
+ },
+ {
+  "name": "Helen Vuong",
+  "institution": "University of Minnesota",
+  "award": "Pew Biomedical",
+  "year": 2023
+ },
+ {
+  "name": "Xin Jin",
+  "institution": "Scripps Research",
+  "award": "Pew Biomedical",
+  "year": 2024
+ },
+ {
+  "name": "Ann Kennedy",
+  "institution": "Northwestern University",
+  "award": "Pew Biomedical",
+  "year": 2024
+ },
+ {
+  "name": "Vijay Mohan K. Namboodiri",
+  "institution": "University of California, San Francisco",
+  "award": "Pew Biomedical",
+  "year": 2024
+ },
+ {
+  "name": "Meg Younger",
+  "institution": "Boston University",
+  "award": "Pew Biomedical",
+  "year": 2024
+ },
+ {
+  "name": "Antonio Fernandez-Ruiz",
+  "institution": "Cornell University",
+  "award": "Pew Biomedical",
+  "year": 2025
+ },
+ {
+  "name": "Fenna Krienen",
+  "institution": "Princeton University",
+  "award": "Pew Biomedical",
+  "year": 2025
+ },
+ {
+  "name": "Yerbol Kurmangaliyev",
+  "institution": "Brandeis University",
+  "award": "Pew Biomedical",
+  "year": 2025
+ },
+ {
+  "name": "Bianca Jones Marlin",
+  "institution": "Columbia University",
+  "award": "Pew Biomedical",
+  "year": 2025
+ },
+ {
+  "name": "Jessica Osterhout",
+  "institution": "University of Utah",
+  "award": "Pew Biomedical",
+  "year": 2025
+ },
+ {
+  "name": "En Yang",
+  "institution": "University of North Carolina, Chapel Hill",
+  "award": "Pew Biomedical",
+  "year": 2025
+ },
+ {
+  "name": "Adrienne A. Boire",
+  "institution": "Memorial Sloan Kettering",
+  "award": "Pew Biomedical",
+  "year": 2018
+ },
+ {
+  "name": "Alan Brown",
+  "institution": "Harvard Medical School",
+  "award": "Pew Biomedical",
+  "year": 2019
+ },
+ {
+  "name": "Juan Du",
+  "institution": "Van Andel Institute",
+  "award": "Pew Biomedical",
+  "year": 2020
+ },
+ {
+  "name": "Seth Shipman",
+  "institution": "Gladstone Institutes",
+  "award": "Pew Biomedical",
+  "year": 2020
+ },
+ {
+  "name": "Sara Prescott",
+  "institution": "MIT",
+  "award": "Pew Biomedical",
+  "year": 2024
+ },
+ {
+  "name": "Matthew Bramble",
+  "institution": "Children's National Hospital",
+  "award": "Pew Biomedical",
+  "year": 2025
+ }
+]
