@@ -55,7 +55,8 @@ COMMON_SURNAMES = {
     'hunter', 'oliver', 'shaw', 'lynch', 'walsh', 'schmidt', 'day', 'lane', 'chan', 'chang',
     'chung', 'chen', 'chu', 'han', 'hong', 'kwon', 'lim', 'ryu', 'seo', 'son', 'yi', 'goldberg',
     'rosenberg', 'friedman', 'kaplan', 'roth', 'berg', 'stern', 'singh', 'kumar', 'patel', 'shah',
-    'khan', 'ali', 'ahmed', 'das', 'gupta', 'reddy', 'rao', 'jain',
+    'khan', 'ali', 'ahmed', 'das', 'gupta', 'reddy', 'rao', 'jain', 'loh', 'lim', 'goh', 'tan',
+    'ong', 'sim', 'yap', 'teo', 'koh', 'toh',
 }
 
 
@@ -153,7 +154,11 @@ def counts(lastname, initial, inst_keywords, common=None, want_first_pi=True):
             if not (len(p) == 2 and strip(p[0]) == sn and p[1][:1].upper() == fi):
                 continue
             seen.add(pid)
-            m = re.match(r'(\d{4})', it.get('sortpubdate') or it.get('pubdate') or '')
+            # Prefer electronic-publication (epub) year so epub-2025/print-2026 papers count in 2025.
+            edate = it.get('epubdate') or ''
+            m = re.match(r'(\d{4})', edate)
+            if not m:
+                m = re.match(r'(\d{4})', it.get('sortpubdate') or it.get('pubdate') or '')
             if not m:
                 continue
             yr = int(m.group(1)); first_years.append(yr)
@@ -200,7 +205,10 @@ def counts(lastname, initial, inst_keywords, common=None, want_first_pi=True):
                 if not any(k in aff for k in kwl):
                     continue
                 seen.add(pmid)
-                y = art.findtext('.//Article/Journal/JournalIssue/PubDate/Year')
+                # Prefer electronic (ArticleDate) year so epub-2025/print-2026 papers count in 2025.
+                y = art.findtext('.//Article/ArticleDate/Year')
+                if not y:
+                    y = art.findtext('.//Article/Journal/JournalIssue/PubDate/Year')
                 if not y:
                     md = art.findtext('.//Article/Journal/JournalIssue/PubDate/MedlineDate') or ''
                     m = re.match(r'(\d{4})', md); y = m.group(1) if m else None
