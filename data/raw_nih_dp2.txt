@@ -1,0 +1,82 @@
+2016 | Kwanghun Chung | MIT
+2016 | Monica Dus | University of Michigan
+2016 | Stephen Brohawn | UC Berkeley
+2016 | Michael Yartsev | UC Berkeley
+2016 | Joel Kralj | University of Colorado Boulder
+2016 | Bozhi Tian | University of Chicago
+2017 | Eiman Azim | Salk Institute
+2017 | Evan Macosko | Broad Institute
+2017 | Anna Molofsky | UCSF
+2017 | Priya Rajasethupathy | Rockefeller University
+2017 | Michael Sheehan | Cornell University
+2017 | Neville Sanjana | New York University
+2018 | Zoe Donaldson | University of Colorado Boulder
+2018 | Lindy McBride | Princeton University
+2018 | Carlos Vargas-Irwin | Brown University
+2018 | Matthew Kayser | University of Pennsylvania
+2018 | Raju Tomer | Columbia University
+2018 | Medha Pathak | UC Irvine
+2018 | Michael Tadross | Duke University
+2018 | Darcie Moore | University of Wisconsin
+2019 | Alexandros Poulopoulos | University of Maryland
+2019 | Denise Cai | Icahn School of Medicine at Mount Sinai
+2019 | Talia Lerner | Northwestern University
+2019 | Sarah Kocher | Princeton University
+2019 | Andrew Leifer | Princeton University
+2019 | Kevin Beier | UC Irvine
+2019 | Lindsay Schwarz | St. Jude Children's Research Hospital
+2019 | Hyejung Won | UNC Chapel Hill
+2019 | Xiaochang Zhang | University of Chicago
+2020 | Dmitriy Aronov | Columbia University
+2020 | Annegret Falkner | Princeton University
+2020 | Christine Constantinople | New York University
+2020 | Andrew Miri | Northwestern University
+2020 | Colenso Speer | University of Maryland
+2020 | Mercedes Paredes | UCSF
+2020 | Duygu Kuzum | UC San Diego
+2020 | Gregory Corder | University of Pennsylvania
+2020 | Lu Wei | Caltech
+2020 | Li Ye | Scripps Research
+2021 | Ahmed Abdelfattah | Brown University
+2021 | Amber Alhadeff | Monell Chemical Senses Center
+2021 | Xiao Wang | MIT
+2021 | Erica Korb | University of Pennsylvania
+2021 | Chethan Pandarinath | Emory University
+2021 | Jim Heys | University of Utah
+2021 | Nikhil Sharma | Columbia University
+2021 | Swetha Murthy | Oregon Health & Science University
+2021 | Justin English | University of Utah
+2022 | Vikram Gadagkar | Columbia University
+2022 | Christopher Makinson | Columbia University
+2022 | Ishmail Abdus-Saboor | Columbia University
+2022 | Xiaoyin Chen | Allen Institute
+2022 | Sergey Stavisky | UC Davis
+2022 | Hidehiko Inagaki | Max Planck Florida Institute for Neuroscience
+2022 | Carlos Ponce | Harvard Medical School
+2022 | Adam Granger | Broad Institute
+2022 | Rachel Buckley | Harvard Medical School
+2022 | Sinisa Hrvatin | Whitehead Institute for Biomedical Research
+2022 | Deblina Sarkar | MIT
+2023 | Christina Kim | UC Davis
+2023 | Matthew Lovett-Barron | UC San Diego
+2023 | Elizabeth Crouch | UCSF
+2023 | Katie Baldwin | UNC Chapel Hill
+2023 | Humsa Venkatesh | Harvard Medical School
+2023 | Xinzhu Yu | University of Illinois
+2023 | Sarah Stern | Max Planck Florida Institute for Neuroscience
+2023 | Christine Grienberger | Brandeis University
+2023 | Benjamin Bartelle | Arizona State University
+2024 | Ian Oldenburg | Rutgers University
+2024 | Fenna Krienen | Princeton University
+2024 | Derek Southwell | Duke University
+2024 | Richard Sando | Vanderbilt University
+2024 | Vidhya Rangaraju | Max Planck Florida Institute for Neuroscience
+2024 | Dhananjay Bambah-Mukku | UC San Diego
+2024 | Preeya Khanna | UC Berkeley
+2025 | Ryoma Hattori | Max Planck Florida Institute for Neuroscience
+2025 | Shuo Chen | New York University
+2025 | Bridget Ostrem | UCSF
+2025 | Jacqueline Palmer | University of Minnesota
+2025 | Richard Smith | Northwestern University
+2025 | Meg Younger | Boston University
+2025 | Melanie Maya Kaelberer | University of Arizona

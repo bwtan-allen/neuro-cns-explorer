@@ -1,75 +1,76 @@
-Investigator,Institution,City,CNS_corr_total,CNS_years_covered,CNS_avg_per_yr,CNS_gap_years,CNS_method,nonCNS_corr_total,nonCNS_years_covered,nonCNS_avg_per_yr,nonCNS_gap_years,nonCNS_method,Total papers/year
-Karl Deisseroth,Stanford University,"Stanford, CA",24,10-Sep,2.4,2024,noAffil,22,10-Sep,2.2,2019,noAffil(distinctive),4.6
-Eric Gouaux,Oregon Health & Science University,"Portland, OR",19,10-Sep,1.9,2020,noAffil,31,10-Oct,3.1,none,noAffil(distinctive),5
-Liqun Luo,Stanford University,"Stanford, CA",19,10-Sep,1.9,2016,noAffil,41,10-Oct,4.1,none,withAffil(common),6
-Xiaowei Zhuang,Harvard University,"Cambridge, MA",17,10-Aug,1.7,2017;2024,noAffil,pending_NCBI_throttle,pending_NCBI_throttle,pending_NCBI_throttle,pending_NCBI_throttle,pending,#VALUE!
-David J. Anderson,California Institute of Technology,"Pasadena, CA",16,10-Sep,1.6,2016;2021;2022,noAffil,pending_NCBI_throttle,pending_NCBI_throttle,pending_NCBI_throttle,pending_NCBI_throttle,pending,#VALUE!
-Michelle Monje,Stanford University,"Stanford, CA",15,10-Jul,1.5,2016,noAffil,53,10-Oct,5.3,none,noAffil(distinctive),6.8
-David D. Ginty,Harvard Medical School,"Boston, MA",14,10-Sep,1.4,2017;2018;2025,noAffil,25,10-Aug,2.5,2016;2020,noAffil(distinctive),3.9
-Ardem Patapoutian,Scripps Research,"La Jolla, CA",14,10-Aug,1.4,2019;2024,noAffil,12,10-Jun,1.2,2019;2020;2022;2023,noAffil(distinctive),2.6
-Joseph R. Ecker,Salk Institute for Biological Studies,"La Jolla, CA",13,10-Jul,1.3,2018;2019;2022,noAffil,55,10-Oct,5.5,none,noAffil(distinctive),6.8
-Thomas C. Südhof,Stanford University,"Stanford, CA",13,10-Aug,1.3,2022;2023,noAffil,70,10-Oct,7,none,noAffil(distinctive),8.3
-Christopher A. Walsh,Boston Children's Hospital,"Boston, MA",12,10-Jul,1.2,2019;2020,noAffil,101,10-Oct,10.1,none,withAffil(common),11.3
-Mark J. Schnitzer,Stanford University,"Stanford, CA",10,10-Aug,1,2020;2023,noAffil,32,10-Sep,3.2,2017,noAffil(distinctive),4.2
-Kay Tye,Salk Institute for Biological Studies,"La Jolla, CA",10,10-Jun,1,2017;2020;2023;2024;2025,noAffil,21,10-Aug,2.1,2020;2022,noAffil(distinctive),3.1
-Jeffrey M. Friedman,The Rockefeller University,"New York, NY",9,10-Jun,0.9,2018;2020;2023;2025,noAffil,19,10-Sep,1.9,2016,withAffil(common),2.8
-Michael Yartsev,"University of California, Berkeley","Berkeley, CA",8,10-Jul,0.8,2016;2017;2018;2020,noAffil,10,10-Jul,1,2016;2017;2020,noAffil(distinctive),1.8
-Charles S. Zuker,Columbia University,"New York, NY",8,10-Jul,0.8,2016;2023,noAffil,3,10-Feb,0.3,2017;2018;2019;2020;2021;2022;2023;2025,noAffil(distinctive),1.1
-Bernardo L. Sabatini,Harvard Medical School,"Boston, MA",8,10-Jun,0.8,2017;2018;2019;2022,noAffil,44,10-Oct,4.4,none,noAffil(distinctive),5.2
-Scott M. Sternson,"University of California, San Diego","La Jolla, CA",8,10-Jun,0.8,2017;2018;2022;2023;2024,noAffil,6,10-Apr,0.6,2016;2017;2019;2022;2024;2025,noAffil(distinctive),1.4
-Steven McCarroll,Harvard Medical School,"Boston, MA",8,10-May,0.8,2019;2022;2025,noAffil,11,10-Jun,1.1,2017;2019;2020;2021,noAffil(distinctive),1.9
-Zachary A. Knight,"University of California, San Francisco","San Francisco, CA",8,10-May,0.8,2017;2018;2020;2021;2024;2025,noAffil,19,10-Sep,1.9,2021,withAffil(common),2.7
-Oliver Hobert,Columbia University,"New York, NY",8,10-Jun,0.8,2017;2022;2023;2024,noAffil,81,10-Oct,8.1,none,noAffil(distinctive),8.9
-Leslie B. Vosshall,The Rockefeller University,"New York, NY",7,10-Jun,0.7,2017;2023;2024;2025,noAffil,15,10-Jul,1.5,2018;2021;2024,noAffil(distinctive),2.2
-Vanessa Ruta,The Rockefeller University,"New York, NY",7,10-May,0.7,2016;2017;2020;2022;2023,noAffil,7,10-Mar,0.7,2016;2017;2018;2019;2020;2022;2024,noAffil(distinctive),1.4
-Catherine Dulac,Harvard University,"Cambridge, MA",7,10-Apr,0.7,2016;2019;2020;2021;2023;2024,noAffil,15,10-Jul,1.5,2019;2020;2022,noAffil(distinctive),2.2
-Mark A. Krasnow,Stanford University,"Stanford, CA",7,10-Jun,0.7,2021;2023;2024;2025,noAffil,15,10-Oct,1.5,none,noAffil(distinctive),2.2
-Daniel Kronauer,The Rockefeller University,"New York, NY",7,10-Apr,0.7,2016;2019;2020;2021;2022;2024;2025,noAffil,48,10-Sep,4.8,2019,noAffil(distinctive),5.5
-Rachel I. Wilson,Harvard Medical School,"Boston, MA",7,10-May,0.7,2017;2018;2020;2023;2025,withAffil,23,10-Aug,2.3,2021;2024,withAffil(common),3
-Stephen D. Liberles,Harvard Medical School,"Boston, MA",7,10-Jul,0.7,2017;2018;2019;2025,noAffil,9,10-Jul,0.9,2017;2020;2024,noAffil(distinctive),1.6
-Gaby Maimon,The Rockefeller University,"New York, NY",6,10-Apr,0.6,2016;2018;2019;2020;2022,noAffil,7,10-Jun,0.7,2016;2017;2020;2024,noAffil(distinctive),1.3
-S. Lawrence Zipursky,"University of California, Los Angeles","Los Angeles, CA",6,10-Mar,0.6,2016;2017;2018;2019;2020;2021;2024,noAffil,18,10-Sep,1.8,2021,noAffil(distinctive),2.4
-Massimo Scanziani,"University of California, San Francisco","San Francisco, CA",6,10-May,0.6,2017;2021;2023;2024;2025,noAffil,10,10-Jun,1,2016;2017;2019;2022,noAffil(distinctive),1.6
-Amita Sehgal,University of Pennsylvania,"Philadelphia, PA",5,10-May,0.5,2016;2021;2022;2023;2024;2025,noAffil,124,10-Oct,12.4,none,noAffil(distinctive),12.9
-Lisa Giocomo,Stanford University,"Stanford, CA",5,10-Mar,0.5,2016;2017;2018;2020;2022;2023;2025,noAffil,33,10-Oct,3.3,none,noAffil(distinctive),3.8
-Erich D. Jarvis,The Rockefeller University,"New York, NY",5,10-Mar,0.5,2016;2017;2018;2019;2020;2021;2024;2025,noAffil,30,10-Jul,3,2018;2019;2020,noAffil(distinctive),3.5
-Huda Y. Zoghbi,Baylor College of Medicine,"Houston, TX",5,10-May,0.5,2017;2020;2022;2023;2024;2025,noAffil,65,10-Oct,6.5,none,noAffil(distinctive),7
-Susumu Tonegawa,Massachusetts Institute of Technology,"Cambridge, MA",5,10-Mar,0.5,2018;2019;2020;2021;2022;2023;2024;2025,noAffil,17,10-Aug,1.7,2023;2024,noAffil(distinctive),2.2
-Ilana B. Witten,Princeton University,"Princeton, NJ",4,10-Mar,0.4,2016;2018;2020;2021;2023;2024,noAffil,21,10-Aug,2.1,2017;2018,noAffil(distinctive),2.5
-Axel T. Brunger,Stanford University,"Stanford, CA",4,10-Mar,0.4,2016;2018;2019;2020;2021;2022;2023;2025,noAffil,28,10-Sep,2.8,2020,noAffil(distinctive),3.2
-Dmitriy Aronov,Columbia University,"New York, NY",3,10-Mar,0.3,2016;2018;2019;2020;2022;2023,noAffil,9,10-Apr,0.9,2016;2017;2019;2020;2024;2025,noAffil(distinctive),1.2
-Mikhail Shapiro,California Institute of Technology,"Pasadena, CA",3,10-Mar,0.3,2016;2017;2020;2021;2022;2023;2024;2025,noAffil,52,10-Oct,5.2,none,withAffil(common),5.5
-Loren M. Frank,"University of California, San Francisco","San Francisco, CA",3,10-Mar,0.3,2017;2018;2019;2021;2022;2024;2025,withAffil,28,10-Sep,2.8,2023,withAffil(common),3.1
-Cagla Eroglu,Duke University,"Durham, NC",3,10-Mar,0.3,2018;2019;2020;2021;2022;2023;2024,noAffil,41,10-Oct,4.1,none,noAffil(distinctive),4.4
-Richard D. Palmiter,University of Washington,"Seattle, WA",3,10-Mar,0.3,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,noAffil,25,10-Sep,2.5,2019,noAffil(distinctive),2.8
-Steve Flavell,Massachusetts Institute of Technology,"Cambridge, MA",3,10-Feb,0.3,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,noAffil,17,10-Aug,1.7,2016;2018,noAffil(distinctive),2
-Kafui Dzirasa,Duke University,"Durham, NC",3,10-Feb,0.3,2016;2017;2019;2021;2022;2023;2024;2025,noAffil,14,10-Jul,1.4,2019;2020;2021,noAffil(distinctive),1.7
-Kang Shen,Stanford University,"Stanford, CA",3,10-Mar,0.3,2016;2017;2019;2021;2023;2024;2025,withAffil,40,10-Oct,4,none,withAffil(common),4.3
-Li Ye,Scripps Research,"La Jolla, CA",3,10-Feb,0.3,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,withAffil,8,10-Mar,0.8,2016;2017;2018;2019;2020;2021;2025,withAffil(common),1.1
-Pietro De Camilli,Yale University,", ",3,10-Mar,0.3,2020;2021;2022;2023;2024;2025,noAffil,49,10-Oct,4.9,none,noAffil(distinctive),5.2
-Carlos D. Brody,Princeton University,"Princeton, NJ",3,10-Feb,0.3,2016;2017;2018;2019;2020;2022;2023,noAffil,30,10-Oct,3,none,noAffil(distinctive),3.3
-Ian Maze,Icahn School of Medicine at Mount Sinai,"New York, NY",3,10-Mar,0.3,2016;2017;2018;2021;2022;2023;2024,noAffil,24,10-Aug,2.4,2017;2018,noAffil(distinctive),2.7
-Beth Stevens,Boston Children's Hospital,"Boston, MA",2,10-Feb,0.2,2017;2019;2020;2021;2022;2023;2025,withAffil,41,10-Oct,4.1,none,withAffil(common),4.3
-Doris Y. Tsao,"University of California, Berkeley","Berkeley, CA",2,10-Feb,0.2,2016;2018;2019;2020;2021;2022;2023,withAffil,4,10-Feb,0.4,2016;2017;2018;2019;2020;2021;2024;2025,withAffil(common),0.6
-Michael Rosbash,Brandeis University,"Waltham, MA",2,10-Feb,0.2,2018;2019;2020;2021;2022;2023;2024;2025,withAffil,34,10-Oct,3.4,none,noAffil(distinctive),3.6
-Xinzhong Dong,The Johns Hopkins University,"Baltimore, MD",2,10-Feb,0.2,2016;2017;2018;2019;2020;2021;2022;2023;2024,withAffil,33,10-Oct,3.3,none,withAffil(common),3.5
-Chenghua Gu,Harvard Medical School,"Boston, MA",2,10-Feb,0.2,2016;2017;2018;2019;2021;2022;2023;2024,withAffil,14,10-Aug,1.4,2021;2023,withAffil(common),1.6
-Susan L. Ackerman,"University of California, San Diego","La Jolla, CA",2,10-Feb,0.2,2016;2017;2019;2020;2021;2022;2023;2024;2025,noAffil,47,10-Oct,4.7,none,noAffil(distinctive),4.9
-Michael Brainard,"University of California, San Francisco","San Francisco, CA",1,10-Jan,0.1,2016;2017;2018;2019;2020;2022;2023;2024;2025,noAffil,15,10-Jul,1.5,2022;2024;2025,noAffil(distinctive),1.6
-Loren L. Looger,"University of California, San Diego","La Jolla, CA",1,10-Jan,0.1,2016;2017;2018;2019;2021;2022;2024;2025,noAffil,10,10-Jun,1,2017;2022;2023;2025,noAffil(distinctive),1.1
-Tirin Moore,Stanford University,"Stanford, CA",1,10-Jan,0.1,2016;2017;2018;2019;2020;2021;2022;2023;2025,withAffil,23,10-Oct,2.3,none,withAffil(common),2.4
-Jeremy Nathans,The Johns Hopkins University,"Baltimore, MD",1,10-Jan,0.1,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,noAffil,33,10-Oct,3.3,none,noAffil(distinctive),3.4
-Viviana Gradinaru,California Institute of Technology,"Pasadena, CA",1,10-Jan,0.1,2016;2018;2019;2021;2022;2023;2024;2025,withAffil,40,10-Oct,4,none,noAffil(distinctive),4.1
-H. Robert Horvitz,Massachusetts Institute of Technology,"Cambridge, MA",1,10-Jan,0.1,2016;2017;2018;2019;2020;2022;2023;2024;2025,noAffil,14,10-Aug,1.4,2019;2025,noAffil(distinctive),1.5
-Chris Q. Doe,University of Oregon,"Eugene, OR",1,10-Jan,0.1,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,noAffil,39,10-Oct,3.9,none,noAffil(distinctive),4
-Gwyneth Card,Columbia University,"New York, NY",1,10-Jan,0.1,2016;2018;2019;2020;2021;2022;2024,withAffil,11,10-Aug,1.1,2021;2023,noAffil(distinctive),1.2
-Albert Lee,Beth Israel Deaconess Medical Center,"Boston, MA",1,10-Jan,0.1,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,withAffil,17,10-Aug,1.7,2016;2017,withAffil(common),1.8
-Edwin R. Chapman,University of Wisconsin–Madison,"Madison, WI",1,10-Jan,0.1,2016;2017;2019;2020;2021;2022;2023;2024;2025,withAffil,33,10-Sep,3.3,2017,withAffil(common),3.4
-Robert B. Darnell,The Rockefeller University,"New York, NY",1,10-Jan,0.1,2016;2018;2019;2020;2021;2022;2023;2024;2025,noAffil,34,10-Oct,3.4,none,noAffil(distinctive),3.5
-Mehrdad Jazayeri,Massachusetts Institute of Technology,"Cambridge, MA",1,10-Jan,0.1,2016;2017;2018;2019;2020;2021;2022;2023;2025,withAffil,29,10-Aug,2.9,2016;2024,noAffil(distinctive),3
-Diana Bautista,"University of California, Berkeley","Berkeley, CA",1,10-Jan,0.1,2016;2017;2019;2020;2021;2022;2023;2024;2025,withAffil,11,10-Jul,1.1,2017;2021;2023,noAffil(distinctive),1.2
-Elizabeth C. Engle,Boston Children's Hospital,"Boston, MA",0,0/10,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,noAffil,26,10-Sep,2.6,2020,noAffil(distinctive),2.6
-Erik M. Jorgensen,The University of Utah,"Salt Lake City, UT",0,0/10,0,2017;2018;2019;2020;2021;2022;2023;2024;2025,noAffil,19,10-Sep,1.9,2019,noAffil(distinctive),1.9
-Michael N. Shadlen,Columbia University,"New York, NY",0,0/10,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,noAffil,21,10-Sep,2.1,2019,noAffil(distinctive),2.1
-Tzumin Lee,University of Michigan,"Ann Arbor, MI",0,0/10,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,withAffil,pending_NCBI_throttle,pending_NCBI_throttle,pending_NCBI_throttle,pending_NCBI_throttle,pending,#VALUE!
-Constance L. Cepko,Harvard Medical School,"Boston, MA",0,0/10,0,2017;2018;2019;2020;2021;2022;2023;2024;2025,noAffil,36,10-Sep,3.6,2018,noAffil(distinctive),3.6
+Name,Group,Institution,Field,Awards,CNS_total,CNS_avg_per_yr,CNS_years_covered,CNS_gap_years,NeuronNatNeuro_total,eLife_total,nonCNS_total,Lab_start_year,First_senior_paper,Career_stage,Count_source,CNS_2016,CNS_2017,CNS_2018,CNS_2019,CNS_2020,CNS_2021,CNS_2022,CNS_2023,CNS_2024,CNS_2025
+Karl Deisseroth,HHMI,Stanford University,Neuroscience (HHMI),,23,2.3,9,2024,6,0,22,,,established,person_cns(name),6,2,3,4,2,1,1,3,0,1
+Eric Gouaux,HHMI,Oregon Health & Science University,Neuroscience (HHMI),,19,1.9,9,2020,0,6,31,,,established,person_cns(name),4,2,3,2,0,4,1,1,1,1
+Xiaowei Zhuang,HHMI,Harvard University,Neuroscience (HHMI),,16,1.6,8,2017;2024,1,4,0,,,established,person_cns(name),3,0,3,2,1,1,2,2,0,2
+David D. Ginty,HHMI,Harvard Medical School,Neuroscience (HHMI),,14,1.4,9,2018,8,1,25,,,established,person_cns(name),1,1,0,1,3,2,2,1,2,1
+Ardem Patapoutian,HHMI,Scripps Research,Neuroscience (HHMI),,13,1.3,8,2019;2024,2,2,12,,,established,person_cns(name),1,1,3,0,2,1,1,3,0,1
+Michelle Monje,HHMI,Stanford University,Neuroscience (HHMI),,13,1.3,6,2016;2018;2020;2021,5,1,53,,,established,person_cns(name),0,2,0,2,0,0,2,3,1,3
+David J. Anderson,HHMI,California Institute of Technology,Neuroscience (HHMI),,12,1.2,8,2016;2023,5,2,0,,,established,person_cns(affil),0,1,1,1,1,3,1,0,3,1
+Thomas C. Südhof,HHMI,Stanford University,Neuroscience (HHMI),,12,1.2,7,2018;2022;2023,9,5,70,,,established,person_cns(name),1,3,0,2,1,2,0,0,2,1
+Liqun Luo,HHMI,Stanford University,Neuroscience (HHMI),,11,1.1,7,2016;2022;2025,6,5,41,,,established,person_cns(affil),0,2,2,1,2,2,0,1,1,0
+Joseph R. Ecker,HHMI,Salk Institute for Biological Studies,Neuroscience (HHMI),,10,1.0,7,2019;2022;2024,1,3,55,,,established,person_cns(name),3,1,1,0,1,1,0,2,0,1
+Mark J. Schnitzer,HHMI,Stanford University,Neuroscience (HHMI),,9,0.9,8,2019;2023,1,0,32,,,established,person_cns(name),1,1,1,0,1,1,2,0,1,1
+Christopher A. Walsh,HHMI,Boston Children's Hospital,Neuroscience (HHMI),,9,0.9,7,2017;2020;2023,6,1,101,,,established,person_cns(name),2,0,1,1,0,1,1,0,1,2
+Michael Yartsev,HHMI,"University of California, Berkeley",Neuroscience (HHMI),"Klingenstein-Simons, McKnight Scholar, NIH DP2, Pew Biomedical, Searle Scholar",8,0.8,7,2016;2018;2020,2,1,10,,,established,person_cns(name),0,1,0,1,0,2,1,1,1,1
+Charles S. Zuker,HHMI,Columbia University,Neuroscience (HHMI),,8,0.8,7,2016;2017;2023,2,0,3,,,established,person_cns(name),0,0,1,1,1,1,1,0,1,2
+Steven McCarroll,HHMI,Harvard Medical School,Neuroscience (HHMI),,8,0.8,5,2017;2019;2021;2022;2023,1,0,11,,,established,person_cns(name),1,0,1,0,4,0,0,0,1,1
+Zachary A. Knight,HHMI,"University of California, San Francisco",Neuroscience (HHMI),,8,0.8,5,2018;2020;2021;2024;2025,6,4,19,,,established,person_cns(name),2,1,0,2,0,0,2,1,0,0
+Oliver Hobert,HHMI,Columbia University,Neuroscience (HHMI),,8,0.8,6,2017;2022;2023;2024,1,9,81,,,established,person_cns(name),1,0,2,1,1,2,0,0,0,1
+Vanessa Ruta,HHMI,The Rockefeller University,Neuroscience (HHMI),,7,0.7,5,2016;2017;2020;2022;2023,1,0,7,,,established,person_cns(name),0,0,2,1,0,2,0,0,1,1
+Bernardo L. Sabatini,HHMI,Harvard Medical School,Neuroscience (HHMI),,7,0.7,5,2017;2018;2019;2020;2022,10,5,44,,,established,person_cns(name),1,0,0,0,0,3,0,1,1,1
+Catherine Dulac,HHMI,Harvard University,Neuroscience (HHMI),,7,0.7,4,2016;2019;2020;2021;2023;2024,0,1,15,,,established,person_cns(name),0,1,2,0,0,0,1,0,0,3
+Jeffrey M. Friedman,HHMI,The Rockefeller University,Neuroscience (HHMI),,7,0.7,6,2018;2019;2023;2025,1,2,19,,,established,person_cns(name),1,1,0,0,1,1,1,0,2,0
+Mark A. Krasnow,HHMI,Stanford University,Neuroscience (HHMI),,7,0.7,6,2016;2021;2023;2024,1,1,15,,,established,person_cns(name),0,1,1,1,1,0,1,0,0,2
+Gaby Maimon,HHMI,The Rockefeller University,Neuroscience (HHMI),,6,0.6,4,2016;2018;2019;2020;2021;2025,1,0,7,,,established,person_cns(name),0,2,0,0,0,0,2,1,1,0
+Scott M. Sternson,HHMI,"University of California, San Diego",Neuroscience (HHMI),,6,0.6,4,2017;2018;2021;2022;2023;2024,1,1,6,,,established,person_cns(name),1,0,0,1,2,0,0,0,0,2
+Kay Tye,HHMI,Salk Institute for Biological Studies,Neuroscience (HHMI),,6,0.6,5,2017;2020;2023;2024;2025,4,2,21,,,established,person_cns(name),1,0,1,1,0,1,2,0,0,0
+Daniel Kronauer,HHMI,The Rockefeller University,Neuroscience (HHMI),,6,0.6,4,2016;2019;2020;2021;2024;2025,1,2,48,,,established,person_cns(name),0,1,2,0,0,0,1,2,0,0
+Rachel I. Wilson,HHMI,Harvard Medical School,Neuroscience (HHMI),,6,0.6,4,2017;2018;2020;2021;2023;2025,6,1,23,,,established,person_cns(affil),1,0,0,1,0,0,2,0,2,0
+Massimo Scanziani,HHMI,"University of California, San Francisco",Neuroscience (HHMI),,6,0.6,5,2017;2021;2023;2024;2025,3,2,10,,,established,person_cns(name),1,0,1,1,1,0,2,0,0,0
+Stephen D. Liberles,HHMI,Harvard Medical School,Neuroscience (HHMI),,6,0.6,6,2017;2018;2019;2025,2,2,9,,,established,person_cns(name),1,0,0,0,1,1,1,1,1,0
+Leslie B. Vosshall,HHMI,The Rockefeller University,Neuroscience (HHMI),,5,0.5,4,2017;2020;2021;2023;2024;2025,1,4,15,,,established,person_cns(name),1,0,2,1,0,0,1,0,0,0
+S. Lawrence Zipursky,HHMI,"University of California, Los Angeles",Neuroscience (HHMI),,5,0.5,3,2016;2017;2018;2019;2021;2023;2024,6,2,18,,,established,person_cns(name),0,0,0,0,1,0,2,0,0,2
+Susumu Tonegawa,HHMI,Massachusetts Institute of Technology,Neuroscience (HHMI),,5,0.5,3,2018;2019;2021;2022;2023;2024;2025,6,0,17,,,established,person_cns(name),2,2,0,0,1,0,0,0,0,0
+Cornelia Bargmann,HHMI,Rockefeller University,Neuroscience (HHMI),,5,0.5,3,2019;2020;2021;2022;2023;2024;2025,2,6,,,,established,person_cns(name),2,2,1,0,0,0,0,0,0,0
+Ilana B. Witten,HHMI,Princeton University,Neuroscience (HHMI),,4,0.4,3,2016;2018;2020;2021;2022;2023;2024,7,2,21,,,established,person_cns(name),0,1,0,1,0,0,0,0,0,2
+Doris Y. Tsao,HHMI,"University of California, Berkeley",Neuroscience (HHMI),,4,0.4,4,2016;2018;2019;2021;2022;2023,3,2,4,,,established,person_cns(name),0,1,0,0,1,0,0,0,1,1
+Erich D. Jarvis,HHMI,The Rockefeller University,Neuroscience (HHMI),,4,0.4,3,2016;2017;2018;2020;2022;2024;2025,0,1,30,,,established,person_cns(name),0,0,0,1,0,2,0,1,0,0
+Dmitriy Aronov,HHMI,Columbia University,Neuroscience (HHMI),NIH DP2,3,0.3,3,2016;2017;2018;2019;2020;2022;2023,0,1,9,,,established,person_cns(name),0,0,0,0,0,1,0,0,1,1
+Mikhail Shapiro,HHMI,California Institute of Technology,Neuroscience (HHMI),,3,0.3,3,2016;2017;2020;2021;2022;2024;2025,3,2,52,,,established,person_cns(name),0,0,1,1,0,0,0,1,0,0
+Beth Stevens,HHMI,Boston Children's Hospital,Neuroscience (HHMI),,3,0.3,3,2017;2018;2019;2020;2021;2022;2023,2,1,41,,,established,person_cns(name),1,0,0,0,0,0,0,0,1,1
+Loren M. Frank,HHMI,"University of California, San Francisco",Neuroscience (HHMI),,3,0.3,3,2017;2018;2019;2021;2022;2024;2025,6,3,28,,,established,person_cns(name),1,0,0,0,1,0,0,1,0,0
+Cagla Eroglu,HHMI,Duke University,Neuroscience (HHMI),,3,0.3,3,2018;2019;2020;2021;2022;2023;2024,3,0,41,,,established,person_cns(name),1,1,0,0,0,0,0,0,0,1
+Amita Sehgal,HHMI,University of Pennsylvania,Neuroscience (HHMI),,3,0.3,3,2016;2017;2020;2022;2023;2024;2025,1,9,124,,,established,person_cns(name),0,0,1,1,0,1,0,0,0,0
+Steve Flavell,HHMI,Massachusetts Institute of Technology,Neuroscience (HHMI),McKnight Scholar,3,0.3,2,2016;2017;2018;2020;2021;2022;2024;2025,0,3,17,,,established,person_cns(name),0,0,0,1,0,0,0,2,0,0
+Kafui Dzirasa,HHMI,Duke University,Neuroscience (HHMI),,3,0.3,2,2016;2017;2019;2021;2022;2023;2024;2025,3,0,14,,,established,person_cns(name),0,0,1,0,2,0,0,0,0,0
+Lisa Giocomo,HHMI,Stanford University,Neuroscience (HHMI),,3,0.3,2,2016;2017;2018;2020;2021;2022;2023;2025,8,1,33,,,established,person_cns(name),0,0,0,1,0,0,0,0,2,0
+Huda Y. Zoghbi,HHMI,Baylor College of Medicine,Neuroscience (HHMI),,3,0.3,3,2016;2017;2019;2020;2023;2024;2025,11,12,65,,,established,person_cns(name),0,0,1,0,0,1,1,0,0,0
+Kang Shen,HHMI,Stanford University,Neuroscience (HHMI),,3,0.3,3,2016;2017;2019;2021;2023;2024;2025,5,5,40,,,established,person_cns(affil),0,0,1,0,1,0,1,0,0,0
+Li Ye,HHMI,Scripps Research,Neuroscience (HHMI),NIH DP2,3,0.3,2,2016;2017;2018;2019;2020;2021;2024;2025,1,0,8,,,established,person_cns(affil),0,0,0,0,0,0,2,1,0,0
+Axel T. Brunger,HHMI,Stanford University,Neuroscience (HHMI),,3,0.3,3,2016;2018;2019;2020;2021;2023;2025,1,4,28,,,established,person_cns(name),0,1,0,0,0,0,1,0,1,0
+Carlos D. Brody,HHMI,Princeton University,Neuroscience (HHMI),,3,0.3,2,2016;2017;2019;2020;2021;2022;2023;2024,3,5,30,,,established,person_cns(name),0,0,1,0,0,0,0,0,0,2
+Ian Maze,HHMI,Icahn School of Medicine at Mount Sinai,Neuroscience (HHMI),,3,0.3,3,2016;2017;2018;2021;2022;2023;2024,1,0,24,,,established,person_cns(name),0,0,0,1,1,0,0,0,0,1
+Viviana Gradinaru,HHMI,California Institute of Technology,Neuroscience (HHMI),,2,0.2,2,2016;2018;2019;2021;2022;2023;2024;2025,5,1,40,,,established,person_cns(name),0,1,0,0,1,0,0,0,0,0
+Michael Rosbash,HHMI,Brandeis University,Neuroscience (HHMI),,2,0.2,1,2017;2018;2019;2020;2021;2022;2023;2024;2025,2,4,34,,,established,person_cns(name),2,0,0,0,0,0,0,0,0,0
+Gwyneth Card,HHMI,Columbia University,Neuroscience (HHMI),,2,0.2,2,2016;2018;2019;2020;2021;2022;2024;2025,3,1,11,,,established,person_cns(name),0,1,0,0,0,0,0,1,0,0
+Mehrdad Jazayeri,HHMI,Massachusetts Institute of Technology,Neuroscience (HHMI),McKnight Scholar,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2025,4,1,29,,,established,person_cns(name),0,0,0,1,0,0,0,0,1,0
+Chenghua Gu,HHMI,Harvard Medical School,Neuroscience (HHMI),,2,0.2,2,2016;2017;2018;2019;2021;2022;2023;2024,4,2,14,,,established,person_cns(affil),0,0,0,0,1,0,0,0,0,1
+Susan L. Ackerman,HHMI,"University of California, San Diego",Neuroscience (HHMI),Klingenstein-Simons,2,0.2,2,2016;2017;2019;2020;2021;2022;2023;2024,3,3,47,,,established,person_cns(name),0,0,1,0,0,0,0,0,0,1
+Michael Brainard,HHMI,"University of California, San Francisco",Neuroscience (HHMI),,1,0.1,1,2016;2017;2018;2019;2020;2022;2023;2024;2025,1,5,15,,,established,person_cns(name),0,0,0,0,0,1,0,0,0,0
+Loren L. Looger,HHMI,"University of California, San Diego",Neuroscience (HHMI),,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2024;2025,0,0,10,,,established,person_cns(name),0,0,0,0,0,0,0,1,0,0
+Tirin Moore,HHMI,Stanford University,Neuroscience (HHMI),,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,2,2,23,,,established,person_cns(affil),0,0,0,0,0,0,0,0,1,0
+H. Robert Horvitz,HHMI,Massachusetts Institute of Technology,Neuroscience (HHMI),,1,0.1,1,2016;2017;2018;2019;2020;2022;2023;2024;2025,0,3,14,,,established,person_cns(name),0,0,0,0,0,1,0,0,0,0
+Richard D. Palmiter,HHMI,University of Washington,Neuroscience (HHMI),,1,0.1,1,2016;2017;2019;2020;2021;2022;2023;2024;2025,5,2,25,,,established,person_cns(name),0,0,1,0,0,0,0,0,0,0
+Chris Q. Doe,HHMI,University of Oregon,Neuroscience (HHMI),,1,0.1,1,2016;2017;2018;2019;2020;2022;2023;2024;2025,0,12,39,,,established,person_cns(name),0,0,0,0,0,1,0,0,0,0
+Xinzhong Dong,HHMI,The Johns Hopkins University,Neuroscience (HHMI),,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2024,6,1,33,,,established,person_cns(affil),0,0,0,0,0,0,0,0,0,1
+Edwin R. Chapman,HHMI,University of Wisconsin–Madison,Neuroscience (HHMI),,1,0.1,1,2016;2017;2019;2020;2021;2022;2023;2024;2025,2,3,33,,,established,person_cns(name),0,0,1,0,0,0,0,0,0,0
+Robert B. Darnell,HHMI,The Rockefeller University,Neuroscience (HHMI),,1,0.1,1,2016;2018;2019;2020;2021;2022;2023;2024;2025,3,6,34,,,established,person_cns(name),0,1,0,0,0,0,0,0,0,0
+Jeremy Nathans,HHMI,The Johns Hopkins University,Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,1,11,33,,,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
+Elizabeth C. Engle,HHMI,Boston Children's Hospital,Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,26,,,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
+Erik M. Jorgensen,HHMI,The University of Utah,Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,2,1,19,,,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
+Albert Lee,HHMI,Beth Israel Deaconess Medical Center,Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,17,,,established,person_cns(affil),0,0,0,0,0,0,0,0,0,0
+Pietro De Camilli,HHMI,Yale University,Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,49,,,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
+Michael N. Shadlen,HHMI,Columbia University,Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,5,6,21,,,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
+Tzumin Lee,HHMI,University of Michigan,Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,1,0,,,established,person_cns(affil),0,0,0,0,0,0,0,0,0,0
+Diana Bautista,HHMI,"University of California, Berkeley",Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,2,11,,,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
+Constance L. Cepko,HHMI,Harvard Medical School,Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,1,7,36,,,established,person_cns(name),0,0,0,0,0,0,0,0,0,0

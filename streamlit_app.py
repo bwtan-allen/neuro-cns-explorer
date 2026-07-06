@@ -45,6 +45,8 @@ def load():
             "CNS_total": r.get("cns_total", 0),
             "CNS_years_covered": cns_years_covered,
             "CNS_avg_per_yr": round((r.get("cns_total", 0) or 0) / 10, 2),
+            "CNS_gap_years": ", ".join(r.get("cns_gap_years", [])) or ("none" if r.get("cns_total", 0) else "all 10"),
+            "Count_source": r.get("count_source", ""),
             "nonCNS_total": noncns_total,
             "nonCNS_years_covered": nc_years_covered,
             "nonCNS_avg_per_yr": (round(noncns_total / 10, 2) if isinstance(noncns_total, (int, float)) else None),
@@ -114,8 +116,8 @@ with tab1:
     sort_col = st.selectbox("Sort by", ["CNS_total", "nonCNS_total", "CNS_years_covered", "Name"], index=0)
     show = f.sort_values(sort_col, ascending=(sort_col == "Name"))
     base_cols = ["Name", "Group", "Institution", "Field", "Awards", "Career_stage", "Lab_start_year",
-                 "First_senior_paper", "Lab_age", "CNS_total", "NeuronNatNeuro_total", "eLife_total",
-                 "nonCNS_total", "CNS_years_covered", "Neuro_confidence"]
+                 "First_senior_paper", "Lab_age", "CNS_total", "CNS_gap_years", "NeuronNatNeuro_total",
+                 "eLife_total", "nonCNS_total", "CNS_years_covered", "Count_source", "Neuro_confidence"]
     st.dataframe(show[base_cols], use_container_width=True, height=560)
     st.download_button("Download filtered CSV", show.to_csv(index=False).encode(),
                        "filtered_neuro_stats.csv", "text/csv")
@@ -168,7 +170,9 @@ with tab3:
                           yaxis_title="Corresponding-author papers")
         st.plotly_chart(fig, use_container_width=True)
         gaps = [y for y in YEARS if row[f"CNS_{y}"] == 0]
-        st.caption(f"CNS gap years: {', '.join(gaps) if gaps else 'none'}")
+        st.caption(f"**CNS gap years (no Cell/Nature/Science corresponding paper):** "
+                   f"{', '.join(gaps) if gaps else 'none — published every year'}  ·  "
+                   f"count source: {row.get('Count_source', '')}")
     else:
         st.info("No researchers match the current filters.")
 

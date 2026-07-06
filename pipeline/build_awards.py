@@ -294,6 +294,7 @@ awards += parse_block(SEARLE, 'Searle Scholar')
 awards += parse_pipe_table(os.path.join(D, 'raw_pew.txt'), 'Pew Biomedical')
 awards += parse_pipe_table(os.path.join(D, 'raw_searle.txt'), 'Searle Scholar')
 awards += parse_pipe_table(os.path.join(D, 'raw_klingenstein.txt'), 'Klingenstein-Simons')
+awards += parse_pipe_table(os.path.join(D, 'raw_nih_dp2.txt'), 'NIH DP2')
 
 # dedup by (name, award, year)
 seen = set(); uniq = []

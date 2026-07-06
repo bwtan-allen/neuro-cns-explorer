@@ -8,7 +8,13 @@ data/*.log
 data/refresh.err.log
 
 # Large raw research dumps (not needed by the app)
+# (award source tables raw_pew.txt / raw_nih_dp2.txt / raw_searle.txt / raw_klingenstein.txt
+#  ARE needed by build_awards.py on CI, so they are committed explicitly below.)
 data/raw_*.txt
+!data/raw_pew.txt
+!data/raw_nih_dp2.txt
+!data/raw_searle.txt
+!data/raw_klingenstein.txt
 
 # OS noise
 .DS_Store

@@ -1,0 +1,4 @@
+{
+  "_comment": "Clear non-neuroscientists that slipped through discovery. Matched by normalized 'lastname firstinitial'. Applied in build_dataset.py. Conservative: only unambiguous non-neuro.",
+  "exclude": ["barouch d","diamond m","bao z","pulendran b","ravichandran k","kagan j","tavazoie s","barabasi a","sonnenberg g","swirski f","merad m","rudensky a"]
+}

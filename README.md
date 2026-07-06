@@ -8,10 +8,24 @@ Covers cohorts across **30+ top US institutions**:
 - **Established non-HHMI** PIs (CNS ≥ 5 in 10 yrs, i.e. ≥ 0.5/yr)
 - **Rising-star junior PIs** (CNS 2–4, recent lab start)
 - **Early-career award winners** — Searle Scholars, Pew Biomedical Scholars, McKnight Scholars,
-  Klingenstein-Simons Fellows (neuroscience) — captures rising stars *before* they accrue CNS papers
+  Klingenstein-Simons Fellows, **NIH DP2 New Innovator** (neuroscience) — captures rising stars
+  *before* they accrue CNS papers
 
 **Lab start** = ORCID faculty-appointment year when available (accurate), else first senior-author
 paper year (a lagging lower bound — new PIs take ~2–3 yr to publish their first senior paper).
+
+## Counting methodology (authoritative, corrected)
+CNS / Neuron+Nat Neurosci / eLife counts come from `pipeline/person_cns.py`, which counts
+**last-author (corresponding proxy)** papers 2016–2025 with:
+- **Distinctive surnames** → name-only PubMed match (high recall; counts all the person's papers).
+- **Common surnames** (East-Asian + frequent Western) → affiliation-verified match (collision-safe).
+- A **name-mode whitelist** keeps a few verified distinctive-prolific people (e.g. C. Walsh, E. Chang)
+  from being under-counted by affiliation variance.
+- **News/Comment/Editorial** publication types are excluded (defeats same-name journalists, e.g.
+  Ewen Callaway the Nature reporter vs Edward Callaway the neuroscientist).
+- A small curated `data/nonneuro_exclude.json` drops clear non-neuroscientists (virologists /
+  immunologists whose CNS papers merely touched the brain) that slipped through discovery.
+Explicit **CNS gap years** (years with zero corresponding CNS papers) are listed per researcher.
 
 ## Quick start
 ```bash

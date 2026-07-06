@@ -101,24 +101,23 @@ log("ORCID appointment year + full names for rising candidates")
 run("orcid_start.py")
 
 # ---------- 6. Awards: compile list + enrich awardees ----------
-log("compiling awards.json (Searle / Pew / McKnight / Klingenstein-Simons)")
+log("compiling awards.json (Searle / Pew / McKnight / Klingenstein-Simons / NIH DP2)")
 run("build_awards.py")
-log("enriching award recipients (pub-stats + career)")
-run("awards_ingest.py")
 
-# ---------- 7b. Field-tier journals (Neuron/Nat Neurosci) + eLife ----------
-# needs a first-pass neuro_stats.json to know the roster; build once then enrich then rebuild
-run("build_dataset.py", ".", os.path.join(ROOT, "neuro_stats.json"))
-log("counting Neuron / Nature Neuroscience / eLife last-author papers")
-run("field_journals.py")
+# ---------- 7. Authoritative recount (CNS / Neuron+NatNeuro / eLife) via person_cns ----------
+# Fixes name-collision over-counts and neuro-filter under-counts. Needs candidates/rising/awards.
+log("authoritative per-person CNS / Neuron+NatNeuro / eLife recount")
+run("recount.py")
 
-# ---------- 7. Optional HHMI tally refresh ----------
+# ---------- 8. Optional HHMI legacy tally refresh ----------
 if HHMI:
-    log("refreshing HHMI CNS + non-CNS tallies")
+    log("refreshing HHMI legacy tallies")
     run("pm_all2.py")
     run("noncns_all.py")
 
-# ---------- 8. Build dataset ----------
+# ---------- 9. Build dataset + exports ----------
 log("building neuro_stats.json")
 run("build_dataset.py", ".", os.path.join(ROOT, "neuro_stats.json"))
+log("writing exports/*.csv")
+run("make_exports.py")
 log("DONE")

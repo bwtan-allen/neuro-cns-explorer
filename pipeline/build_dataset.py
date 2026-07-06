@@ -160,19 +160,96 @@ for r in records:
     r['award_names'] = ', '.join(sorted({a['award'] for a in r.get('awards', [])}))
     r['n_awards'] = len(r.get('awards', []))
 
-# ---------- merge field-tier journals (Neuron+Nat Neurosci) and eLife ----------
+# ---------- add manual roster supplement (missed by HHMI scrape / institution moves) ----------
+sup = load('roster_supplement.json', [])
+sup_meta = {  # name -> (group, field, institution)
+    'Cornelia Bargmann': ('HHMI', 'Neuroscience (HHMI)', 'Rockefeller University'),
+    'Karel Svoboda': ('non-HHMI', 'systems neuroscience / imaging', 'Allen Institute'),
+    'David Julius': ('non-HHMI', 'somatosensation / ion channels', 'UCSF'),
+}
+existing_keys = {key(r['name']) for r in records}
+for name, ln, ini, inst in sup:
+    if key(name) in existing_keys:
+        continue
+    grp, field, institution = sup_meta.get(name, ('non-HHMI', 'neuroscience', inst))
+    records.append({'name': name, 'group': grp, 'institution': institution, 'field': field,
+                    'neuro_confidence': 'core', 'career_stage': 'established',
+                    'first_senior_paper_yr': None, 'lab_start_year': None, 'lab_age': None, 'lab_age_source': '',
+                    'awards': awards_for(name), 'award_names': '', 'n_awards': 0,
+                    'cns_by_year': {str(y): 0 for y in YEARS}, 'cns_total': 0,
+                    'noncns_by_year': {str(y): 0 for y in YEARS}, 'noncns_total': None, 'noncns_available': False})
+    records[-1]['award_names'] = ', '.join(sorted({a['award'] for a in records[-1]['awards']}))
+    records[-1]['n_awards'] = len(records[-1]['awards'])
+    existing_keys.add(key(name))
+
+# ---------- AUTHORITATIVE recount override (CNS / Neuron+NatNeuro / eLife) ----------
+# person_cns fixes both collision over-counts (e.g. Duan) and neuro-filter under-counts (e.g. Julius).
+recount = load('recount.json', {})
+recount_by_key = {}
+for nm, v in recount.items():
+    recount_by_key[key(nm)] = v
+    recount_by_key.setdefault((v.get('ln', '').lower(), (v.get('ini', '') or ' ')[0].lower()), v)
+
 fj = load('field_journals.json', {})
 for r in records:
-    e = fj.get(r['name'])
-    ft = {int(k): v for k, v in (e['field_tier'] if e else {}).items()}
-    el = {int(k): v for k, v in (e['elife'] if e else {}).items()}
-    r['fieldtier_by_year'] = {str(y): ft.get(y, 0) for y in YEARS}
-    r['fieldtier_total'] = (sum(ft.values()) if e else None)
-    r['elife_by_year'] = {str(y): el.get(y, 0) for y in YEARS}
-    r['elife_total'] = (sum(el.values()) if e else None)
-    r['fieldjournals_available'] = bool(e)
+    rc = recount.get(r['name']) or recount_by_key.get(key(r['name']))
+    if rc:
+        cby = {int(k): v for k, v in rc['cns'].items()}
+        ft = {int(k): v for k, v in rc['field'].items()}
+        el = {int(k): v for k, v in rc['elife'].items()}
+        r['cns_by_year'] = {str(y): cby.get(y, 0) for y in YEARS}
+        r['cns_total'] = sum(cby.values())
+        r['fieldtier_by_year'] = {str(y): ft.get(y, 0) for y in YEARS}
+        r['fieldtier_total'] = sum(ft.values())
+        r['elife_by_year'] = {str(y): el.get(y, 0) for y in YEARS}
+        r['elife_total'] = sum(el.values())
+        r['fieldjournals_available'] = True
+        r['count_source'] = 'person_cns(' + rc.get('mode', '?') + ')'
+    else:
+        # fall back to prior field_journals data if recount not yet available for this person
+        e = fj.get(r['name'])
+        ft = {int(k): v for k, v in (e['field_tier'] if e else {}).items()}
+        el = {int(k): v for k, v in (e['elife'] if e else {}).items()}
+        r['fieldtier_by_year'] = {str(y): ft.get(y, 0) for y in YEARS}
+        r['fieldtier_total'] = (sum(ft.values()) if e else None)
+        r['elife_by_year'] = {str(y): el.get(y, 0) for y in YEARS}
+        r['elife_total'] = (sum(el.values()) if e else None)
+        r['fieldjournals_available'] = bool(e)
+        r['count_source'] = 'discovery/awardee-enrich'
+
+# ---------- explicit gap years (years 2016-2025 with zero CNS corresponding papers) ----------
+for r in records:
+    cby = r['cns_by_year']
+    r['cns_gap_years'] = [str(y) for y in YEARS if cby.get(str(y), 0) == 0]
+    r['cns_years_covered'] = 10 - len(r['cns_gap_years'])
+
+# ---------- reclassify discovery-derived groups by AUTHORITATIVE recount CNS totals ----------
+# (a person's group must reflect the corrected counts, e.g. Julius 3->12 => established non-HHMI)
+DISCOVERY_GROUPS = {'non-HHMI', 'rising-star', 'non-HHMI (low-CNS)', 'candidate (career TBD)'}
+for r in records:
+    if r['group'] not in DISCOVERY_GROUPS:
+        continue
+    cns = r.get('cns_total', 0)
+    age = r.get('lab_age')
+    recent = age is not None and age <= 10
+    if cns >= 5:
+        r['group'] = 'non-HHMI'
+    elif cns >= 2:
+        r['group'] = 'rising-star' if recent else 'non-HHMI (low-CNS)'
+    else:
+        r['group'] = 'rising-star' if recent else 'candidate (career TBD)'
+
+# ---------- drop clear non-neuroscientists that slipped through discovery ----------
+# (never drop award winners or manually-added supplement people)
+_ex = load('nonneuro_exclude.json', {}).get('exclude', [])
+_supp_keys = {key(n) for n, *_ in load('roster_supplement.json', [])}
+def _exkey(name):
+    return f"{key(name)[0]} {key(name)[1]}"
+records = [r for r in records
+          if _exkey(r['name']) not in _ex or r.get('n_awards', 0) > 0 or key(r['name']) in _supp_keys]
 
 json.dump({'years': YEARS, 'records': records, 'generated': datetime.date.today().isoformat()},
           open(OUT, 'w'), indent=1)
 print("records:", len(records), dict(Counter(r['group'] for r in records)),
-      "| with awards:", sum(1 for r in records if r['n_awards']))
+      "| with awards:", sum(1 for r in records if r['n_awards']),
+      "| recounted:", sum(1 for r in records if r.get('count_source', '').startswith('person_cns')))
