@@ -12,8 +12,8 @@ Liqun Luo,HHMI,Stanford University,Neuroscience (HHMI),,13,1.3,8,2016;2022,6,5,4
 Michelle Monje,HHMI,Stanford University,Neuroscience (HHMI),,13,1.3,7,2016;2020;2021,5,1,53,,,established,person_cns(name),0,2,1,1,0,0,2,3,1,3
 David J. Anderson,HHMI,California Institute of Technology,Neuroscience (HHMI),,12,1.2,8,2016;2023,5,2,0,,,established,person_cns(affil),0,1,1,1,3,1,1,0,3,1
 Thomas C. Südhof,HHMI,Stanford University,Neuroscience (HHMI),,12,1.2,7,2018;2022;2023,9,5,70,,,established,person_cns(name),1,3,0,2,1,2,0,0,2,1
-Sergiu Pașca,non-HHMI,Stanford,neural organoids,,12,1.2,9,2016,6,0,37,,,established,person_cns(name),0,1,1,1,2,1,1,1,2,2
 Hongkui Zeng,non-HHMI,Allen Institute,brain cell atlases,,12,1.2,7,2016;2017;2024,4,0,15,,,established,person_cns(name),0,0,2,1,1,2,1,1,0,4
+Sergiu Pașca,non-HHMI,Stanford,neural organoids,,12,1.2,9,2016,6,0,37,,,established,person_cns(name),0,1,1,1,2,1,1,1,2,2
 David Julius,non-HHMI,UCSF,neuroscience,,12,1.2,8,2021;2022,0,1,2,1989,2006,established,person_cns(name),1,2,1,2,1,0,0,1,2,2
 Nenad Sestan,non-HHMI,Yale,brain development/evolution,,11,1.1,6,2016;2020;2023;2024,5,0,17,,,established,person_cns(name),0,2,3,1,0,2,2,0,0,1
 Ryan Hibbs,non-HHMI,UCSD (←UTSW),neurotransmitter-receptor structure,,11,1.1,8,2017;2019,1,0,12,,,established,person_cns(name),1,0,2,0,1,1,1,1,2,2
@@ -49,10 +49,10 @@ Zhigang He,non-HHMI,Harvard Med (BCH),CNS axon regeneration,,7,0.7,6,2019;2021;2
 Michael Greenberg,non-HHMI,Harvard Med,activity-dependent transcription,,7,0.7,4,2018;2019;2021;2022;2024;2025,10,1,19,,,established,person_cns(name),2,1,0,0,2,0,0,2,0,0
 Yuki Oka,non-HHMI,Caltech,thirst/interoception,"Klingenstein-Simons, McKnight Scholar",7,0.7,6,2016;2017;2021;2025,2,0,12,,,established,person_cns(name),0,0,1,1,2,0,1,1,1,0
 David Holtzman,non-HHMI,WashU St. Louis,Alzheimer's / APOE,,7,0.7,4,2018;2020;2021;2022;2024;2025,12,0,76,,,established,person_cns(name),1,1,0,2,0,0,0,3,0,0
-William Greenleaf,non-HHMI,Stanford,neuroscience,,7,0.7,5,2017;2019;2020;2022;2023,0,0,44,2011,2013,established,person_cns(name),1,0,2,0,0,1,0,0,2,1
 Filippo Mancia,non-HHMI,Columbia,neuroscience,,7,0.7,6,2017;2018;2023;2025,0,1,20,,2007,established,person_cns(name),2,0,0,1,1,1,1,0,1,0
 Judy Lieberman,non-HHMI,Harvard Medical School,neuroscience,,7,0.7,6,2019;2021;2024;2025,0,0,26,,2005,established,person_cns(name),1,1,1,0,2,0,1,1,0,0
 Bruce Spiegelman,non-HHMI,Harvard Medical School,neuroscience,,7,0.7,6,2022;2023;2024;2025,0,0,20,,2005,established,person_cns(name),2,1,1,1,1,1,0,0,0,0
+William Greenleaf,non-HHMI,Stanford,neuroscience,,7,0.7,5,2017;2019;2020;2022;2023,0,0,44,2011,2013,established,person_cns(name),1,0,2,0,0,1,0,0,2,1
 Andrew Kruse,early-career awardee,Harvard Medical School,neuroscience (awardee),Klingenstein-Simons,7,0.7,6,2022;2023;2024;2025,0,2,29,,2016,early (<=10y),person_cns(name),1,1,1,2,1,1,0,0,0,0
 Karel Svoboda,non-HHMI,Allen Institute,systems neuroscience / imaging,,7,0.7,7,2016;2021;2023,4,4,,,,established,person_cns(name),0,1,1,1,1,0,1,0,1,1
 Scott M. Sternson,HHMI,"University of California, San Diego",Neuroscience (HHMI),,6,0.6,4,2017;2018;2021;2022;2023;2024,1,1,6,,,established,person_cns(name),1,0,0,1,2,0,0,0,0,2
@@ -62,21 +62,21 @@ Rachel I. Wilson,HHMI,Harvard Medical School,Neuroscience (HHMI),,6,0.6,5,2017;2
 Massimo Scanziani,HHMI,"University of California, San Francisco",Neuroscience (HHMI),,6,0.6,5,2017;2021;2023;2024;2025,3,2,10,,,established,person_cns(name),1,0,1,1,1,0,2,0,0,0
 Stephen D. Liberles,HHMI,Harvard Medical School,Neuroscience (HHMI),,6,0.6,6,2017;2018;2019;2025,2,2,9,,,established,person_cns(name),1,0,0,0,1,1,1,1,1,0
 Fred Gage,non-HHMI,Salk,adult neurogenesis,,6,0.6,6,2017;2020;2022;2025,4,2,64,,,established,person_cns(name),1,0,1,1,0,1,0,1,1,0
-Robert Malenka,non-HHMI,Stanford,synaptic plasticity,,6,0.6,4,2016;2019;2020;2022;2023;2025,6,0,21,,,established,person_cns(name),0,2,1,0,0,2,0,0,1,0
 Stavros Lomvardas,non-HHMI,Columbia,olfactory system,,6,0.6,5,2017;2018;2020;2021;2024,0,2,11,,,established,person_cns(name),1,0,0,1,0,0,2,1,0,1
 Ed Lein,non-HHMI,Allen Institute,human brain transcriptomics,,6,0.6,4,2017;2018;2020;2022;2024;2025,3,2,12,,,established,person_cns(name),1,0,0,1,0,2,0,2,0,0
 Benjamin Deneen,non-HHMI,Baylor,glia/astrocytes,,6,0.6,3,2016;2017;2018;2019;2021;2022;2025,7,1,33,,,established,person_cns(name),0,0,0,0,1,0,0,3,2,0
+Robert Malenka,non-HHMI,Stanford,synaptic plasticity,,6,0.6,4,2016;2019;2020;2022;2023;2025,6,0,21,,,established,person_cns(name),0,2,1,0,0,2,0,0,1,0
+Rong Fan,non-HHMI,Yale,spatial omics (brain),,6,0.6,5,2016;2017;2018;2019;2021,0,0,30,,,established,person_cns(affil),0,0,0,0,1,0,1,1,2,1
 Anna Molofsky,non-HHMI,UCSF,glia/neuro-immune,"NIH DP2, Pew Biomedical",6,0.6,5,2016;2017;2019;2021;2022,1,0,14,,,established,person_cns(name),0,0,1,0,1,0,0,1,2,1
 Rui Costa,non-HHMI,Columbia (Zuckerman),basal ganglia/motor,,6,0.6,4,2017;2019;2021;2022;2024;2025,4,0,19,,,established,person_cns(name),1,0,3,0,1,0,0,1,0,0
 Isaac Chiu,non-HHMI,Harvard Med,sensory neuro-immunology,,6,0.6,5,2016;2017;2020;2021;2025,2,0,35,,,established,person_cns(name),0,0,1,1,0,0,1,2,1,0
 Christopher Harvey,non-HHMI,Harvard Med,cortical circuits,,6,0.6,4,2016;2018;2020;2021;2024;2025,4,1,12,,,established,person_cns(name),0,2,0,1,0,0,1,2,0,0
 Sandeep Robert Datta,non-HHMI,Harvard Med,olfaction/behavior,,6,0.6,6,2017;2022;2024;2025,2,3,15,,,established,person_cns(name),1,0,1,1,1,1,0,1,0,0
-Rong Fan,non-HHMI,Yale,spatial omics (brain),,6,0.6,5,2016;2017;2018;2019;2021,0,0,30,,,established,person_cns(affil),0,0,0,0,1,0,1,1,2,1
 Bing Ren,non-HHMI,UCSD,neuroscience,,6,0.6,3,2016;2017;2018;2019;2022;2024;2025,1,0,39,,2005,established,person_cns(affil),0,0,0,0,1,3,0,2,0,0
-Elaine Hsiao,non-HHMI,UCLA,neuroscience,Klingenstein-Simons,6,0.6,5,2016;2017;2022;2024;2025,2,1,37,,2017,early (<=10y),person_cns(name),0,0,1,1,1,2,0,1,0,0
 Manolis Kellis,non-HHMI,MIT,neuroscience,,6,0.6,4,2016;2017;2018;2019;2020;2022,1,0,21,,2007,established,person_cns(name),0,0,0,0,0,1,0,2,2,1
-Alexander Sobolevsky,non-HHMI,Columbia,neuroscience,,6,0.6,4,2018;2019;2020;2021;2023;2025,2,0,49,,2014,established,person_cns(name),2,2,0,0,0,0,1,0,1,0
+Elaine Hsiao,non-HHMI,UCLA,neuroscience,Klingenstein-Simons,6,0.6,5,2016;2017;2022;2024;2025,2,1,37,,2017,early (<=10y),person_cns(name),0,0,1,1,1,2,0,1,0,0
 Debra Silver,non-HHMI,Duke,neuroscience,,6,0.6,4,2016;2017;2018;2021;2022;2024,2,1,28,2024,2008,rising (<=6y),person_cns(name),0,0,0,1,1,0,0,1,0,3
+Alexander Sobolevsky,non-HHMI,Columbia,neuroscience,,6,0.6,4,2018;2019;2020;2021;2023;2025,2,0,49,,2014,established,person_cns(name),2,2,0,0,0,0,1,0,1,0
 Juan Du,early-career awardee,Van Andel Research Institute,neuroscience (awardee),"Klingenstein-Simons, McKnight Scholar, Pew Biomedical",6,0.6,5,2016;2017;2020;2022;2024,4,1,4,,2018,early (<=10y),person_cns(name),0,0,1,1,0,1,0,1,0,2
 Aashish Manglik,early-career awardee,"University of California, San Francisco",neuroscience (awardee),Klingenstein-Simons,6,0.6,5,2016;2017;2018;2021;2024,0,0,7,,2019,rising (<=6y),person_cns(name),0,0,0,1,2,0,1,1,0,1
 Leslie B. Vosshall,HHMI,The Rockefeller University,Neuroscience (HHMI),,5,0.5,4,2017;2020;2021;2023;2024;2025,1,4,15,,,established,person_cns(name),1,0,2,1,0,0,1,0,0,0
@@ -84,60 +84,60 @@ S. Lawrence Zipursky,HHMI,"University of California, Los Angeles",Neuroscience (
 Susumu Tonegawa,HHMI,Massachusetts Institute of Technology,Neuroscience (HHMI),,5,0.5,3,2018;2019;2021;2022;2023;2024;2025,6,0,17,,,established,person_cns(name),2,2,0,0,1,0,0,0,0,0
 Aaron Gitler,non-HHMI,Stanford,neurodegeneration (ALS),,5,0.5,4,2018;2019;2020;2023;2024;2025,5,0,38,,,established,person_cns(name),2,1,0,0,0,1,1,0,0,0
 Karunesh Ganguly,non-HHMI,UCSF,motor cortex/BCI,,5,0.5,4,2016;2017;2018;2020;2023;2024,4,1,19,,,established,person_cns(name),0,0,0,1,0,1,1,0,0,2
-Ivan Soltesz,non-HHMI,Stanford,hippocampus/epilepsy,,5,0.5,4,2016;2017;2019;2020;2022;2023,10,1,27,,,established,person_cns(name),0,0,1,0,0,1,0,0,2,1
-Nirao Shah,non-HHMI,Stanford,sex-dimorphic circuits,,5,0.5,3,2016;2017;2018;2020;2021;2024;2025,1,0,143,,,established,person_cns(affil),0,0,0,2,0,0,1,2,0,0
-Weizhe Hong,non-HHMI,UCLA,social-behavior circuits,"Klingenstein-Simons, McKnight Scholar, Searle Scholar",5,0.5,4,2016;2017;2018;2020;2022;2023,6,0,11,,,established,person_cns(affil),0,0,0,2,0,1,0,0,1,1
 Mark Andermann,non-HHMI,Harvard Med (BIDMC),hunger circuits,McKnight Scholar,5,0.5,5,2016;2019;2020;2022;2025,10,0,21,,,established,person_cns(name),0,1,1,0,0,1,0,1,1,0
 Ziv Williams,non-HHMI,Harvard Med (MGH),human single-neuron cognition,,5,0.5,3,2016;2017;2018;2019;2020;2023;2025,2,0,22,,,established,person_cns(name),0,0,0,0,0,2,1,0,2,0
-Baljit Khakh,non-HHMI,UCLA,neuroscience,,5,0.5,4,2016;2017;2018;2020;2021;2025,9,0,28,,2009,established,person_cns(name),0,0,0,1,0,0,2,1,1,0
+Weizhe Hong,non-HHMI,UCLA,social-behavior circuits,"Klingenstein-Simons, McKnight Scholar, Searle Scholar",5,0.5,4,2016;2017;2018;2020;2022;2023,6,0,11,,,established,person_cns(affil),0,0,0,2,0,1,0,0,1,1
+Ivan Soltesz,non-HHMI,Stanford,hippocampus/epilepsy,,5,0.5,4,2016;2017;2019;2020;2022;2023,10,1,27,,,established,person_cns(name),0,0,1,0,0,1,0,0,2,1
+Nirao Shah,non-HHMI,Stanford,sex-dimorphic circuits,,5,0.5,3,2016;2017;2018;2020;2021;2024;2025,1,0,143,,,established,person_cns(affil),0,0,0,2,0,0,1,2,0,0
 Gloria Choi,non-HHMI,MIT,neuroscience,,5,0.5,4,2016;2018;2020;2022;2023;2024,0,0,7,,2015,early (<=10y),person_cns(affil),0,1,0,1,0,1,0,0,0,2
+Baljit Khakh,non-HHMI,UCLA,neuroscience,,5,0.5,4,2016;2017;2018;2020;2021;2025,9,0,28,,2009,established,person_cns(name),0,0,0,1,0,0,2,1,1,0
 Nicholas Bellono,non-HHMI,Harvard (FAS),neuroscience,"Klingenstein-Simons, Searle Scholar",5,0.5,3,2016;2017;2018;2019;2021;2022;2024,0,2,7,,2020,rising (<=6y),person_cns(name),0,0,0,0,1,0,0,1,0,3
-Alice Ting,non-HHMI,Stanford,neuroscience,,5,0.5,5,2017;2018;2021;2022;2025,0,6,28,,2016,early (<=10y),person_cns(name),1,0,0,1,1,0,0,1,1,0
+Alice Ting,non-HHMI,MIT;Stanford,neuroscience,,5,0.5,5,2017;2018;2021;2022;2025,0,6,28,,2016,early (<=10y),person_cns(name),1,0,0,1,1,0,0,1,1,0
 Satchidananda Panda,non-HHMI,Salk,neuroscience,,5,0.5,4,2017;2021;2022;2023;2024;2025,1,0,43,,2006,established,person_cns(name),1,0,2,1,1,0,0,0,0,0
-Anthony Wagner,non-HHMI,Stanford,neuroscience,,5,0.5,4,2017;2018;2021;2022;2024;2025,1,3,33,,2005,established,person_cns(name),1,0,0,1,2,0,0,1,0,0
 Alan Brown,non-HHMI,Harvard Medical School,neuroscience,Pew Biomedical,5,0.5,5,2016;2017;2018;2019;2020,0,1,11,2017,2014,early (<=10y),person_cns(affil),0,0,0,0,0,1,1,1,1,1
 Ivan Zanoni,non-HHMI,Harvard Medical School,neuroscience,,5,0.5,5,2016;2017;2018;2019;2023,0,0,24,,2015,early (<=10y),person_cns(name),0,0,0,0,1,1,1,0,1,1
 Evan Macosko,non-HHMI,Harvard (FAS),neuroscience,"NIH DP2, Pew Biomedical",5,0.5,3,2016;2017;2018;2020;2022;2024;2025,1,0,8,,2019,rising (<=6y),person_cns(name),0,0,0,2,0,1,0,2,0,0
+Anthony Wagner,non-HHMI,Stanford,neuroscience,,5,0.5,4,2017;2018;2021;2022;2024;2025,1,3,33,,2005,established,person_cns(name),1,0,0,1,2,0,0,1,0,0
 Cornelia Bargmann,HHMI,Rockefeller University,Neuroscience (HHMI),,5,0.5,3,2019;2020;2021;2022;2023;2024;2025,2,6,,,,established,person_cns(name),2,2,1,0,0,0,0,0,0,0
 Ilana B. Witten,HHMI,Princeton University,Neuroscience (HHMI),,4,0.4,3,2016;2018;2020;2021;2022;2023;2024,7,2,21,,,established,person_cns(name),0,1,0,1,0,0,0,0,0,2
 Doris Y. Tsao,HHMI,"University of California, Berkeley",Neuroscience (HHMI),,4,0.4,4,2016;2018;2019;2021;2022;2023,3,2,4,,,established,person_cns(name),0,1,0,0,1,0,0,0,1,1
 Erich D. Jarvis,HHMI,The Rockefeller University,Neuroscience (HHMI),,4,0.4,3,2016;2017;2018;2020;2022;2024;2025,0,1,30,,,established,person_cns(name),0,0,0,1,0,2,0,1,0,0
 Li Ye,HHMI,Scripps Research,Neuroscience (HHMI),NIH DP2,4,0.4,3,2016;2017;2018;2019;2020;2021;2024,1,0,8,,,established,person_cns(affil),0,0,0,0,0,0,2,1,0,1
-Ben Barres (d.2017),non-HHMI (low-CNS),Stanford,glia/astrocytes,,4,0.4,4,2016;2020;2022;2023;2024;2025,3,0,13,,,established,person_cns(name),0,1,1,1,0,1,0,0,0,0
 Michael Long,non-HHMI (low-CNS),NYU,vocal/motor circuits,,4,0.4,4,2016;2017;2018;2019;2021;2024,7,1,16,,,established,person_cns(affil),0,0,0,0,1,0,1,1,0,1
 Dayu Lin,non-HHMI (low-CNS),NYU,aggression/social circuits,,4,0.4,3,2016;2017;2018;2019;2020;2021;2022,11,0,28,,,established,person_cns(affil),0,0,0,0,0,0,0,1,2,1
+Ben Barres (d.2017),non-HHMI (low-CNS),Stanford,glia/astrocytes,,4,0.4,4,2016;2020;2022;2023;2024;2025,3,0,13,,,established,person_cns(name),0,1,1,1,0,1,0,0,0,0
 Andreas Tolias,non-HHMI (low-CNS),Baylor→Stanford,connectomics / AI neuroscience,,4,0.4,3,2016;2017;2018;2019;2021;2023;2024,4,2,26,,,established,person_cns(name),0,0,0,0,1,0,1,0,0,2
 Michael Halassa,non-HHMI (low-CNS),MIT;NYU,neuroscience,Pew Biomedical,4,0.4,4,2018;2019;2020;2022;2023;2025,4,1,17,,2014,established,person_cns(name),1,1,0,0,0,1,0,0,1,0
+Rudolf Jaenisch,non-HHMI (low-CNS),MIT,neuroscience,,4,0.4,2,2017;2019;2020;2021;2022;2023;2024;2025,1,0,36,,2005,established,person_cns(name),2,0,2,0,0,0,0,0,0,0
+Richard Mooney,non-HHMI (low-CNS),Duke,neuroscience,,4,0.4,3,2016;2017;2019;2020;2022;2023;2024,5,2,20,1994,2005,established,person_cns(name),0,0,2,0,0,1,0,0,0,1
+Attila Losonczy,non-HHMI (low-CNS),Columbia,neuroscience,,4,0.4,3,2016;2017;2018;2019;2020;2023;2025,16,1,25,,2012,established,person_cns(name),0,0,0,0,0,2,1,0,1,0
+Mario Suvà,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,4,0.4,4,2020;2021;2022;2023;2024;2025,1,0,11,2014,2014,established,person_cns(name),1,1,1,1,0,0,0,0,0,0
 Nico Dosenbach,rising-star,WashU St. Louis,neuroscience,,4,0.4,4,2016;2017;2018;2019;2020;2021,3,0,29,,2017,early (<=10y),person_cns(name),0,0,0,0,0,0,1,1,1,1
 Adam Kepecs,non-HHMI (low-CNS),CSHL;WashU St. Louis,neuroscience,,4,0.4,4,2016;2017;2018;2022;2023;2024,5,1,15,,2012,established,person_cns(name),0,0,0,1,1,1,0,0,0,1
-Attila Losonczy,non-HHMI (low-CNS),Columbia,neuroscience,,4,0.4,3,2016;2017;2018;2019;2020;2023;2025,16,1,25,,2012,established,person_cns(name),0,0,0,0,0,2,1,0,1,0
-Michael Sofroniew,non-HHMI (low-CNS),UCLA,neuroscience,,4,0.4,3,2017;2019;2020;2021;2023;2024;2025,1,0,13,,2005,established,person_cns(name),1,0,2,0,0,0,1,0,0,0
-Mario Suvà,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,4,0.4,4,2020;2021;2022;2023;2024;2025,1,0,11,2014,2014,established,person_cns(name),1,1,1,1,0,0,0,0,0,0
 Scott Russo,non-HHMI (low-CNS),Mount Sinai,neuroscience,,4,0.4,4,2017;2018;2019;2020;2021;2023,5,1,39,,2009,established,person_cns(name),1,0,0,0,0,0,1,0,1,1
-Richard Mooney,non-HHMI (low-CNS),Duke,neuroscience,,4,0.4,3,2016;2017;2019;2020;2022;2023;2024,5,2,20,1994,2005,established,person_cns(name),0,0,2,0,0,1,0,0,0,1
+Michael Sofroniew,non-HHMI (low-CNS),UCLA,neuroscience,,4,0.4,3,2017;2019;2020;2021;2023;2024;2025,1,0,13,,2005,established,person_cns(name),1,0,2,0,0,0,1,0,0,0
 Anthony Zador,non-HHMI (low-CNS),CSHL,neuroscience,,4,0.4,4,2016;2017;2018;2021;2023;2025,3,1,18,,2005,established,person_cns(name),0,0,0,1,1,0,1,0,1,0
-Rudolf Jaenisch,non-HHMI (low-CNS),MIT,neuroscience,,4,0.4,2,2017;2019;2020;2021;2022;2023;2024;2025,1,0,36,,2005,established,person_cns(name),2,0,2,0,0,0,0,0,0,0
-Takaki Komiyama,non-HHMI (low-CNS),UCSD,neuroscience,,4,0.4,2,2016;2017;2018;2020;2021;2022;2023;2024,10,1,29,,2012,established,person_cns(name),0,0,0,1,0,0,0,0,0,3
 Ueli Rutishauser,non-HHMI (low-CNS),Caltech,neuroscience,,4,0.4,3,2016;2017;2018;2019;2021;2023;2025,6,0,34,,2014,established,person_cns(name),0,0,0,0,1,0,1,0,2,0
 Marianne Bronner,non-HHMI (low-CNS),Caltech,neuroscience,,4,0.4,4,2018;2020;2021;2022;2023;2025,0,7,66,,2010,established,person_cns(name),1,1,0,1,0,0,0,0,1,0
-Christoph Thaiss,rising-star,Penn,neuroscience,,4,0.4,3,2016;2017;2019;2020;2021;2024;2025,0,0,19,,2018,early (<=10y),person_cns(name),0,0,1,0,0,0,1,2,0,0
-Priya Rajasethupathy,rising-star,Rockefeller,neuroscience,"Klingenstein-Simons, NIH DP2, Searle Scholar",4,0.4,4,2016;2017;2018;2019;2021;2024,2,1,6,2017,2020,early (<=10y),person_cns(name),0,0,0,0,1,0,1,1,0,1
-Robert Froemke,non-HHMI (low-CNS),NYU,neuroscience,,4,0.4,4,2016;2017;2018;2019;2024;2025,3,1,27,2010,2013,established,person_cns(name),0,0,0,0,1,1,1,1,0,0
-Tom Maniatis,non-HHMI (low-CNS),Columbia,neuroscience,,4,0.4,3,2016;2018;2020;2021;2022;2023;2024,1,0,7,2010,2012,established,person_cns(name),0,2,0,1,0,0,0,0,0,1
-Thorsten Mempel,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,4,0.4,2,2016;2017;2018;2020;2022;2023;2024;2025,0,0,4,,2008,established,person_cns(name),0,0,0,2,0,2,0,0,0,0
-Flora Vaccarino,non-HHMI (low-CNS),Yale,neuroscience,,4,0.4,4,2016;2019;2020;2023;2024;2025,1,0,21,,2005,established,person_cns(name),0,1,1,0,0,1,1,0,0,0
+Takaki Komiyama,non-HHMI (low-CNS),UCSD,neuroscience,,4,0.4,2,2016;2017;2018;2020;2021;2022;2023;2024,10,1,29,,2012,established,person_cns(name),0,0,0,1,0,0,0,0,0,3
 Guoping Feng,non-HHMI (low-CNS),MIT,neuroscience,,4,0.4,4,2017;2018;2019;2023;2024;2025,5,0,28,,2011,established,person_cns(affil),1,0,0,0,1,1,1,0,0,0
+Flora Vaccarino,non-HHMI (low-CNS),Yale,neuroscience,,4,0.4,4,2016;2019;2020;2023;2024;2025,1,0,21,,2005,established,person_cns(name),0,1,1,0,0,1,1,0,0,0
+Tom Maniatis,non-HHMI (low-CNS),Columbia,neuroscience,,4,0.4,3,2016;2018;2020;2021;2022;2023;2024,1,0,7,2010,2012,established,person_cns(name),0,2,0,1,0,0,0,0,0,1
+Christoph Thaiss,rising-star,Penn,neuroscience,,4,0.4,3,2016;2017;2019;2020;2021;2024;2025,0,0,19,,2018,early (<=10y),person_cns(name),0,0,1,0,0,0,1,2,0,0
+Thorsten Mempel,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,4,0.4,2,2016;2017;2018;2020;2022;2023;2024;2025,0,0,4,,2008,established,person_cns(name),0,0,0,2,0,2,0,0,0,0
+Priya Rajasethupathy,rising-star,Rockefeller,neuroscience,"Klingenstein-Simons, NIH DP2, Searle Scholar",4,0.4,4,2016;2017;2018;2019;2021;2024,2,1,6,2017,2020,early (<=10y),person_cns(name),0,0,0,0,1,0,1,1,0,1
 Lulu Qian,rising-star,Caltech,neuroscience,,4,0.4,3,2016;2019;2020;2021;2022;2023;2024,0,0,10,,2017,early (<=10y),person_cns(affil),0,1,1,0,0,0,0,0,0,2
 Long Cai,non-HHMI (low-CNS),Caltech,neuroscience,,4,0.4,4,2017;2018;2020;2022;2023;2024,2,0,11,,2012,established,person_cns(affil),1,0,0,1,0,1,0,0,0,1
+Robert Froemke,non-HHMI (low-CNS),NYU,neuroscience,,4,0.4,4,2016;2017;2018;2019;2024;2025,3,1,27,2010,2013,established,person_cns(name),0,0,0,0,1,1,1,1,0,0
 Holly Ingraham,non-HHMI (low-CNS),UCSF,neuroscience,,4,0.4,4,2016;2017;2018;2019;2020;2023,1,0,4,,2014,established,person_cns(name),0,0,0,0,0,1,1,0,1,1
-Marito Hayashi,rising-star,Harvard Medical School;Salk,neuroscience,,4,0.4,4,2016;2017;2018;2020;2022;2024,0,0,0,,2021,rising (<=6y),person_cns(name),0,0,0,1,0,1,0,1,0,1
-Joseph Wu,non-HHMI (low-CNS),Stanford;UT Southwestern,neuroscience,,4,0.4,4,2016;2017;2018;2020;2021;2023,0,0,0,,,unknown,person_cns(affil),0,0,0,1,0,0,1,0,1,1
-Jimi Huh,rising-star,Harvard Medical School;NYU,neuroscience,,4,0.4,4,2018;2020;2021;2022;2023;2024,1,0,9,,2016,early (<=10y),person_cns(name),1,1,0,1,0,0,0,0,0,1
 Keith Baldwin,rising-star,Columbia;Scripps,neuroscience,NIH DP2,4,0.4,3,2016;2017;2019;2020;2021;2023;2025,1,0,2,,2015,early (<=10y),person_cns(name),0,0,2,0,0,0,1,0,1,0
+Joseph Wu,non-HHMI (low-CNS),Stanford;UT Southwestern,neuroscience,,4,0.4,4,2016;2017;2018;2020;2021;2023,0,0,0,,,unknown,person_cns(affil),0,0,0,1,0,0,1,0,1,1
 Li Gan,rising-star,Weill Cornell,neuroscience,,4,0.4,2,2016;2017;2018;2019;2020;2021;2023;2025,6,2,24,,2019,rising (<=6y),person_cns(name),0,0,0,0,0,0,2,0,2,0
+Len Pennacchio,non-HHMI (low-CNS),UC Berkeley,neuroscience,,4,0.4,4,2016;2017;2021;2022;2023;2024,0,0,5,1999,2005,established,person_cns(name),0,0,1,1,1,0,0,0,0,1
+Marito Hayashi,rising-star,Harvard Medical School;Salk,neuroscience,,4,0.4,4,2016;2017;2018;2020;2022;2024,0,0,0,,2021,rising (<=6y),person_cns(name),0,0,0,1,0,1,0,1,0,1
+Jimi Huh,rising-star,Harvard Medical School;NYU,neuroscience,,4,0.4,4,2018;2020;2021;2022;2023;2024,1,0,9,,2016,early (<=10y),person_cns(name),1,1,0,1,0,0,0,0,0,1
 Jeremy Rich,rising-star,UCSD,neuroscience,,4,0.4,3,2016;2019;2020;2021;2022;2024;2025,2,0,26,,2017,early (<=10y),person_cns(name),0,2,1,0,0,0,0,1,0,0
 Ya-Chieh Hsu,non-HHMI (low-CNS),Harvard (FAS),neuroscience,,4,0.4,3,2016;2017;2018;2019;2022;2023;2024,0,0,17,,2006,established,person_cns(name),0,0,0,0,2,1,0,0,0,1
-Len Pennacchio,non-HHMI (low-CNS),UC Berkeley,neuroscience,,4,0.4,4,2016;2017;2021;2022;2023;2024,0,0,5,1999,2005,established,person_cns(name),0,0,1,1,1,0,0,0,0,1
 Alex Williams,early-career awardee,New York University,neuroscience (awardee),McKnight Scholar,4,0.4,4,2016;2017;2019;2021;2024;2025,1,1,9,,2006,established,person_cns(name),0,0,1,0,1,0,1,1,0,0
 Bozhi Tian,early-career awardee,University of Chicago,neuroscience (awardee),NIH DP2,4,0.4,3,2016;2017;2018;2020;2021;2022;2023,1,1,,,,unknown,person_cns(name),0,0,0,1,0,0,0,0,2,1
 Dmitriy Aronov,HHMI,Columbia University,Neuroscience (HHMI),NIH DP2,3,0.3,3,2016;2017;2018;2019;2020;2022;2023,0,1,9,,,established,person_cns(name),0,0,0,0,0,1,0,0,1,1
@@ -155,44 +155,44 @@ Axel T. Brunger,HHMI,Stanford University,Neuroscience (HHMI),,3,0.3,3,2016;2018;
 Carlos D. Brody,HHMI,Princeton University,Neuroscience (HHMI),,3,0.3,3,2016;2017;2019;2020;2021;2022;2023,3,5,30,,,established,person_cns(name),0,0,1,0,0,0,0,0,1,1
 Ian Maze,HHMI,Icahn School of Medicine at Mount Sinai,Neuroscience (HHMI),,3,0.3,3,2016;2017;2018;2021;2022;2023;2024,1,0,24,,,established,person_cns(name),0,0,0,1,1,0,0,0,0,1
 Thomas Clandinin,non-HHMI (low-CNS),Stanford,Drosophila vision,,3,0.3,3,2017;2018;2019;2020;2022;2023;2024,6,3,25,,,established,person_cns(name),1,0,0,0,0,1,0,0,0,1
+Ivan de Araujo,non-HHMI (low-CNS),Mount Sinai;Yale,neuroscience,,3,0.3,3,2016;2019;2020;2021;2022;2023;2025,1,0,8,,2009,established,person_cns(name),0,1,1,0,0,0,0,0,1,0
 Betley JN,rising-star,Penn,neuroscience,Klingenstein-Simons,3,0.3,3,2016;2017;2019;2020;2022;2023;2024,1,0,8,,2017,early (<=10y),person_cns(name),0,0,1,0,0,1,0,0,0,1
+Mayank Mehta,non-HHMI (low-CNS),UCLA,neuroscience,,3,0.3,3,2016;2018;2019;2020;2023;2024;2025,1,1,2,2009,2011,established,person_cns(name),0,1,0,0,0,1,1,0,0,0
+Bo Li,non-HHMI (low-CNS),CSHL,neuroscience,,3,0.3,3,2016;2017;2018;2019;2022;2024;2025,4,0,20,,2013,established,person_cns(affil),0,0,0,0,1,1,0,1,0,0
 Coleen Murphy,non-HHMI (low-CNS),Princeton,neuroscience,,3,0.3,3,2016;2017;2018;2022;2023;2024;2025,1,4,44,2005,2006,established,person_cns(affil),0,0,0,1,1,1,0,0,0,0
 Andrew Huberman,rising-star,Stanford,neuroscience,,3,0.3,3,2016;2019;2020;2021;2023;2024;2025,2,0,14,2016,2006,early (<=10y),person_cns(name),0,1,1,0,0,0,1,0,0,0
-Mayank Mehta,non-HHMI (low-CNS),UCLA,neuroscience,,3,0.3,3,2016;2018;2019;2020;2023;2024;2025,1,1,2,2009,2011,established,person_cns(name),0,1,0,0,0,1,1,0,0,0
-Ivan de Araujo,non-HHMI (low-CNS),Mount Sinai;Yale,neuroscience,,3,0.3,3,2016;2019;2020;2021;2022;2023;2025,1,0,8,,2009,established,person_cns(name),0,1,1,0,0,0,0,0,1,0
-Bo Li,non-HHMI (low-CNS),CSHL,neuroscience,,3,0.3,3,2016;2017;2018;2019;2022;2024;2025,4,0,20,,2013,established,person_cns(affil),0,0,0,0,1,1,0,1,0,0
+Andrew Wang,non-HHMI (low-CNS),Yale,neuroscience,,3,0.3,2,2016;2017;2018;2019;2021;2022;2023;2024,0,0,,,,unknown,person_cns(affil),0,0,0,0,1,0,0,0,0,2
 Alex Pollen,rising-star,UCSF,neuroscience,,3,0.3,3,2016;2017;2018;2019;2020;2021;2024,2,0,8,,2018,early (<=10y),person_cns(name),0,0,0,0,0,0,1,1,0,1
 Vikaas Sohal,non-HHMI (low-CNS),UCSF,neuroscience,,3,0.3,3,2016;2017;2019;2020;2021;2024;2025,3,1,21,,2012,established,person_cns(name),0,0,1,0,0,0,1,1,0,0
 Eric Huang,non-HHMI (low-CNS),UCSF,neuroscience,,3,0.3,3,2017;2018;2019;2021;2023;2024;2025,3,0,17,,2005,established,person_cns(affil),1,0,0,0,1,0,1,0,0,0
 Mauro Costa-Mattioli,non-HHMI (low-CNS),Baylor;UCSF,neuroscience,,3,0.3,3,2017;2018;2020;2022;2023;2024;2025,4,3,12,2008,2008,established,person_cns(name),1,0,0,1,0,1,0,0,0,0
-Mala Murthy,non-HHMI (low-CNS),Princeton,neuroscience,,3,0.3,2,2016;2017;2018;2019;2020;2021;2022;2025,5,0,24,2010,2010,established,person_cns(name),0,0,0,0,0,0,0,1,2,0
-David Tank,non-HHMI (low-CNS),Princeton,neuroscience,,3,0.3,3,2016;2019;2020;2022;2023;2024;2025,5,2,12,2001,2007,established,person_cns(name),0,1,1,0,0,1,0,0,0,0
-Winrich Freiwald,non-HHMI (low-CNS),Rockefeller,neuroscience,,3,0.3,2,2016;2018;2019;2020;2022;2023;2024;2025,2,2,18,,2013,established,person_cns(name),0,2,0,0,0,1,0,0,0,0
-Azad Bonni,non-HHMI (low-CNS),WashU St. Louis,neuroscience,,3,0.3,3,2017;2018;2020;2021;2023;2024;2025,1,0,14,,2013,established,person_cns(name),1,0,0,1,0,0,1,0,0,0
-Michael Bruchas,non-HHMI (low-CNS),University of Washington;WashU St. Louis,neuroscience,,3,0.3,3,2016;2017;2018;2020;2022;2023;2024,8,3,37,,2011,established,person_cns(name),0,0,0,1,0,1,0,0,0,1
-Jieli Li,non-HHMI (low-CNS),Baylor;Duke;Janelia,neuroscience,,3,0.3,3,2016;2017;2019;2020;2022;2023;2025,2,1,24,,2014,established,person_cns(affil),0,0,1,0,0,1,0,0,1,0
+Jieli Li,non-HHMI (low-CNS),Baylor;Duke,neuroscience,,3,0.3,3,2016;2017;2019;2020;2022;2023;2025,2,1,24,,2014,established,person_cns(affil),0,0,1,0,0,1,0,0,1,0
+Ryohei Yasuda,non-HHMI (low-CNS),Duke;MPFI,neuroscience,,3,0.3,2,2017;2018;2019;2020;2021;2022;2023;2025,8,1,30,,2006,established,person_cns(name),2,0,0,0,0,0,0,0,1,0
 Nathaniel Sawtell,non-HHMI (low-CNS),Columbia,neuroscience,,3,0.3,3,2016;2017;2018;2020;2021;2022;2023,4,2,17,,2010,established,person_cns(name),0,0,0,1,0,0,0,0,1,1
-Hong-Wei Dong,non-HHMI (low-CNS),UCLA,neuroscience,,3,0.3,2,2016;2017;2018;2019;2020;2022;2023;2024,0,0,7,,2010,established,person_cns(affil),0,0,0,0,0,2,0,0,0,1
+Conor Liston,rising-star,Weill Cornell,neuroscience,Klingenstein-Simons,3,0.3,3,2016;2017;2018;2020;2022;2023;2025,3,0,31,,2015,early (<=10y),person_cns(name),0,0,0,1,0,1,0,0,1,0
+Kirill Martemyanov,non-HHMI (low-CNS),Scripps,neuroscience,,3,0.3,3,2016;2017;2018;2019;2022;2024;2025,2,2,43,,2011,established,person_cns(name),0,0,0,0,1,1,0,1,0,0
+Hong-Wei Dong,non-HHMI (low-CNS),UCLA;USC,neuroscience,,3,0.3,2,2016;2017;2018;2019;2020;2022;2023;2024,0,0,7,,2010,established,person_cns(affil),0,0,0,0,0,2,0,0,0,1
 Pascal Kaeser,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,3,0.3,3,2016;2017;2019;2020;2021;2023;2025,6,6,30,2011,2014,established,person_cns(name),0,0,1,0,0,0,1,0,1,0
 Maria Lehtinen,non-HHMI (low-CNS),Harvard (FAS);Harvard Medical School,neuroscience,,3,0.3,3,2016;2017;2018;2019;2020;2022;2025,5,1,31,,2012,established,person_cns(name),0,0,0,0,0,1,0,1,1,0
 Wei-Chung Lee,rising-star,Harvard Medical School,neuroscience,,3,0.3,3,2016;2017;2018;2019;2020;2023;2025,1,1,18,2017,2005,early (<=10y),person_cns(affil),0,0,0,0,0,1,1,0,1,0
+Azad Bonni,non-HHMI (low-CNS),WashU St. Louis,neuroscience,,3,0.3,3,2017;2018;2020;2021;2023;2024;2025,1,0,14,,2013,established,person_cns(name),1,0,0,1,0,0,1,0,0,0
+Michael Bruchas,non-HHMI (low-CNS),University of Washington;WashU St. Louis,neuroscience,,3,0.3,3,2016;2017;2018;2020;2022;2023;2024,8,3,37,,2011,established,person_cns(name),0,0,0,1,0,1,0,0,0,1
 Eric Nestler,non-HHMI (low-CNS),Mount Sinai,neuroscience,,3,0.3,3,2016;2018;2019;2020;2021;2022;2023,7,0,89,2008,2008,established,person_cns(name),0,1,0,0,0,0,0,0,1,1
-Ryohei Yasuda,non-HHMI (low-CNS),Duke;MPFI,neuroscience,,3,0.3,2,2017;2018;2019;2020;2021;2022;2023;2025,8,1,30,,2006,established,person_cns(name),2,0,0,0,0,0,0,0,1,0
-Kirill Martemyanov,non-HHMI (low-CNS),Scripps,neuroscience,,3,0.3,3,2016;2017;2018;2019;2022;2024;2025,2,2,43,,2011,established,person_cns(name),0,0,0,0,1,1,0,1,0,0
-Andrew Wang,non-HHMI (low-CNS),Yale,neuroscience,,3,0.3,2,2016;2017;2018;2019;2021;2022;2023;2024,0,0,,,,unknown,person_cns(affil),0,0,0,0,1,0,0,0,0,2
 John Tuthill,rising-star,University of Washington,neuroscience,"Klingenstein-Simons, McKnight Scholar, Pew Biomedical, Searle Scholar",3,0.3,2,2016;2017;2018;2019;2020;2021;2022;2023,2,2,16,2016,2018,early (<=10y),person_cns(name),0,0,0,0,0,0,0,0,2,1
-Conor Liston,rising-star,Weill Cornell,neuroscience,Klingenstein-Simons,3,0.3,3,2016;2017;2018;2020;2022;2023;2025,3,0,31,,2015,early (<=10y),person_cns(name),0,0,0,1,0,1,0,0,1,0
-Naoshige Uchida,non-HHMI (low-CNS),Harvard (FAS),neuroscience,,3,0.3,2,2016;2017;2018;2019;2021;2022;2023;2024,5,0,18,2006,2010,established,person_cns(name),0,0,0,0,1,0,0,0,0,2
+Winrich Freiwald,non-HHMI (low-CNS),Rockefeller,neuroscience,,3,0.3,2,2016;2018;2019;2020;2022;2023;2024;2025,2,2,18,,2013,established,person_cns(name),0,2,0,0,0,1,0,0,0,0
 David Fitzpatrick,non-HHMI (low-CNS),MPFI,neuroscience,,3,0.3,3,2017;2019;2021;2022;2023;2024;2025,9,0,15,,2012,established,person_cns(name),1,0,1,0,1,0,0,0,0,0
+Mala Murthy,non-HHMI (low-CNS),Princeton,neuroscience,,3,0.3,2,2016;2017;2018;2019;2020;2021;2022;2025,5,0,24,2010,2010,established,person_cns(name),0,0,0,0,0,0,0,1,2,0
+David Tank,non-HHMI (low-CNS),Princeton,neuroscience,,3,0.3,3,2016;2019;2020;2022;2023;2024;2025,5,2,12,2001,2007,established,person_cns(name),0,1,1,0,0,1,0,0,0,0
+Naoshige Uchida,non-HHMI (low-CNS),Harvard (FAS),neuroscience,,3,0.3,2,2016;2017;2018;2019;2021;2022;2023;2024,5,0,18,2006,2010,established,person_cns(name),0,0,0,0,1,0,0,0,0,2
+Mark Harnett,rising-star,MIT,neuroscience,"Klingenstein-Simons, McKnight Scholar",3,0.3,3,2016;2017;2019;2020;2023;2024;2025,5,2,9,,2018,early (<=10y),person_cns(name),0,0,1,0,0,1,1,0,0,0
 Mark Kahn,non-HHMI (low-CNS),Penn,neuroscience,,3,0.3,3,2018;2019;2020;2022;2023;2024;2025,0,1,18,,2005,established,person_cns(name),1,1,0,0,0,1,0,0,0,0
-Timothy Buschman,rising-star,Princeton,neuroscience,,3,0.3,3,2016;2017;2018;2019;2020;2022;2023,2,0,14,,2015,early (<=10y),person_cns(name),0,0,0,0,0,1,0,0,1,1
-Alipasha Vaziri,rising-star,Rockefeller,neuroscience,,3,0.3,3,2017;2018;2021;2022;2023;2024;2025,1,0,13,,2016,early (<=10y),person_cns(name),1,0,0,1,1,0,0,0,0,0
-Seth Blackshaw,non-HHMI (low-CNS),Johns Hopkins,neuroscience,,3,0.3,3,2016;2018;2019;2021;2022;2024;2025,0,2,41,,2009,established,person_cns(name),0,1,0,0,1,0,0,1,0,0
 Anne Schaefer,rising-star,Mount Sinai,neuroscience,,3,0.3,3,2016;2017;2018;2019;2022;2023;2024,4,0,5,,2015,early (<=10y),person_cns(name),0,0,0,0,1,1,0,0,0,1
 Georg Seelig,non-HHMI (low-CNS),University of Washington,neuroscience,,3,0.3,3,2016;2017;2021;2022;2023;2024;2025,0,1,25,,2013,established,person_cns(name),0,0,1,1,1,0,0,0,0,0
-Mark Harnett,rising-star,MIT,neuroscience,"Klingenstein-Simons, McKnight Scholar",3,0.3,3,2016;2017;2019;2020;2023;2024;2025,5,2,9,,2018,early (<=10y),person_cns(name),0,0,1,0,0,1,1,0,0,0
+Alipasha Vaziri,rising-star,Rockefeller,neuroscience,,3,0.3,3,2017;2018;2021;2022;2023;2024;2025,1,0,13,,2016,early (<=10y),person_cns(name),1,0,0,1,1,0,0,0,0,0
+Seth Blackshaw,non-HHMI (low-CNS),Johns Hopkins,neuroscience,,3,0.3,3,2016;2018;2019;2021;2022;2024;2025,0,2,41,,2009,established,person_cns(name),0,1,0,0,1,0,0,1,0,0
 Sheng Zhong,non-HHMI (low-CNS),UCSD,neuroscience,,3,0.3,3,2016;2017;2018;2019;2020;2021;2022,0,0,27,,2013,established,person_cns(name),0,0,0,0,0,0,0,1,1,1
 Christopher Glass,non-HHMI (low-CNS),UCSD,neuroscience,,3,0.3,3,2016;2020;2021;2022;2023;2024;2025,0,3,35,,2005,established,person_cns(name),0,1,1,1,0,0,0,0,0,0
+Timothy Buschman,rising-star,Princeton,neuroscience,,3,0.3,3,2016;2017;2018;2019;2020;2022;2023,2,0,14,,2015,early (<=10y),person_cns(name),0,0,0,0,0,1,0,0,1,1
 Jeff Lichtman,non-HHMI (low-CNS),Harvard (FAS),neuroscience,,3,0.3,3,2018;2019;2020;2021;2022;2023;2025,1,1,22,,2007,established,person_cns(name),1,1,0,0,0,0,0,0,1,0
 Florian Engert,non-HHMI (low-CNS),Harvard (FAS),neuroscience,,3,0.3,2,2018;2019;2020;2021;2022;2023;2024;2025,3,2,24,,2006,established,person_cns(name),1,2,0,0,0,0,0,0,0,0
 Nuo Li,early-career awardee,Baylor College of Medicine,neuroscience (awardee),"McKnight Scholar, Pew Biomedical",3,0.3,3,2016;2017;2019;2020;2022;2023;2025,2,1,24,,2014,established,person_cns(affil),0,0,1,0,0,1,0,0,1,0
@@ -208,28 +208,31 @@ Chenghua Gu,HHMI,Harvard Medical School,Neuroscience (HHMI),,2,0.2,2,2016;2017;2
 Susan L. Ackerman,HHMI,"University of California, San Diego",Neuroscience (HHMI),Klingenstein-Simons,2,0.2,2,2016;2017;2019;2020;2021;2022;2023;2024,3,3,47,,,established,person_cns(name),0,0,1,0,0,0,0,0,0,1
 Mark Wu,non-HHMI (low-CNS),Johns Hopkins,neuroscience,,2,0.2,2,2017;2019;2020;2021;2022;2023;2024;2025,1,0,37,,2011,established,person_cns(affil),1,0,1,0,0,0,0,0,0,0
 Anatol Kreitzer,non-HHMI (low-CNS),UCSF,neuroscience,,2,0.2,2,2017;2019;2020;2021;2022;2023;2024;2025,2,1,6,,2009,established,person_cns(name),1,0,1,0,0,0,0,0,0,0
-David Van Essen,non-HHMI (low-CNS),WashU St. Louis,neuroscience,,2,0.2,2,2017;2018;2019;2021;2022;2023;2024;2025,1,0,7,,2005,established,person_cns(name),1,0,0,0,1,0,0,0,0,0
 Franck Polleux,non-HHMI (low-CNS),Columbia,neuroscience,,2,0.2,2,2016;2018;2019;2020;2022;2023;2024;2025,1,0,16,2013,2016,established,person_cns(name),0,1,0,0,0,1,0,0,0,0
-James Knierim,non-HHMI (low-CNS),Johns Hopkins,neuroscience,,2,0.2,2,2016;2017;2020;2021;2022;2023;2024;2025,3,2,22,2009,2009,established,person_cns(name),0,0,1,1,0,0,0,0,0,0
 Bruce Yankner,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2024,0,0,5,,2005,established,person_cns(name),0,0,0,1,0,0,0,0,0,1
+David Van Essen,non-HHMI (low-CNS),WashU St. Louis,neuroscience,,2,0.2,2,2017;2018;2019;2021;2022;2023;2024;2025,1,0,7,,2005,established,person_cns(name),1,0,0,0,1,0,0,0,0,0
+James Knierim,non-HHMI (low-CNS),Johns Hopkins,neuroscience,,2,0.2,2,2016;2017;2020;2021;2022;2023;2024;2025,3,2,22,2009,2009,established,person_cns(name),0,0,1,1,0,0,0,0,0,0
 Alysson Muotri,non-HHMI (low-CNS),UCSD,neuroscience,,2,0.2,2,2017;2018;2019;2020;2022;2023;2024;2025,0,0,46,,2009,established,person_cns(name),1,0,0,0,0,1,0,0,0,0
+Mriganka Sur,non-HHMI (low-CNS),MIT,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2023;2024;2025,2,3,40,,2005,established,person_cns(name),0,0,1,0,0,0,1,0,0,0
+Wojciech Matusik,rising-star,MIT,neuroscience,,2,0.2,2,2016;2017;2018;2020;2022;2023;2024;2025,0,0,7,,2018,early (<=10y),person_cns(name),0,0,0,1,0,1,0,0,0,0
+Ann Graybiel,non-HHMI (low-CNS),MIT,neuroscience,,2,0.2,2,2016;2018;2019;2021;2022;2023;2024;2025,1,1,29,,2005,established,person_cns(name),0,1,0,0,1,0,0,0,0,0
+Daniel Colón-Ramos,rising-star,Yale,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2023;2025,3,3,25,2018,2009,early (<=10y),person_cns(name),0,0,0,0,0,1,0,0,1,0
+John Carlson,non-HHMI (low-CNS),Yale,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2021;2022;2025,0,7,29,,2005,established,person_cns(name),0,0,0,0,0,0,0,1,1,0
+Michael Crair,non-HHMI (low-CNS),Yale,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2023;2025,1,1,6,,2008,established,person_cns(name),0,0,0,0,0,1,0,0,1,0
+Marcelo Dietrich,non-HHMI (low-CNS),Yale,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2025,0,1,9,2014,2013,established,person_cns(name),0,0,0,1,0,0,0,0,1,0
 Yin Shen,non-HHMI (low-CNS),UCSF,neuroscience,,2,0.2,2,2016;2017;2018;2019;2021;2022;2023;2024,0,0,11,,2011,established,person_cns(affil),0,0,0,0,1,0,0,0,0,1
 Saul Villeda,rising-star,UCSF,neuroscience,,2,0.2,2,2016;2017;2018;2019;2021;2022;2024;2025,1,1,11,,2015,early (<=10y),person_cns(name),0,0,0,0,1,0,0,1,0,0
-Roberto Bonasio,non-HHMI (low-CNS),Penn,neuroscience,,2,0.2,2,2016;2018;2019;2020;2022;2023;2024;2025,0,1,17,2014,2015,established,person_cns(name),0,1,0,0,0,1,0,0,0,0
-Alexander Nectow,rising-star,Columbia;Princeton,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2024,0,0,2,2019,2019,rising (<=6y),person_cns(name),0,0,0,1,0,0,0,0,0,1
-Marius Wernig,non-HHMI (low-CNS),Stanford,neuroscience,,2,0.2,2,2016;2018;2019;2020;2021;2022;2023;2024,2,0,25,,2010,established,person_cns(name),0,1,0,0,0,0,0,0,0,1
-Katrin Andreasson,non-HHMI (low-CNS),Stanford,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2023;2025,1,0,15,,2008,established,person_cns(name),0,0,0,0,0,1,0,0,1,0
-Luis de Lecea,non-HHMI (low-CNS),Stanford,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2021;2024;2025,5,0,34,2011,2007,established,person_cns(name),0,0,0,0,0,0,1,1,0,0
-Kwabena Boahen,non-HHMI (low-CNS),Stanford,neuroscience,,2,0.2,2,2017;2018;2019;2020;2021;2023;2024;2025,0,0,0,,2006,established,person_cns(name),1,0,0,0,0,0,1,0,0,0
-Humsa Venkatesh,rising-star,Harvard Medical School;Stanford,neuroscience,"NIH DP2, Searle Scholar",2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2024,0,0,1,2021,2019,rising (<=6y),person_cns(name),0,0,0,1,0,0,0,0,0,1
-Fuzhong Zhang,rising-star,WashU St. Louis,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2024,0,0,19,,2019,rising (<=6y),person_cns(affil),0,0,0,1,0,0,0,0,0,1
-Rajendra Apte,non-HHMI (low-CNS),WashU St. Louis,neuroscience,,2,0.2,2,2016;2017;2019;2021;2022;2023;2024;2025,0,1,71,,2005,established,person_cns(name),0,0,1,0,1,0,0,0,0,0
+Diego Bohórquez,rising-star,Duke,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2022;2023;2024,2,0,10,,2017,early (<=10y),person_cns(name),0,0,1,0,0,0,0,0,0,1
+Ru-Rong Ji,non-HHMI (low-CNS),Duke,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2023;2024,7,0,66,2012,2013,established,person_cns(name),0,0,0,0,0,1,0,0,0,1
+Dorothy Sipkins,non-HHMI (low-CNS),Duke,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2022;2023;2025,0,0,4,,2014,established,person_cns(name),0,0,1,0,0,0,0,0,1,0
+Scott Soderling,non-HHMI (low-CNS),Duke,neuroscience,,2,0.2,2,2017;2018;2019;2021;2022;2023;2024;2025,1,4,16,2006,2009,established,person_cns(name),1,0,0,0,1,0,0,0,0,0
+Alexander Nectow,rising-star,Columbia,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2024,0,0,2,2019,2019,rising (<=6y),person_cns(name),0,0,0,1,0,0,0,0,0,1
 Anthony Fitzpatrick,rising-star,Columbia,neuroscience,,2,0.2,2,2016;2017;2018;2019;2021;2023;2024;2025,0,0,5,,2020,rising (<=6y),person_cns(name),0,0,0,0,1,0,1,0,0,0
 René Hen,non-HHMI (low-CNS),Columbia,neuroscience,,2,0.2,2,2016;2017;2020;2021;2022;2023;2024;2025,1,0,14,,2005,established,person_cns(name),0,0,1,1,0,0,0,0,0,0
-Edward Twomey,rising-star,Johns Hopkins,neuroscience,,2,0.2,1,2016;2017;2018;2019;2020;2021;2022;2023;2024,0,0,9,2020,2021,rising (<=6y),person_cns(name),0,0,0,0,0,0,0,0,0,2
-Ulrich Müller,rising-star,Johns Hopkins,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2022;2024;2025,4,2,17,,2017,early (<=10y),person_cns(name),0,0,1,0,0,0,0,1,0,0
-Ted Dawson,non-HHMI (low-CNS),Johns Hopkins,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2023;2024;2025,0,0,25,,2005,established,person_cns(name),0,0,1,0,0,0,1,0,0,0
-Samuel Carmichael,non-HHMI (low-CNS),UCLA,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2024,2,0,33,,2005,established,person_cns(name),0,0,0,1,0,0,0,0,0,1
+Roberto Bonasio,non-HHMI (low-CNS),Penn,neuroscience,,2,0.2,2,2016;2018;2019;2020;2022;2023;2024;2025,0,1,17,2014,2015,established,person_cns(name),0,1,0,0,0,1,0,0,0,0
+Kristin Scott,non-HHMI (low-CNS),UC Berkeley,neuroscience,,2,0.2,2,2017;2018;2019;2020;2021;2022;2023;2025,3,7,20,,2005,established,person_cns(name),1,0,0,0,0,0,0,0,1,0
+Berislav Zlokovic,non-HHMI (low-CNS),USC,neuroscience,,2,0.2,1,2016;2017;2018;2019;2021;2022;2023;2024;2025,5,0,47,,2011,established,person_cns(name),0,0,0,0,2,0,0,0,0,0
+Humsa Venkatesh,rising-star,Harvard Medical School;Stanford,neuroscience,"NIH DP2, Searle Scholar",2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2024,0,0,1,2021,2019,rising (<=6y),person_cns(name),0,0,0,1,0,0,0,0,0,1
 Hisashi Umemori,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2024;2025,1,1,16,2013,2006,established,person_cns(name),0,0,0,0,0,1,0,1,0,0
 Bradford Lowell,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2024;2025,7,1,13,,2005,established,person_cns(name),0,0,0,0,0,1,0,1,0,0
 Ulrich von Andrian,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,2,0.2,2,2016;2017;2018;2019;2021;2022;2024;2025,0,1,12,,2005,established,person_cns(name),0,0,0,0,1,0,0,1,0,0
@@ -240,25 +243,22 @@ Eng Lo,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,2,0.2,2,2017;2018
 Rudolph Tanzi,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,2,0.2,2,2016;2017;2020;2021;2022;2023;2024;2025,3,0,35,,2005,established,person_cns(name),0,0,1,1,0,0,0,0,0,0
 Junying Yuan,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,2,0.2,2,2016;2017;2019;2021;2022;2023;2024;2025,0,0,37,1996,2005,established,person_cns(affil),0,0,1,0,1,0,0,0,0,0
 Wade Regehr,non-HHMI (low-CNS),Harvard Medical School,neuroscience,,2,0.2,2,2018;2019;2020;2021;2022;2023;2024;2025,9,7,41,,2005,established,person_cns(name),1,1,0,0,0,0,0,0,0,0
+Fuzhong Zhang,rising-star,WashU St. Louis,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2024,0,0,19,,2019,rising (<=6y),person_cns(affil),0,0,0,1,0,0,0,0,0,1
+Rajendra Apte,non-HHMI (low-CNS),WashU St. Louis,neuroscience,,2,0.2,2,2016;2017;2019;2021;2022;2023;2024;2025,0,1,71,,2005,established,person_cns(name),0,0,1,0,1,0,0,0,0,0
 Paul Kenny,non-HHMI (low-CNS),Mount Sinai,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2025,2,0,33,2014,2014,established,person_cns(name),0,0,0,1,0,0,0,0,1,0
 Benjamin Chen,non-HHMI (low-CNS),Mount Sinai,neuroscience,,2,0.2,2,2016;2017;2019;2020;2022;2023;2024;2025,0,0,27,2003,2006,established,person_cns(affil),0,0,1,0,0,1,0,0,0,0
-Diego Bohórquez,rising-star,Duke,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2022;2023;2024,2,0,10,,2017,early (<=10y),person_cns(name),0,0,1,0,0,0,0,0,0,1
-Ru-Rong Ji,non-HHMI (low-CNS),Duke,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2023;2024,7,0,66,2012,2013,established,person_cns(name),0,0,0,0,0,1,0,0,0,1
-Dorothy Sipkins,non-HHMI (low-CNS),Duke,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2022;2023;2025,0,0,4,,2014,established,person_cns(name),0,0,1,0,0,0,0,0,1,0
-Scott Soderling,non-HHMI (low-CNS),Duke,neuroscience,,2,0.2,2,2017;2018;2019;2021;2022;2023;2024;2025,1,4,16,2006,2009,established,person_cns(name),1,0,0,0,1,0,0,0,0,0
-Daniel Colón-Ramos,rising-star,Yale,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2023;2025,3,3,25,2018,2009,early (<=10y),person_cns(name),0,0,0,0,0,1,0,0,1,0
-John Carlson,non-HHMI (low-CNS),Yale,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2021;2022;2025,0,7,29,,2005,established,person_cns(name),0,0,0,0,0,0,0,1,1,0
-Michael Crair,non-HHMI (low-CNS),Yale,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2023;2025,1,1,6,,2008,established,person_cns(name),0,0,0,0,0,1,0,0,1,0
-Marcelo Dietrich,non-HHMI (low-CNS),Yale,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2025,0,1,9,2014,2013,established,person_cns(name),0,0,0,1,0,0,0,0,1,0
-Mriganka Sur,non-HHMI (low-CNS),MIT,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2023;2024;2025,2,3,40,,2005,established,person_cns(name),0,0,1,0,0,0,1,0,0,0
-Wojciech Matusik,rising-star,MIT,neuroscience,,2,0.2,2,2016;2017;2018;2020;2022;2023;2024;2025,0,0,7,,2018,early (<=10y),person_cns(name),0,0,0,1,0,1,0,0,0,0
-Ann Graybiel,non-HHMI (low-CNS),MIT,neuroscience,,2,0.2,2,2016;2018;2019;2021;2022;2023;2024;2025,1,1,29,,2005,established,person_cns(name),0,1,0,0,1,0,0,0,0,0
+Samuel Carmichael,non-HHMI (low-CNS),UCLA,neuroscience,,2,0.2,2,2016;2017;2018;2020;2021;2022;2023;2024,2,0,33,,2005,established,person_cns(name),0,0,0,1,0,0,0,0,0,1
+Edward Twomey,rising-star,Johns Hopkins,neuroscience,,2,0.2,1,2016;2017;2018;2019;2020;2021;2022;2023;2024,0,0,9,2020,2021,rising (<=6y),person_cns(name),0,0,0,0,0,0,0,0,0,2
+Ulrich Müller,rising-star,Johns Hopkins,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2022;2024;2025,4,2,17,,2017,early (<=10y),person_cns(name),0,0,1,0,0,0,0,1,0,0
+Ted Dawson,non-HHMI (low-CNS),Johns Hopkins,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2023;2024;2025,0,0,25,,2005,established,person_cns(name),0,0,1,0,0,0,1,0,0,0
+Michael Dickinson,non-HHMI (low-CNS),Caltech,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2022;2023;2025,0,0,16,,2005,established,person_cns(name),0,0,1,0,0,0,0,0,1,0
 Mark Tuszynski,non-HHMI (low-CNS),UCSD,neuroscience,,2,0.2,2,2016;2017;2018;2019;2021;2022;2023;2024,2,0,35,,2005,established,person_cns(name),0,0,0,0,1,0,0,0,0,1
 Charles Lieber,non-HHMI (low-CNS),Harvard (FAS),neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2022;2024;2025,0,0,27,,2005,established,person_cns(name),0,0,1,0,0,0,0,1,0,0
 Joshua Sanes,non-HHMI (low-CNS),Harvard (FAS),neuroscience,,2,0.2,2,2017;2018;2020;2021;2022;2023;2024;2025,6,4,27,2004,2005,established,person_cns(name),1,0,0,1,0,0,0,0,0,0
-Michael Dickinson,non-HHMI (low-CNS),Caltech,neuroscience,,2,0.2,2,2016;2017;2019;2020;2021;2022;2023;2025,0,0,16,,2005,established,person_cns(name),0,0,1,0,0,0,0,0,1,0
-Kristin Scott,non-HHMI (low-CNS),UC Berkeley,neuroscience,,2,0.2,2,2017;2018;2019;2020;2021;2022;2023;2025,3,7,20,,2005,established,person_cns(name),1,0,0,0,0,0,0,0,1,0
-Berislav Zlokovic,non-HHMI (low-CNS),USC,neuroscience,,2,0.2,1,2016;2017;2018;2019;2021;2022;2023;2024;2025,5,0,47,,2011,established,person_cns(name),0,0,0,0,2,0,0,0,0,0
+Marius Wernig,non-HHMI (low-CNS),Stanford,neuroscience,,2,0.2,2,2016;2018;2019;2020;2021;2022;2023;2024,2,0,25,,2010,established,person_cns(name),0,1,0,0,0,0,0,0,0,1
+Katrin Andreasson,non-HHMI (low-CNS),Stanford,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2022;2023;2025,1,0,15,,2008,established,person_cns(name),0,0,0,0,0,1,0,0,1,0
+Luis de Lecea,non-HHMI (low-CNS),Stanford,neuroscience,,2,0.2,2,2016;2017;2018;2019;2020;2021;2024;2025,5,0,34,2011,2007,established,person_cns(name),0,0,0,0,0,0,1,1,0,0
+Kwabena Boahen,non-HHMI (low-CNS),Stanford,neuroscience,,2,0.2,2,2017;2018;2019;2020;2021;2023;2024;2025,0,0,0,,2006,established,person_cns(name),1,0,0,0,0,0,1,0,0,0
 Laura Lewis,early-career awardee,Boston University,neuroscience (awardee),"McKnight Scholar, Pew Biomedical, Searle Scholar",2,0.2,2,2016;2017;2018;2020;2022;2023;2024;2025,1,1,19,,2019,rising (<=6y),person_cns(name),0,0,0,1,0,1,0,0,0,0
 Arkarup Banerjee,early-career awardee,Cold Spring Harbor Laboratory,neuroscience (awardee),"Klingenstein-Simons, McKnight Scholar, Searle Scholar",2,0.2,2,2017;2019;2020;2021;2022;2023;2024;2025,0,0,3,,2024,rising (<=6y),person_cns(name),1,0,1,0,0,0,0,0,0,0
 Gul Dolen,early-career awardee,Johns Hopkins University,neuroscience (awardee),Klingenstein-Simons,2,0.2,2,2016;2017;2018;2020;2021;2022;2024;2025,1,0,3,,2015,early (<=10y),person_cns(name),0,0,0,1,0,0,0,1,0,0
@@ -278,23 +278,23 @@ Xinzhong Dong,HHMI,The Johns Hopkins University,Neuroscience (HHMI),,1,0.1,1,201
 Edwin R. Chapman,HHMI,University of Wisconsin–Madison,Neuroscience (HHMI),,1,0.1,1,2016;2017;2019;2020;2021;2022;2023;2024;2025,2,3,33,,,established,person_cns(name),0,0,1,0,0,0,0,0,0,0
 Robert B. Darnell,HHMI,The Rockefeller University,Neuroscience (HHMI),,1,0.1,1,2016;2018;2019;2020;2021;2022;2023;2024;2025,3,6,34,,,established,person_cns(name),0,1,0,0,0,0,0,0,0,0
 Qili Liu,candidate (career TBD),UCSF;UT Southwestern;WashU St. Louis,neuroscience,"Klingenstein-Simons, Pew Biomedical",1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,0,0,19,,2005,established,person_cns(affil),0,0,0,0,0,0,0,0,1,0
-Boram Kim,rising-star,Mount Sinai;WashU St. Louis,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2024;2025,2,1,55,,2015,early (<=10y),person_cns(affil),0,0,0,0,0,0,0,1,0,0
 Michael Do,candidate (career TBD),Harvard Medical School,neuroscience,,1,0.1,1,2016;2018;2019;2020;2021;2022;2023;2024;2025,3,0,8,2011,2015,established,person_cns(affil),0,1,0,0,0,0,0,0,0,0
-Maria Tosches,rising-star,Columbia,neuroscience,McKnight Scholar,1,0.1,1,2016;2017;2018;2019;2020;2021;2023;2024;2025,0,0,6,,2021,rising (<=6y),person_cns(name),0,0,0,0,0,0,1,0,0,0
+Boram Kim,rising-star,Mount Sinai;WashU St. Louis,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2024;2025,2,1,55,,2015,early (<=10y),person_cns(affil),0,0,0,0,0,0,0,1,0,0
 Chi-Ying Huang,candidate (career TBD),CSHL;Duke,neuroscience,,1,0.1,1,2016;2018;2019;2020;2021;2022;2023;2024;2025,2,0,,,,unknown,person_cns(affil),0,1,0,0,0,0,0,0,0,0
-Daniel Yoshor,candidate (career TBD),Baylor;Penn,neuroscience,,1,0.1,1,2016;2017;2018;2019;2021;2022;2023;2024;2025,0,0,7,,2006,established,person_cns(name),0,0,0,0,1,0,0,0,0,0
-Jonathan Pillow,candidate (career TBD),Princeton,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,4,3,41,2014,2014,established,person_cns(name),0,0,0,0,0,0,0,0,1,0
-Michael Lin,candidate (career TBD),Stanford,neuroscience,,1,0.1,1,2016;2017;2018;2020;2021;2022;2023;2024;2025,1,0,31,,2011,established,person_cns(affil),0,0,0,1,0,0,0,0,0,0
-David Gutmann,candidate (career TBD),WashU St. Louis,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2022;2023;2024;2025,1,0,85,,2005,established,person_cns(name),0,0,0,0,0,1,0,0,0,0
-Caroline Sokol,rising-star,Harvard Medical School,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,0,0,11,,2020,rising (<=6y),person_cns(name),0,0,0,0,0,0,0,0,1,0
-Denise Cai,candidate (career TBD),Mount Sinai,neuroscience,"Klingenstein-Simons, NIH DP2",1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,0,2,25,,2012,established,person_cns(affil),0,0,0,0,0,0,0,0,1,0
-Fang Wang,candidate (career TBD),Duke;MIT,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2023;2024;2025,2,0,,,,unknown,person_cns(affil),0,0,0,0,0,0,1,0,0,0
-Craig Powell,candidate (career TBD),UT Southwestern,neuroscience,,1,0.1,1,2016;2018;2019;2020;2021;2022;2023;2024;2025,0,0,5,2001,2006,established,person_cns(name),0,1,0,0,0,0,0,0,0,0
+Maria Tosches,rising-star,Columbia,neuroscience,McKnight Scholar,1,0.1,1,2016;2017;2018;2019;2020;2021;2023;2024;2025,0,0,6,,2021,rising (<=6y),person_cns(name),0,0,0,0,0,0,1,0,0,0
+Fang Wang,candidate (career TBD),MIT,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2023;2024;2025,2,0,,,,unknown,person_cns(affil),0,0,0,0,0,0,1,0,0,0
 Pasko Rakic,candidate (career TBD),Yale,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2024;2025,0,0,21,1978,2005,established,person_cns(name),0,0,0,0,0,0,0,1,0,0
 Sabrina Diano,candidate (career TBD),Yale,neuroscience,,1,0.1,1,2017;2018;2019;2020;2021;2022;2023;2024;2025,0,1,13,2000,2005,established,person_cns(name),1,0,0,0,0,0,0,0,0,0
+Craig Powell,candidate (career TBD),UT Southwestern,neuroscience,,1,0.1,1,2016;2018;2019;2020;2021;2022;2023;2024;2025,0,0,5,2001,2006,established,person_cns(name),0,1,0,0,0,0,0,0,0,0
+Daniel Yoshor,candidate (career TBD),Baylor;Penn,neuroscience,,1,0.1,1,2016;2017;2018;2019;2021;2022;2023;2024;2025,0,0,7,,2006,established,person_cns(name),0,0,0,0,1,0,0,0,0,0
+Justin Ichida,rising-star,USC,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2024;2025,1,0,11,,2015,early (<=10y),person_cns(name),0,0,0,0,0,0,0,1,0,0
+Caroline Sokol,rising-star,Harvard Medical School,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,0,0,11,,2020,rising (<=6y),person_cns(name),0,0,0,0,0,0,0,0,1,0
+David Gutmann,candidate (career TBD),WashU St. Louis,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2022;2023;2024;2025,1,0,85,,2005,established,person_cns(name),0,0,0,0,0,1,0,0,0,0
+Denise Cai,candidate (career TBD),Mount Sinai,neuroscience,"Klingenstein-Simons, NIH DP2",1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,0,2,25,,2012,established,person_cns(affil),0,0,0,0,0,0,0,0,1,0
 Jeffrey Iliff,rising-star,University of Washington,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2024,0,0,14,,2019,rising (<=6y),person_cns(name),0,0,0,0,0,0,0,0,0,1
 Xin Sun,candidate (career TBD),UCSD,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,0,1,,,,unknown,person_cns(affil),0,0,0,0,0,0,0,0,1,0
-Justin Ichida,rising-star,USC,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2024;2025,1,0,11,,2015,early (<=10y),person_cns(name),0,0,0,0,0,0,0,1,0,0
+Jonathan Pillow,candidate (career TBD),Princeton,neuroscience,,1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,4,3,41,2014,2014,established,person_cns(name),0,0,0,0,0,0,0,0,1,0
+Michael Lin,candidate (career TBD),Stanford,neuroscience,,1,0.1,1,2016;2017;2018;2020;2021;2022;2023;2024;2025,1,0,31,,2011,established,person_cns(affil),0,0,0,1,0,0,0,0,0,0
 Roozbeh Kiani,early-career awardee,New York University,neuroscience (awardee),"McKnight Scholar, Pew Biomedical",1,0.1,1,2016;2017;2018;2019;2020;2022;2023;2024;2025,2,1,15,,2016,early (<=10y),person_cns(name),0,0,0,0,0,1,0,0,0,0
 Stephen Brohawn,early-career awardee,"University of California, Berkeley",neuroscience (awardee),"Klingenstein-Simons, McKnight Scholar, NIH DP2",1,0.1,1,2016;2017;2018;2019;2021;2022;2023;2024;2025,1,4,18,,2018,early (<=10y),person_cns(name),0,0,0,0,1,0,0,0,0,0
 Eiman Azim,early-career awardee,Salk Institute for Biological Studies,neuroscience (awardee),"McKnight Scholar, NIH DP2, Pew Biomedical, Searle Scholar",1,0.1,1,2016;2017;2018;2019;2020;2022;2023;2024;2025,0,0,3,,2018,early (<=10y),person_cns(name),0,0,0,0,0,1,0,0,0,0
@@ -354,13 +354,13 @@ Diana Bautista,HHMI,"University of California, Berkeley",Neuroscience (HHMI),,0,
 Constance L. Cepko,HHMI,Harvard Medical School,Neuroscience (HHMI),,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,1,7,36,,,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
 Hongjun Song,candidate (career TBD),Penn (←Hopkins),adult neurogenesis,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,40,,,established,person_cns(affil),0,0,0,0,0,0,0,0,0,0
 Daniel Minor,rising-star,UC Berkeley;UCSF,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,1,,2021,rising (<=6y),person_cns(name),0,0,0,0,0,0,0,0,0,0
-Xiuqi Yang,rising-star,Penn;UCLA,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,,2020,,rising (<=6y),person_cns(affil),0,0,0,0,0,0,0,0,0,0
-Gerald Dorn GW,rising-star,WashU St. Louis,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,1,3,,2021,rising (<=6y),person_cns(name),0,0,0,0,0,0,0,0,0,0
 Joshua Gordon,candidate (career TBD),Columbia;WashU St. Louis,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,1,0,49,1997,2005,established,person_cns(affil),0,0,0,0,0,0,0,0,0,0
-Hyung-Bae Kwon,rising-star,Johns Hopkins;MPFI,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,2,0,,2019,,rising (<=6y),person_cns(affil),0,0,0,0,0,0,0,0,0,0
-Jeffrey Donlea,rising-star,UCLA,neuroscience,Klingenstein-Simons,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,8,,2017,early (<=10y),person_cns(name),0,0,0,0,0,0,0,0,0,0
 Zhang K,candidate (career TBD),Scripps;UCSD,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,28,,2009,established,person_cns(affil),0,0,0,0,0,0,0,0,0,0
+Xiuqi Yang,rising-star,Penn;UCLA,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,,2020,,rising (<=6y),person_cns(affil),0,0,0,0,0,0,0,0,0,0
 Marla Feller,candidate (career TBD),UC Berkeley,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,3,1,24,2007,2009,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
+Gerald Dorn GW,rising-star,WashU St. Louis,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,1,3,,2021,rising (<=6y),person_cns(name),0,0,0,0,0,0,0,0,0,0
+Jeffrey Donlea,rising-star,UCLA,neuroscience,Klingenstein-Simons,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,8,,2017,early (<=10y),person_cns(name),0,0,0,0,0,0,0,0,0,0
+Hyung-Bae Kwon,rising-star,Johns Hopkins;MPFI,neuroscience,,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,2,0,,2019,,rising (<=6y),person_cns(affil),0,0,0,0,0,0,0,0,0,0
 John Cunningham,early-career awardee,Columbia University,neuroscience (awardee),McKnight Scholar,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,2,1,8,,2014,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
 Abigail Person,early-career awardee,University of Colorado Denver,neuroscience (awardee),McKnight Scholar,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,2,1,13,,2013,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
 Wei Wei,early-career awardee,University of Chicago,neuroscience (awardee),McKnight Scholar,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,1,3,,,,unknown,person_cns(affil),0,0,0,0,0,0,0,0,0,0
