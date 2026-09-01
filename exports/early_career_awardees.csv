@@ -11,21 +11,21 @@ Mehrdad Jazayeri,HHMI,Massachusetts Institute of Technology,Neuroscience (HHMI),
 Susan L. Ackerman,HHMI,"University of California, San Diego",Neuroscience (HHMI),Klingenstein-Simons,2,0.2,2,2016;2017;2019;2020;2021;2022;2023;2024,3,3,47,,,established,person_cns(name),0,0,1,0,0,0,0,0,0,1
 Yuki Oka,non-HHMI,Caltech,thirst/interoception,"Klingenstein-Simons, McKnight Scholar",7,0.7,6,2016;2017;2021;2025,2,0,12,,,established,person_cns(name),0,0,1,1,2,0,1,1,1,0
 Anna Molofsky,non-HHMI,UCSF,glia/neuro-immune,"NIH DP2, Pew Biomedical",6,0.6,5,2016;2017;2019;2021;2022,1,0,14,,,established,person_cns(name),0,0,1,0,1,0,0,1,2,1
-Mark Andermann,non-HHMI,Harvard Med (BIDMC),hunger circuits,McKnight Scholar,5,0.5,5,2016;2019;2020;2022;2025,10,0,21,,,established,person_cns(name),0,1,1,0,0,1,0,1,1,0
 Weizhe Hong,non-HHMI,UCLA,social-behavior circuits,"Klingenstein-Simons, McKnight Scholar, Searle Scholar",5,0.5,4,2016;2017;2018;2020;2022;2023,6,0,11,,,established,person_cns(affil),0,0,0,2,0,1,0,0,1,1
-Michael Halassa,non-HHMI (low-CNS),MIT;NYU,neuroscience,Pew Biomedical,4,0.4,4,2018;2019;2020;2022;2023;2025,4,1,17,,2014,established,person_cns(name),1,1,0,0,0,1,0,0,1,0
-Tomasz Nowakowski,non-HHMI,UCSF,neuroscience,Klingenstein-Simons,8,0.8,6,2016;2017;2019;2020,5,1,12,,2019,rising (<=6y),person_cns(name),0,0,1,0,0,2,2,1,1,1
-Qili Liu,candidate (career TBD),UCSF;UT Southwestern;WashU St. Louis,neuroscience,"Klingenstein-Simons, Pew Biomedical",1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,0,0,19,,2005,established,person_cns(affil),0,0,0,0,0,0,0,0,1,0
+Mark Andermann,non-HHMI,Harvard Med (BIDMC),hunger circuits,McKnight Scholar,5,0.5,5,2016;2019;2020;2022;2025,10,0,21,,,established,person_cns(name),0,1,1,0,0,1,0,1,1,0
 Betley JN,rising-star,Penn,neuroscience,Klingenstein-Simons,3,0.3,3,2016;2017;2019;2020;2022;2023;2024,1,0,8,,2017,early (<=10y),person_cns(name),0,0,1,0,0,1,0,0,0,1
+Michael Halassa,non-HHMI (low-CNS),MIT;NYU,neuroscience,Pew Biomedical,4,0.4,4,2018;2019;2020;2022;2023;2025,4,1,17,,2014,established,person_cns(name),1,1,0,0,0,1,0,0,1,0
+Qili Liu,candidate (career TBD),UCSF;UT Southwestern;WashU St. Louis,neuroscience,"Klingenstein-Simons, Pew Biomedical",1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,0,0,19,,2005,established,person_cns(affil),0,0,0,0,0,0,0,0,1,0
 Nicholas Bellono,non-HHMI,Harvard (FAS),neuroscience,"Klingenstein-Simons, Searle Scholar",5,0.5,3,2016;2017;2018;2019;2021;2022;2024,0,2,7,,2020,rising (<=6y),person_cns(name),0,0,0,0,1,0,0,1,0,3
+Tomasz Nowakowski,non-HHMI,UCSF,neuroscience,Klingenstein-Simons,8,0.8,6,2016;2017;2019;2020,5,1,12,,2019,rising (<=6y),person_cns(name),0,0,1,0,0,2,2,1,1,1
 Maria Tosches,rising-star,Columbia,neuroscience,McKnight Scholar,1,0.1,1,2016;2017;2018;2019;2020;2021;2023;2024;2025,0,0,6,,2021,rising (<=6y),person_cns(name),0,0,0,0,0,0,1,0,0,0
 Conor Liston,rising-star,Weill Cornell,neuroscience,Klingenstein-Simons,3,0.3,3,2016;2017;2018;2020;2022;2023;2025,3,0,31,,2015,early (<=10y),person_cns(name),0,0,0,1,0,1,0,0,1,0
 Elaine Hsiao,non-HHMI,UCLA,neuroscience,Klingenstein-Simons,6,0.6,5,2016;2017;2022;2024;2025,2,1,37,,2017,early (<=10y),person_cns(name),0,0,1,1,1,2,0,1,0,0
+Keith Baldwin,rising-star,Columbia;UCSD,neuroscience,NIH DP2,4,0.4,3,2016;2017;2019;2020;2021;2023;2025,1,0,2,,2015,early (<=10y),person_cns(name),0,0,2,0,0,0,1,0,1,0
 Mark Harnett,rising-star,MIT,neuroscience,"Klingenstein-Simons, McKnight Scholar",3,0.3,3,2016;2017;2019;2020;2023;2024;2025,5,2,9,,2018,early (<=10y),person_cns(name),0,0,1,0,0,1,1,0,0,0
-Keith Baldwin,rising-star,Columbia;Scripps,neuroscience,NIH DP2,4,0.4,3,2016;2017;2019;2020;2021;2023;2025,1,0,2,,2015,early (<=10y),person_cns(name),0,0,2,0,0,0,1,0,1,0
 Denise Cai,candidate (career TBD),Mount Sinai,neuroscience,"Klingenstein-Simons, NIH DP2",1,0.1,1,2016;2017;2018;2019;2020;2021;2022;2023;2025,0,2,25,,2012,established,person_cns(affil),0,0,0,0,0,0,0,0,1,0
-Jeffrey Donlea,rising-star,UCLA,neuroscience,Klingenstein-Simons,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,8,,2017,early (<=10y),person_cns(name),0,0,0,0,0,0,0,0,0,0
 Evan Macosko,non-HHMI,Harvard (FAS),neuroscience,"NIH DP2, Pew Biomedical",5,0.5,3,2016;2017;2018;2020;2022;2024;2025,1,0,8,,2019,rising (<=6y),person_cns(name),0,0,0,2,0,1,0,2,0,0
+Jeffrey Donlea,rising-star,UCLA,neuroscience,Klingenstein-Simons,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,0,0,8,,2017,early (<=10y),person_cns(name),0,0,0,0,0,0,0,0,0,0
 John Cunningham,early-career awardee,Columbia University,neuroscience (awardee),McKnight Scholar,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,2,1,8,,2014,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
 Roozbeh Kiani,early-career awardee,New York University,neuroscience (awardee),"McKnight Scholar, Pew Biomedical",1,0.1,1,2016;2017;2018;2019;2020;2022;2023;2024;2025,2,1,15,,2016,early (<=10y),person_cns(name),0,0,0,0,0,1,0,0,0,0
 Abigail Person,early-career awardee,University of Colorado Denver,neuroscience (awardee),McKnight Scholar,0,0.0,0,2016;2017;2018;2019;2020;2021;2022;2023;2024;2025,2,1,13,,2013,established,person_cns(name),0,0,0,0,0,0,0,0,0,0
