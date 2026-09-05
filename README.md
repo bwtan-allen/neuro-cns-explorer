@@ -11,6 +11,9 @@ papers, not automated hiring, funding, or promotion judgments.
 
 ## Run the app
 
+Use **Python 3.11** (the CI runtime). Install the declared dependencies rather
+than relying on packages left over from an older Streamlit deployment.
+
 ```bash
 pip install -r requirements.txt
 streamlit run streamlit_app.py
@@ -332,6 +335,20 @@ sample before enabling a new matching policy on a scheduled deployment.
 `NCBI_EMAIL` is optional for the primary PubMed client. Requests are paced and
 secrets are not printed in URLs. Streamlit Community Cloud can deploy
 `streamlit_app.py` directly from the repo.
+
+### Import errors immediately after a hosted update
+
+Community Cloud can retain imported Python modules from a previous app process.
+If a newly deployed import reports that a helper is missing even though it is
+present in the committed module, reboot the app rather than adding a duplicate
+helper or mixing old and new module versions.
+
+From the app, select **Manage app > menu > Reboot app**, or use **Reboot** beside
+the app at [share.streamlit.io](https://share.streamlit.io/). A browser refresh,
+script rerun, or clearing cached data is not a replacement for a process reboot.
+See [Streamlit's reboot instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app/reboot-your-app).
+The Streamlit dependency is pinned to the CI-exercised runtime; dependency changes
+also prompt Community Cloud to rebuild its environment.
 
 The optional `com.neuro.cns.refresh.plist` is a local macOS template. Update its
 Python executable, repository path, working directory, and log paths before use.
