@@ -75,8 +75,9 @@ INST={
 
 def parse(xml,inst,pred):
     out=[]
-    try: root=ET.fromstring(xml)
-    except Exception: return out
+    root=ET.fromstring(xml)
+    if root.tag != 'PubmedArticleSet':
+        raise ValueError("Unexpected PubMed XML; discovery aborted.")
     for art in root.findall('.//PubmedArticle'):
         jt=(art.findtext('.//Article/Journal/Title') or '').strip().lower()
         if jt not in FLAG: continue

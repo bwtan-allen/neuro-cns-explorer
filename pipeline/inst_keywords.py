@@ -33,6 +33,8 @@ INST_MAP = [
     ("massachusetts institute of technology", ['Massachusetts Institute of Technology']),
     ("mit", ['Massachusetts Institute of Technology']),
     ("rockefeller", ['Rockefeller']),
+    ("university of british columbia", ['University of British Columbia', 'UBC']),
+    ("ubc", ['University of British Columbia', 'UBC']),
     ("columbia", ['Columbia University']),
     ("weill cornell", ['Weill Cornell']),
     ("cornell", ['Cornell University']),
@@ -90,6 +92,8 @@ INST_MAP = [
     ("van andel", ['Van Andel']),
     ("umass chan", ['UMass Chan', 'Massachusetts Medical']),
     ("umass medical", ['Massachusetts Medical']),
+    ("university of massachusetts medical school",
+     ['University of Massachusetts Medical School', 'UMass Medical School', 'UMass Chan Medical School']),
     ("massachusetts general", ['Massachusetts General Hospital']),
     ("whitehead", ['Whitehead Institute']),
     ("broad institute", ['Broad Institute']),
@@ -115,7 +119,7 @@ INST_MAP = [
 ]
 
 
-def keywords_for(institution):
+def keywords_for(institution, fallback=True):
     """Return list of distinctive [ad] phrases for an institution string.
     institution may contain ';' for multiple; handles the first known match per part."""
     out = []
@@ -123,14 +127,14 @@ def keywords_for(institution):
         low = part.strip().lower()
         matched = None
         for key, kws in INST_MAP:
-            if key in low:
+            if re.search(r"(?<![a-z0-9])" + re.escape(key) + r"(?![a-z0-9])", low):
                 matched = kws
                 break
         if matched:
             for k in matched:
                 if k not in out:
                     out.append(k)
-        else:
+        elif fallback:
             # conservative fallback: strip generic words, quote the remaining distinctive phrase
             cleaned = re.sub(r'\b(university|the|of|college|school|medicine|medical|institute|for|'
                              r'center|centre|research|sciences|science|health|and|at|department)\b',
@@ -138,4 +142,4 @@ def keywords_for(institution):
             toks = [t.capitalize() for t in re.split(r'[^a-z]+', cleaned) if len(t) > 3]
             if toks:
                 out.append(' '.join(toks[:2]))
-    return out or [institution.split(',')[0].strip()]
+    return out or ([institution.split(',')[0].strip()] if fallback else [])

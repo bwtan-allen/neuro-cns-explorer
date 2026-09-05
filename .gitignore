@@ -6,6 +6,10 @@ __pycache__/
 *.log
 data/*.log
 data/refresh.err.log
+data/.discovery-*/
+data/*.sqlite3-journal
+data/*.sqlite3-wal
+data/*.sqlite3-shm
 
 # Large raw research dumps (not needed by the app)
 # (award source tables raw_pew.txt / raw_nih_dp2.txt / raw_searle.txt / raw_klingenstein.txt

@@ -115,15 +115,18 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:  # test mode: enrich first N
         base = base[:int(sys.argv[1])]
     out = json.load(open('enrich.json')) if os.path.exists('enrich.json') else {}
+    failed = []
     for c in base:
         if c['name'] in out:
             continue
         r = enrich(c['ln'], c['ini'], c['insts'])
         if r is None:
-            print("FAIL", c['name'], flush=True); continue
+            print("FAIL", c['name'], flush=True); failed.append(c['name']); continue
         out[c['name']] = r
         json.dump(out, open('enrich.json', 'w'))
         fy = r['first_pi_year']
         age = (2025 - fy) if fy else None
         print(f"{c['name']:<16} first_PI_yr={fy} lab_age~{age} nonCNS={sum(r['noncns'].values())}", flush=True)
+    if failed:
+        raise SystemExit(f"Enrichment failed for {len(failed)} candidates; refresh stopped.")
     print("ENRICH_DONE", len(out))

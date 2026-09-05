@@ -4,13 +4,15 @@ Usage: python build_dataset.py <data_dir> <output_json>
 Groups: HHMI | non-HHMI (established, CNS>=5) | rising-star / low-CNS (CNS 2-4) |
         early-career awardee (Searle/Pew/McKnight/Klingenstein, may have <2 CNS).
 
-Lab-start handling (honest):
-  - first_senior_paper_yr : first year as last/corresponding author (LOWER BOUND; lags real lab start ~2-3 yr)
-  - lab_start_year        : real faculty-appointment year from ORCID when available (preferred)
-  - lab_age / career_stage: computed from lab_start_year if present, else the paper proxy (flagged '~')
+Career dates are proxies, not verified lab starts. Legacy ORCID data selects
+employment years without checking faculty roles. First last-author papers can
+precede or follow independence; neither source establishes an exact lab age.
 """
 import json, glob, os, sys, unicodedata, datetime
 from collections import defaultdict, Counter
+from pathlib import Path
+from data_quality import audit_dataset, count_available
+from storage import write_json
 
 D = sys.argv[1] if len(sys.argv) > 1 else "."
 OUT = sys.argv[2] if len(sys.argv) > 2 else "neuro_stats.json"
@@ -53,8 +55,8 @@ def awards_for(name):
 def stage_from(year, is_appt):
     if year is None:
         return 'unknown', None, ''
-    age = 2025 - year
-    src = 'ORCID appt' if is_appt else 'first-paper~'
+    age = max(YEARS) - year
+    src = 'ORCID employment~' if is_appt else 'first-paper~'
     if age <= 6:
         return 'rising (<=6y)', age, src
     if age <= 10:
@@ -81,9 +83,11 @@ for name, inst in inst_map.items():
                     'neuro_confidence': 'core', 'career_stage': 'established',
                     'first_senior_paper_yr': None, 'lab_start_year': None, 'lab_age': None, 'lab_age_source': '',
                     'awards': awards_for(name),
-                    'cns_by_year': {str(y): cby.get(y, 0) for y in YEARS}, 'cns_total': sum(cby.values()),
+                    'cns_by_year': {str(y): cby.get(y, 0) for y in YEARS}, 'cns_total': sum(cby.get(y, 0) for y in YEARS),
+                    'cns_available': ('affil' if use_affil else 'noaffil') in p,
                     'noncns_by_year': {str(y): nby.get(y, 0) for y in YEARS},
-                    'noncns_total': (nr['tot'] if nr else None), 'noncns_available': bool(nr)})
+                    'noncns_total': (sum(nby.get(y, 0) for y in YEARS) if nr else None),
+                    'noncns_available': nr is not None})
 
 hhmi_ex = set(load('hhmi_exclude.json', []))
 cby_c = defaultdict(lambda: defaultdict(int)); seen = defaultdict(set)
@@ -102,21 +106,24 @@ ident = load('ident.json', {})
 cand_nc = load('cand_noncns.json', {})
 for c in load('candidates2.json', []):
     k = (c['ln'], c['ini']); cby = {y: cby_c[k].get(y, 0) for y in YEARS}
-    ncd = {int(a): b for a, b in cand_nc.get(c['name'], {}).items()}
+    nc_raw = cand_nc.get(c['name'])
+    ncd = {int(a): b for a, b in (nc_raw or {}).items()}
     full, inst, field, conf = ident.get(c['name'], (c['name'], ';'.join(c['insts']), 'neuroscience', 'core'))
     records.append({'name': full, 'pubmed_name': c['name'], 'group': 'non-HHMI', 'institution': inst, 'field': field,
                     'neuro_confidence': conf, 'career_stage': 'established',
                     'first_senior_paper_yr': None, 'lab_start_year': None, 'lab_age': None, 'lab_age_source': '',
                     'awards': awards_for(full),
                     'cns_by_year': {str(y): cby.get(y, 0) for y in YEARS}, 'cns_total': c['cns'],
-                    'noncns_by_year': {str(y): ncd.get(y, 0) for y in YEARS}, 'noncns_total': sum(ncd.values()),
-                    'noncns_available': True})
+                    'noncns_by_year': {str(y): ncd.get(y, 0) for y in YEARS},
+                    'noncns_total': sum(ncd.get(y, 0) for y in YEARS) if nc_raw is not None else None,
+                    'noncns_available': nc_raw is not None})
 
 enrich = load('enrich.json', {})
 seen_keys = set()
 for c in load('rising_base.json', []):
     k = (c['ln'], c['ini']); cby = {y: cby_c[k].get(y, 0) for y in YEARS}
     e = enrich.get(c['name'])
+    nc_available = e is not None and 'noncns' in e and not e.get('common_name', False)
     fpaper = e['first_pi_year'] if e else None
     ncd = {int(a): b for a, b in (e['noncns'] if e else {}).items()}
     ls = labstart.get(c['name'], {})
@@ -136,13 +143,16 @@ for c in load('rising_base.json', []):
                     'awards': awards_for(full),
                     'cns_by_year': {str(y): cby.get(y, 0) for y in YEARS}, 'cns_total': c['cns'],
                     'noncns_by_year': {str(y): ncd.get(y, 0) for y in YEARS},
-                    'noncns_total': (sum(ncd.values()) if e else None), 'noncns_available': bool(e)})
+                    'noncns_total': (sum(ncd.get(y, 0) for y in YEARS) if nc_available else None),
+                    'noncns_available': nc_available})
 
 existing_keys = {key(r['name']) for r in records}
 for k, meta in award_meta.items():
     if k in seen_keys or k in existing_keys:
         continue
     ae = awards_enrich.get(meta['full_name'], {})
+    ae_available = 'cns_by_year' in ae and not ae.get('common_name', False)
+    nc_available = 'noncns_by_year' in ae and not ae.get('common_name', False)
     cby = {int(a): b for a, b in ae.get('cns_by_year', {}).items()}
     ncd = {int(a): b for a, b in ae.get('noncns_by_year', {}).items()}
     fpaper = ae.get('first_pi_year')
@@ -152,9 +162,11 @@ for k, meta in award_meta.items():
                     'neuro_confidence': 'core', 'career_stage': cs,
                     'first_senior_paper_yr': fpaper, 'lab_start_year': None, 'lab_age': age, 'lab_age_source': src,
                     'awards': award_map[k],
-                    'cns_by_year': {str(y): cby.get(y, 0) for y in YEARS}, 'cns_total': sum(cby.values()),
+                    'cns_by_year': {str(y): cby.get(y, 0) for y in YEARS},
+                    'cns_total': sum(cby.get(y, 0) for y in YEARS), 'cns_available': ae_available,
                     'noncns_by_year': {str(y): ncd.get(y, 0) for y in YEARS},
-                    'noncns_total': (sum(ncd.values()) if ae else None), 'noncns_available': bool(ae)})
+                    'noncns_total': (sum(ncd.get(y, 0) for y in YEARS) if nc_available else None),
+                    'noncns_available': nc_available})
 
 for r in records:
     r['award_names'] = ', '.join(sorted({a['award'] for a in r.get('awards', [])}))
@@ -176,58 +188,74 @@ for name, ln, ini, inst in sup:
                     'neuro_confidence': 'core', 'career_stage': 'established',
                     'first_senior_paper_yr': None, 'lab_start_year': None, 'lab_age': None, 'lab_age_source': '',
                     'awards': awards_for(name), 'award_names': '', 'n_awards': 0,
-                    'cns_by_year': {str(y): 0 for y in YEARS}, 'cns_total': 0,
+                    'cns_by_year': {str(y): 0 for y in YEARS}, 'cns_total': None, 'cns_available': False,
                     'noncns_by_year': {str(y): 0 for y in YEARS}, 'noncns_total': None, 'noncns_available': False})
     records[-1]['award_names'] = ', '.join(sorted({a['award'] for a in records[-1]['awards']}))
     records[-1]['n_awards'] = len(records[-1]['awards'])
     existing_keys.add(key(name))
 
-# ---------- AUTHORITATIVE recount override (CNS / Neuron+NatNeuro / eLife) ----------
-# person_cns fixes both collision over-counts (e.g. Duan) and neuro-filter under-counts (e.g. Julius).
+# ---------- per-person recount override (CNS / Neuron+NatNeuro / eLife) ----------
 recount = load('recount.json', {})
-recount_by_key = {}
+recount_by_key = defaultdict(list)
 for nm, v in recount.items():
-    recount_by_key[key(nm)] = v
-    recount_by_key.setdefault((v.get('ln', '').lower(), (v.get('ini', '') or ' ')[0].lower()), v)
+    keys = {key(nm), (v.get('ln', '').lower(), (v.get('ini', '') or ' ')[0].lower())}
+    for cache_key in keys:
+        recount_by_key[cache_key].append(v)
 
 fj = load('field_journals.json', {})
 for r in records:
-    rc = recount.get(r['name']) or recount_by_key.get(key(r['name']))
+    rc = recount.get(r['name'])
+    if rc is None:
+        matches = recount_by_key.get(key(r['name']), [])
+        if len(matches) == 1:
+            rc = matches[0]
+        elif len(matches) > 1:
+            r['identity_warning'] = 'Ambiguous surname/initial recount matches; no automatic override applied.'
     if rc:
         cby = {int(k): v for k, v in rc['cns'].items()}
         ft = {int(k): v for k, v in rc['field'].items()}
         el = {int(k): v for k, v in rc['elife'].items()}
         r['cns_by_year'] = {str(y): cby.get(y, 0) for y in YEARS}
-        r['cns_total'] = sum(cby.values())
+        r['cns_total'] = sum(cby.get(y, 0) for y in YEARS)
+        r['cns_available'] = True
         r['fieldtier_by_year'] = {str(y): ft.get(y, 0) for y in YEARS}
-        r['fieldtier_total'] = sum(ft.values())
+        r['fieldtier_total'] = sum(ft.get(y, 0) for y in YEARS)
         r['elife_by_year'] = {str(y): el.get(y, 0) for y in YEARS}
-        r['elife_total'] = sum(el.values())
+        r['elife_total'] = sum(el.get(y, 0) for y in YEARS)
         r['fieldjournals_available'] = True
         r['count_source'] = 'person_cns(' + rc.get('mode', '?') + ')'
+        r['count_method_version'] = rc.get('method_version')
+        r['count_fetched_at'] = rc.get('fetched_at')
+        r['count_query'] = rc.get('query')
+        r['count_match_keywords'] = rc.get('inst_keywords', [])
+        r['publications'] = rc.get('papers', [])
     else:
         # fall back to prior field_journals data if recount not yet available for this person
         e = fj.get(r['name'])
         ft = {int(k): v for k, v in (e['field_tier'] if e else {}).items()}
         el = {int(k): v for k, v in (e['elife'] if e else {}).items()}
         r['fieldtier_by_year'] = {str(y): ft.get(y, 0) for y in YEARS}
-        r['fieldtier_total'] = (sum(ft.values()) if e else None)
+        r['fieldtier_total'] = (sum(ft.get(y, 0) for y in YEARS) if e else None)
         r['elife_by_year'] = {str(y): el.get(y, 0) for y in YEARS}
-        r['elife_total'] = (sum(el.values()) if e else None)
+        r['elife_total'] = (sum(el.get(y, 0) for y in YEARS) if e else None)
         r['fieldjournals_available'] = bool(e)
         r['count_source'] = 'discovery/awardee-enrich'
 
-# ---------- explicit gap years (years 2016-2025 with zero CNS corresponding papers) ----------
+# ---------- unavailable is distinct from an observed zero ----------
 for r in records:
+    for prefix in ('cns', 'noncns', 'fieldtier', 'elife'):
+        if not count_available(r, prefix):
+            r[f'{prefix}_total'] = None
+            r[f'{prefix}_by_year'] = {str(y): None for y in YEARS}
     cby = r['cns_by_year']
-    r['cns_gap_years'] = [str(y) for y in YEARS if cby.get(str(y), 0) == 0]
-    r['cns_years_covered'] = 10 - len(r['cns_gap_years'])
+    r['cns_gap_years'] = [str(y) for y in YEARS if cby.get(str(y)) == 0] if count_available(r, 'cns') else None
+    r['cns_years_covered'] = len(YEARS) - len(r['cns_gap_years']) if count_available(r, 'cns') else None
 
-# ---------- reclassify discovery-derived groups by AUTHORITATIVE recount CNS totals ----------
+# ---------- reclassify discovery-derived groups by per-person recount CNS totals ----------
 # (a person's group must reflect the corrected counts, e.g. Julius 3->12 => established non-HHMI)
 DISCOVERY_GROUPS = {'non-HHMI', 'rising-star', 'non-HHMI (low-CNS)', 'candidate (career TBD)'}
 for r in records:
-    if r['group'] not in DISCOVERY_GROUPS:
+    if r['group'] not in DISCOVERY_GROUPS or not count_available(r, 'cns'):
         continue
     cns = r.get('cns_total', 0)
     age = r.get('lab_age')
@@ -248,8 +276,35 @@ def _exkey(name):
 records = [r for r in records
           if _exkey(r['name']) not in _ex or r.get('n_awards', 0) > 0 or key(r['name']) in _supp_keys]
 
-json.dump({'years': YEARS, 'records': records, 'generated': datetime.date.today().isoformat()},
-          open(OUT, 'w'), indent=1)
+if not records:
+    raise ValueError("No researcher records were assembled; refusing to replace the published snapshot.")
+snapshot = {
+    'years': YEARS, 'records': records, 'generated': datetime.date.today().isoformat(),
+    'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
+    'schema_version': 2, 'authorship_measure': 'last-author proxy',
+    'career_reference_year': max(YEARS),
+}
+registry_path = Path(D) / 'researchers.json'
+if registry_path.exists():
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from pipeline.evidence import EvidenceStore
+    from pipeline.profiles import load_registry, migrate
+    from pipeline.snapshot import build_snapshot
+    registry = migrate(snapshot, load_registry(registry_path))
+    database = Path(D) / 'publications.sqlite3'
+    if database.exists():
+        with EvidenceStore(database, readonly=True) as store:
+            snapshot = build_snapshot(snapshot, registry, store)
+    else:
+        snapshot = build_snapshot(snapshot, registry)
+    write_json(registry_path, registry)
+issues = audit_dataset(snapshot)
+if any(issue['Code'].endswith('_total_mismatch')
+       or issue['Code'] in {'paper_evidence_mismatch', 'duplicate_pmid'} for issue in issues):
+    raise ValueError("Counts, annual totals, or paper evidence disagree; refusing to publish the dataset.")
+write_json(OUT, snapshot)
+records = snapshot["records"]
 print("records:", len(records), dict(Counter(r['group'] for r in records)),
       "| with awards:", sum(1 for r in records if r['n_awards']),
-      "| recounted:", sum(1 for r in records if r.get('count_source', '').startswith('person_cns')))
+      "| recounted:", sum(1 for r in records if r.get('count_source', '').startswith(('person_cns', 'unified_pubmed'))),
+      "| review flags:", len(issues))

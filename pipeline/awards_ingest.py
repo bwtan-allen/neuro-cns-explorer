@@ -148,14 +148,17 @@ if __name__ == '__main__':
         people.setdefault(key, {'ln': ln, 'ini': fi, 'institution': a['institution'], 'awards': []})
         people[key]['awards'].append({'award': a['award'], 'year': a['year']})
     out = json.load(open('awards_enrich.json')) if os.path.exists('awards_enrich.json') else {}
+    failed = []
     for name, p in people.items():
         if name in out:
             continue
         kw = inst_keyword(p['institution'])
         r = enrich(p['ln'], p['ini'], kw)
         if r is None:
-            print("FAIL", name, flush=True); continue
+            print("FAIL", name, flush=True); failed.append(name); continue
         out[name] = {**p, **r, 'kw': kw}
         json.dump(out, open('awards_enrich.json', 'w'))
         print(f"{name:<26} {kw:<16} first_PI={r.get('first_pi_year')} CNS={sum(r.get('cns_by_year',{}).values())} nonCNS={sum(r.get('noncns_by_year',{}).values())}", flush=True)
+    if failed:
+        raise SystemExit(f"Awardee enrichment failed for {len(failed)} people; refresh stopped.")
     print("AWARDS_ENRICH_DONE", len(out))

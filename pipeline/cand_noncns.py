@@ -70,13 +70,16 @@ def noncns(ln,ini,insts):
 cands=json.load(open('candidates2.json'))
 import os
 out=json.load(open('cand_noncns.json')) if os.path.exists('cand_noncns.json') else {}
+failed=[]
 for c in cands:
     key=c['name']
     if key in out: continue
     y=noncns(c['ln'],c['ini'],c['insts'])
     if y is None:
-        print("FAIL",key,flush=True); continue
+        print("FAIL",key,flush=True); failed.append(key); continue
     out[key]={str(k):v for k,v in y.items()}
     json.dump(out,open('cand_noncns.json','w'))
     print(f"{key:<18} nonCNS={sum(y.values())} ({len(y)}/10)",flush=True)
+if failed:
+    raise SystemExit(f"Non-CNS queries failed for {len(failed)} candidates; refresh stopped.")
 print("DONE",len(out))
