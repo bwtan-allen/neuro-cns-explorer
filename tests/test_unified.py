@@ -193,6 +193,13 @@ class EvidenceAndWindowTests(unittest.TestCase):
         self.assertEqual(row["publication_model"], "unified-papers")
         self.assertFalse(any(issue["Severity"] == "Conflict" for issue in audit_dataset(snapshot_data)))
 
+    def test_successful_identity_recount_clears_the_old_generated_warning(self):
+        self.source["records"][0]["publication_model"] = "unresolved-identity"
+        self.source["records"][0]["identity_warning"] = "No usable full given-name alias or sourced ORCID; legacy counts are archived."
+        data = self.publish()
+        self.assertNotIn("identity_warning", data["records"][0])
+        self.assertEqual(data["records"][0]["publication_model"], "unified-papers")
+
     def test_publications_are_normalized_across_researcher_runs(self):
         second = copy.deepcopy(self.profile)
         second["id"] = "pi_" + "a" * 32

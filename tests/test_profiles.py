@@ -80,6 +80,15 @@ class ProfileTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             normalize_orcid("0000-0002-1825-0098")
 
+    def test_invalidated_identity_proxies_can_be_cleared_with_history(self):
+        updated = apply_updates(self.registry, [{
+            "researcher_id": self.profile["id"], "reason": "The legacy ORCID belonged to another researcher.",
+            "changes": {"career_proxies": {"orcid_employment_year": None, "first_senior_paper_year": None,
+                                           "legacy_source": "withheld after identity mismatch"}},
+        }])
+        self.assertEqual(updated["changes"][0]["before"]["career_proxies"]["orcid_employment_year"], 2010)
+        self.assertIsNone(updated["profiles"][self.profile["id"]]["career_proxies"]["orcid_employment_year"])
+
 
 if __name__ == "__main__":
     unittest.main()

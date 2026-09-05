@@ -130,6 +130,10 @@ def profile_record(record, profile):
 
 def with_evidence(record, profile, result, years):
     row = copy.deepcopy(record)
+    usable_identity = (any(has_full_given_name(alias["given"]) for alias in profile["aliases"])
+                       or profile["orcid"]["status"] == "source-backed")
+    if usable_identity and record.get("identity_warning", "").startswith("No usable full given-name alias or sourced ORCID"):
+        row.pop("identity_warning", None)
     covered = {year for year in years if result["start_year"] <= year <= result["end_year"]}
     decisions = []
     for original in result["papers"]:
@@ -213,6 +217,14 @@ def build_snapshot(source, registry, store=None, start_year=None, end_year=None)
             award["status"] == "source-backed" for record in records for award in record.get("awards", [])
         ),
         "source_backed_contribution_profiles": sum(bool(record["contribution_titles"]) for record in records),
+        "contribution_profiles_reviewed": sum(
+            bool(record["contribution_titles"]) or bool(record["profile"].get("contribution_review"))
+            for record in records
+        ),
+        "contribution_profiles_needing_review": sum(
+            record["profile"].get("contribution_review", {}).get("status") == "needs-review"
+            for record in records
+        ),
         "source_backed_model_profiles": sum(bool(record["model_organisms"]) for record in records),
     }
     issues = audit_dataset(snapshot)

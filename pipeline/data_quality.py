@@ -158,7 +158,10 @@ def record_issues(record, years):
         if not context["model_organisms"]:
             add("Review", "uncurated_lab_models", "Lab model organisms are not yet source-backed; article-species mentions do not establish a lab model.")
         if not context["contribution_titles"]:
-            add("Review", "uncurated_contributions", "Selected scientific contributions have not yet been source-curated; this is not absence of contributions.")
+            review = record["profile"].get("contribution_review")
+            add("Review", "uncurated_contributions",
+                f"Contribution evidence needs follow-up: {review['reason']}" if review else
+                "Selected scientific contributions have not yet been source-curated; this is not absence of contributions.")
     if record.get("evidence_needs_refresh"):
         add("Review", "changed_identity_inputs", "Profile matching inputs changed after this query; refresh to cover new aliases.")
     if record.get("unresolved_papers", 0):

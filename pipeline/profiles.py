@@ -136,6 +136,14 @@ def validate_research_context(profile):
     models = profile.get("model_organisms", [])
     if not isinstance(contributions, list) or not isinstance(models, list):
         raise ValueError("Contributions and model-organism claims must be lists; empty means not yet curated.")
+    review = profile.get("contribution_review")
+    if review is not None:
+        if not isinstance(review, dict) or review.get("status") not in {"complete", "needs-review"} or not review.get("reason"):
+            raise ValueError("Contribution review metadata needs an explicit status and evidence-gap/selection reason.")
+        datetime.datetime.fromisoformat(review["reviewed_at"])
+        _validate_sources(review.get("sources", []))
+        if review["status"] == "complete" and not contributions:
+            raise ValueError("A completed contribution review must retain at least one sourced contribution.")
     ids = set()
     for contribution in contributions:
         _validate_claim(contribution)
@@ -183,8 +191,8 @@ def research_context(profile):
         "contribution_titles": [item["value"] for item in sourced_contributions],
         "contribution_keywords": sorted({term for item in sourced_contributions for term in item["keywords"]},
                                         key=str.casefold),
-        "contribution_status": "source-backed examples" if sourced_contributions
-                               else "unreviewed" if contributions else "not yet curated",
+        "contribution_status": "source-backed examples" if sourced_contributions else "unreviewed" if contributions
+                               else "source review needed" if profile.get("contribution_review") else "not yet curated",
         "model_organisms": sorted({item["value"] for item in sourced_models}, key=str.casefold),
         "model_organism_status": "source-backed examples" if sourced_models
                                  else "unreviewed" if models else "unknown",
@@ -231,6 +239,10 @@ def validate_registry(registry):
             year = profile["career"][field]["value"]
             if year is not None and (type(year) is not int or not 1800 <= year <= 2100):
                 raise ValueError("Career years must be integers, not inferred dates or free text.")
+        for year in (profile.get("career_proxies", {}).get(field)
+                     for field in ("orcid_employment_year", "first_senior_paper_year")):
+            if year is not None and (type(year) is not int or not 1800 <= year <= 2100):
+                raise ValueError("Career proxy years must be integers or null.")
         for alias in profile["aliases"]:
             if not isinstance(alias.get("given"), str) or not isinstance(alias.get("family"), str) or not alias["family"]:
                 raise ValueError("Name aliases require separate given and family names.")
@@ -360,7 +372,7 @@ def profile_evidence(profile):
 def apply_updates(registry, updates):
     result = copy.deepcopy(registry)
     allowed = {"name", "identity", "aliases", "orcid", "affiliations", "career", "hhmi", "awards",
-               "paper_overrides", "contributions", "model_organisms"}
+               "paper_overrides", "contributions", "model_organisms", "contribution_review", "career_proxies"}
     for update in updates:
         researcher_id = update["researcher_id"]
         changes = update["changes"]

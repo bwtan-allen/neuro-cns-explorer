@@ -177,13 +177,28 @@ attribution, and source links. They are **career-wide**: a 1999 method or a 2003
 software contribution remains visible while comparing 2020-2025 paper counts.
 These curated references do not enter the last-author count automatically.
 
-The initial source-backed examples cover **Karel Svoboda** and **Liqun Luo**.
-Other profiles show **not yet curated**, not an automatically generated claim of
-what a scientist is "famous for." Contribution keywords and sourced lab-model
-filters use established claims only; unreviewed suggestions retain their status
-in the profile but are not promoted into discovery filters. The selected examples
-are not a complete history of either scientist's work and do not assign sole
-credit to a PI for a team's work.
+The initial Svoboda/Luo examples are preserved as contribution coverage expands
+across the roster. Career-wide primary-paper candidates are reviewed for scientific
+scope and collaborative authorship before claims are added. Citation counts help
+locate candidate papers; they neither rank scientists nor establish that a paper
+is a person's defining achievement. A research example is not automatically a
+first-discovery, independent-lab, or sole-inventor claim.
+
+Contribution keywords and sourced lab-model filters use established claims only.
+Unreviewed suggestions retain their status but are not promoted into filters.
+Profiles with unresolved identity/source evidence show a specific follow-up reason
+rather than an invented contribution. Missing curation is not absence of scientific
+contributions. Neither the selected examples nor the paper candidate search are
+an exhaustive account of a scientist's career.
+
+The **2026-09-05 roster-wide review** addressed all **542 registry entries** and
+retained **1,570 contribution families across 539 source-backed profiles**.
+The three unassigned legacy rows are explicit data-quality exceptions, not
+claims that those scientists lack contributions: `Jieli Li` duplicates the
+canonical Nuo Li profile; `Josie Clowney` duplicates E. Josephine Clowney; and
+`Zhang K` combines evidence for Kun Zhang and Kang Zhang. Their contributions
+are not merged into fictitious careers. The live coverage counters and
+`data/contribution_review.json` expose the current review status and reasons.
 
 Table/profile/comparison views and downloads distinguish contribution metadata
 from window-dependent counts. `exports/researcher_contributions.csv` retains
@@ -244,6 +259,44 @@ A `model_organisms` entry uses the existing value/status/source claim format plu
 explicitly reviewed evidence, not automatic MeSH unions. For human-related work,
 use a precise label such as `Human participants` or `Human-derived cells/tissue`.
 Omitted or empty contribution/model lists mean not yet curated.
+
+### Roster-wide contribution review
+
+The repeatable backfill keeps sourcing separate from achievement curation:
+
+```bash
+python -m pipeline.contribution_sources --output /path/to/review-workspace/candidates.json
+python -m pipeline.contribution_backfill --candidates /path/to/review-workspace/candidates.json prepare \
+  --directory /path/to/review-workspace/batches
+python -m pipeline.contribution_backfill --candidates /path/to/review-workspace/candidates.json audit \
+  /path/to/reviewed-curations.json --require-all
+python -m pipeline.contribution_backfill --candidates /path/to/review-workspace/candidates.json apply \
+  /path/to/reviewed-curations.json --report /path/to/review-report.json --require-all
+```
+
+Candidates come from Europe PMC's PubMed-indexed records, using career-wide
+full-name author searches plus last-author and coauthor searches. Broad initials
+alone can bury the correct scientist under namesake results, so unresolved cases
+need direct primary-paper or official-profile lookup, not guessed achievements.
+Full-name matching,
+authorship position, publication type, abstract, and institutional context are
+review material, not automatically established contributions. Reviews, retractions,
+notices, and namesake mismatches are excluded from ordinary candidate selection.
+Initial-only identities require additional source evidence.
+
+The review output uses the same contribution schema as the original pilot and
+preserves team credit. The importer validates source PMID/DOI/title and anchor-year
+consistency, guards existing curated entries, and records a per-profile review
+status/reason. It does not alter the publication-count ledger or assert lab models
+from paper metadata. Keep raw candidate abstracts in the review workspace; publish
+only bounded original summaries and bibliographic citations.
+
+`--require-all` prevents accidentally publishing a partially addressed roster.
+Explicit source/identity corrections can replace draft entries using repeated
+`--override` files; overlapping ordinary batches are rejected. Already curated
+profiles are protected from implicit overwrites. Identity corrections retain
+stable IDs and change history; wrong-person identifiers or career proxies are
+cleared rather than copied to the corrected person.
 
 Existing McKnight Scholar claims can be corroborated against the official cohort
 page without promoting other awards or current-affiliation claims:

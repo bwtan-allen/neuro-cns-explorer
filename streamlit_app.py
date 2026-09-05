@@ -109,6 +109,8 @@ def load(path, file_version, start_year=None, end_year=None):
             "Contribution_titles": record.get("contribution_titles", []),
             "Contribution_keywords": record.get("contribution_keywords", []),
             "Contribution_status": record.get("contribution_status", "not yet curated"),
+            "Contribution_review_status": profile.get("contribution_review", {}).get("status", "not recorded"),
+            "Contribution_review_reason": profile.get("contribution_review", {}).get("reason", ""),
             "Publication_model": record.get("publication_model", "legacy-aggregates"),
             "Window_start": data["years"][0], "Window_end": data["years"][-1],
             "Selected_years": ", ".join(years), "Career_reference_year": data["career_reference_year"],
@@ -322,11 +324,22 @@ def render_research_context(record, row):
     unreviewed = [item for item in contributions if item["Status"] != "source-backed"]
     if sourced:
         render_contribution_rows(sourced)
+        review = profile.get("contribution_review", {})
+        if review.get("status") == "needs-review":
+            st.caption(f"These cited examples are retained, but broader contribution review needs follow-up: {review['reason']}")
     elif unreviewed:
         st.info("Contribution profile: unreviewed. No source-backed examples are curated yet; "
                 "the claims below are not established contributions.")
     else:
-        st.info("Selected contributions: not yet curated. Missing entries do not mean a researcher has made no contributions.")
+        review = profile.get("contribution_review")
+        if review:
+            st.info(f"Contribution source review needs follow-up: {review['reason']}")
+            st.caption(f"Review recorded: {review['reviewed_at']}. No unsupported achievement is assigned.")
+            for source in review.get("sources", []):
+                st.markdown(f"[Identity/source evidence]({source['url']}) · Accessed: {source['accessed']}")
+                st.caption(source["supports"])
+        else:
+            st.info("Selected contributions: not yet curated. Missing entries do not mean a researcher has made no contributions.")
     if unreviewed:
         with st.expander("Unreviewed contribution claims (not established)"):
             st.warning("These claims are unreviewed, not established contributions. They are excluded from "
@@ -887,7 +900,9 @@ elif view == "Data quality":
                    f"{coverage.get('source_backed_lab_starts', 'unknown')} source-backed independent-lab starts; "
                    f"{coverage.get('source_backed_award_claims', 'unknown')} source-backed award claims; "
                    f"{coverage.get('source_backed_contribution_profiles', 'unknown')} source-backed contribution profiles; "
-                   f"{coverage.get('source_backed_model_profiles', 'unknown')} source-backed model profiles.")
+                   f"{coverage.get('source_backed_model_profiles', 'unknown')} source-backed model profiles; "
+                   f"{coverage.get('contribution_profiles_reviewed', 'unknown')} contribution profiles reviewed; "
+                   f"{coverage.get('contribution_profiles_needing_review', 'unknown')} with specific follow-up gaps.")
     else:
         st.caption("Legacy snapshot: registry-wide source-coverage metadata is unavailable.")
     coverage_columns = st.columns(4)
