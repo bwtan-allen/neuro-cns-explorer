@@ -10,11 +10,16 @@ permissions:
 
 jobs:
   tests:
+    name: tests (pandas ${{ matrix.pandas }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        pandas: ["2.*", "3.*"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt "pandas==${{ matrix.pandas }}"
       - run: python -m unittest discover -s tests

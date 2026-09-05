@@ -172,6 +172,21 @@ class AppTests(unittest.TestCase):
         self.assertEqual(len(self.app.get("plotly_chart")), 0)
         self.assertEqual(len(self.app.dataframe[0].value), 2)
 
+    def test_optional_text_handles_pandas_missing_scalars(self):
+        source = self.source_path.read_text(encoding="utf-8")
+        source += (
+            "\nst.session_state['_test_missing_text'] = "
+            "[display_text(value) for value in (None, float('nan'), pd.NA, '')]\n"
+            "st.session_state['_test_known_text'] = display_text('Harvard University')\n"
+            "st.session_state['_test_empty_fallback'] = display_text(float('nan'), '')\n"
+        )
+        self.source_path.write_text(source, encoding="utf-8")
+        self.app.run()
+        self.assertFalse(self.app.exception)
+        self.assertEqual(self.app.session_state["_test_missing_text"], ["unknown"] * 4)
+        self.assertEqual(self.app.session_state["_test_known_text"], "Harvard University")
+        self.assertEqual(self.app.session_state["_test_empty_fallback"], "")
+
     def test_aliases_first_last_forms_and_ids_are_searchable(self):
         person = ui_record(1, name="David J. Anderson")
         person["profile"]["aliases"] = [

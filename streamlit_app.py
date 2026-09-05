@@ -142,6 +142,10 @@ def display_count(value):
     return "n/a" if pd.isna(value) else int(value)
 
 
+def display_text(value, fallback="unknown"):
+    return fallback if pd.isna(value) or value == "" else str(value)
+
+
 def filter_tags(frame, selected, column):
     wanted = set(selected)
     return frame[frame[column].map(lambda tags: bool(wanted.intersection(tags)))] if selected else frame
@@ -149,7 +153,7 @@ def filter_tags(frame, selected, column):
 
 def researcher_label(key):
     row = df.loc[df["UI_key"] == key].iloc[0]
-    identity = row["Researcher_ID"] or f"{key} (temporary legacy key)"
+    identity = display_text(row["Researcher_ID"], f"{key} (temporary legacy key)")
     return f"{row['Name']} — {row['Institution']} · {identity}"
 
 
@@ -223,11 +227,11 @@ def render_paper_comparison(records, key, included_only=False):
                   for _, paper in papers.iterrows()}
     else:
         options = [
-            f"{paper.get('researcher_id') or paper['researcher']}:{paper['pmid']}:{paper['decision']}:{index}"
+            f"{display_text(paper.get('researcher_id'), paper['researcher'])}:{paper['pmid']}:{paper['decision']}:{index}"
             for index, paper in papers.iterrows()
         ]
         labels = {
-            option: f"{papers.iloc[index]['researcher']} · {papers.iloc[index]['researcher_id'] or 'legacy paper row ' + str(index + 1)} · "
+            option: f"{papers.iloc[index]['researcher']} · {display_text(papers.iloc[index]['researcher_id'], 'legacy paper row ' + str(index + 1))} · "
                     f"PMID {papers.iloc[index]['pmid']} · "
                     f"{papers.iloc[index]['decision']} · {papers.iloc[index]['title']}"
             for index, option in enumerate(options)
@@ -272,6 +276,7 @@ def render_paper_comparison(records, key, included_only=False):
 
 def render_profile(record, row):
     profile = record.get("profile") or {}
+    current_institution = display_text(row["Current_institution"], "")
     st.subheader("Researcher profile and sources")
     st.caption("Profile claims retain their source status and access dates; changing publication years does not "
                "turn current profile facts into a historical appointment census.")
@@ -280,7 +285,7 @@ def render_profile(record, row):
                    "not a persistent researcher identity. Institution, cohort and award labels are unreviewed.")
     else:
         st.caption(f"Stable researcher ID: {row['Researcher_ID']} · Identity: {row['Identity_status']}")
-    st.markdown(f"**Current institution:** {row['Current_institution'] or 'unknown'} · "
+    st.markdown(f"**Current institution:** {current_institution or 'unknown'} · "
                 f"**Roster / institution label:** {row['Institution']} · {row['Institution_status']}")
     hhmi = profile.get("hhmi", {})
     st.markdown(f"**HHMI status:** {hhmi.get('value') or 'unknown'} · {hhmi.get('status', 'unknown')}. "
@@ -303,15 +308,15 @@ def render_profile(record, row):
         f"Career proxies (not verified independent-lab starts): ORCID employment "
         f"{display_count(row['ORCID_employment_year'])}; first senior/last-author paper "
         f"{display_count(row['First_senior_paper'])}. Career age / proxy as of {CAREER_YEAR}: "
-        f"{display_count(row['Lab_age'])}; basis: {row['Lab_age_source'] or 'unknown'}. "
-        f"Legacy career-stage label: {row['Career_stage'] or 'unknown'} (not reverified)."
+        f"{display_count(row['Lab_age'])}; basis: {display_text(row['Lab_age_source'])}. "
+        f"Legacy career-stage label: {display_text(row['Career_stage'])} (not reverified)."
     )
     if profile:
         st.markdown("**Affiliation history**")
         affiliations = []
         for item in profile.get("affiliations", []):
             current = (item.get("current") is True and item.get("status") == "source-backed"
-                       and item["institution"] in (row["Current_institution"] or "").split("; "))
+                       and item["institution"] in current_institution.split("; "))
             current_status = ("source-backed current" if current else "historical" if item.get("current") is False
                               else "reported current (not established)" if item.get("current") else "unknown")
             for source in item.get("sources") or [{}]:
