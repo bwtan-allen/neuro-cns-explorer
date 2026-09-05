@@ -178,6 +178,20 @@ class ResearchProfileTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source-backed profile"):
             validate_snapshot(data)
 
+    def test_stale_display_status_is_recomputed_instead_of_blocking_source_data(self):
+        self.profile["contribution_review"] = {
+            "status": "needs-review", "reason": "Duplicate legacy identity.",
+            "reviewed_at": "2026-09-05T00:00:00+00:00",
+        }
+        data = build_snapshot(self.source, self.registry)
+        data["records"][0]["contribution_status"] = "old deployment label"
+        data["records"][0]["model_organism_status"] = "source-backed examples"
+        validate_snapshot(data)
+        projected = project_snapshot(data)
+        self.assertEqual(projected["records"][0]["contribution_status"], "source review needed")
+        self.assertEqual(projected["records"][0]["model_organism_status"], "unknown")
+        self.assertEqual(data["records"][0]["contribution_status"], "old deployment label")
+
     def test_exports_keep_career_scope_attribution_and_paper_species_separate(self):
         self.profile["contributions"] = [contribution()]
         self.profile["model_organisms"] = [model()]

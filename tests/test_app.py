@@ -7,6 +7,7 @@ import shutil
 import tempfile
 import unittest
 import uuid
+from dataclasses import replace
 from pathlib import Path
 from unittest.mock import patch
 
@@ -15,6 +16,7 @@ import streamlit as st
 
 from fixtures import record, snapshot
 from pipeline.snapshot import profile_record, project_snapshot
+from app_runtime import load_backend
 
 
 APP = Path(__file__).resolve().parents[1] / "streamlit_app.py"
@@ -209,6 +211,30 @@ class AppTests(unittest.TestCase):
     def test_default_view_does_not_render_hidden_charts(self):
         self.assertEqual(len(self.app.get("plotly_chart")), 0)
         self.assertEqual(len(self.app.dataframe[0].value), 2)
+
+    def test_stale_contribution_status_does_not_prevent_loading(self):
+        person = ui_record(1, name="Jieli Li", lab_start=None, source_backed=False)
+        person["profile"]["contribution_review"] = {
+            "status": "needs-review", "reason": "Duplicate legacy row; use the canonical researcher.",
+            "reviewed_at": "2026-09-05T00:00:00+00:00",
+        }
+        data = ui_snapshot(person)
+        data["records"][0]["contribution_status"] = "not yet curated"
+        self.replace_snapshot(data)
+        self.assertEqual(self.download("Download filtered CSV").iloc[0]["Contribution_status"], "source review needed")
+        self.app.radio(key="view").set_value("Researcher detail").run()
+        self.assertFalse(self.app.exception)
+        self.assertTrue(any("Duplicate legacy row" in item.value for item in self.app.info))
+
+    def test_backend_revision_invalidates_data_and_projection_caches(self):
+        old_published = self.app.session_state["_test_published_identity"]
+        old_projection = self.app.session_state["_test_projection_identity"]
+        changed = replace(load_backend(), revision="test-different-backend-revision")
+        with patch("app_runtime.load_backend", return_value=changed):
+            self.app.run()
+        self.assertFalse(self.app.exception)
+        self.assertNotEqual(self.app.session_state["_test_published_identity"], old_published)
+        self.assertNotEqual(self.app.session_state["_test_projection_identity"], old_projection)
 
     def test_optional_text_handles_pandas_missing_scalars(self):
         source = self.source_path.read_text(encoding="utf-8")
@@ -939,7 +965,8 @@ class AppTests(unittest.TestCase):
 
     def test_shared_projection_is_used_and_window_cache_invalidates_on_file_revision(self):
         self.replace_snapshot(ui_snapshot(*discovery_records()))
-        with patch("pipeline.snapshot.project_snapshot", wraps=project_snapshot) as projected:
+        backend_snapshot = load_backend().snapshot
+        with patch.object(backend_snapshot, "project_snapshot", wraps=backend_snapshot.project_snapshot) as projected:
             self.app.sidebar.select_slider(key="publication_window").set_value((2019, 2019)).run()
             self.assertGreaterEqual(projected.call_count, 1)
             self.assertEqual(projected.call_args.args[1:], (2019, 2019))

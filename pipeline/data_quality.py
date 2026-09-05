@@ -8,8 +8,9 @@ from pathlib import Path
 
 if not __package__:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-
-from pipeline.profiles import research_context, validate_research_context
+    from pipeline.profiles import research_context, validate_research_context
+else:
+    from .profiles import research_context, validate_research_context
 
 
 METRICS = (
@@ -52,8 +53,9 @@ def validate_snapshot(data):
             validate_research_context(profile)
             if "organisms" in record:
                 raise ValueError("Ambiguous organism tags must be separated into sourced lab models and paper species mentions.")
-            for key, value in research_context(profile).items():
-                if record.get(key) != value:
+            context = research_context(profile)
+            for key in ("contribution_titles", "contribution_keywords", "model_organisms"):
+                if record.get(key) != context[key]:
                     raise ValueError(f"{record['name']}: {key} must derive from the source-backed profile, not publication tags.")
         for prefix, label, flag in METRICS:
             if flag in record and type(record[flag]) is not bool:

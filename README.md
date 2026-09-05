@@ -26,6 +26,14 @@ included/excluded paper evidence, and a data-quality review queue.
 Only the selected view is rendered. A changed snapshot invalidates the app cache.
 The app itself does not make PubMed calls or modify profiles.
 
+Backend source changes also invalidate the caches. `app_runtime.py` captures and
+hashes the local `pipeline` source, then loads each revision into its own module
+namespace. Long-lived Streamlit sessions cannot accidentally reuse old
+`pipeline.*` imports with newer app data, and active sessions keep a coherent
+revision without global module deletion or on-disk bytecode-cache edits.
+Presentation-status labels are recomputed from profiles; source-backed
+contribution/model claims and publication counts remain strictly validated.
+
 ## Data architecture
 
 ```text
@@ -47,6 +55,7 @@ neuro_stats.json + CSV exports -> Streamlit
 | `data/publications.sqlite3` | Normalized PMID evidence, included/excluded/unresolved decisions, source queries, retrieval dates, and method versions |
 | `neuro_stats.json` | Published app snapshot; contains explicit coverage and source statuses |
 | `pipeline/profiles.py` | Identity and research-profile curation, contribution/team attribution, lab-model claims, and change history |
+| `app_runtime.py` | Revision-isolated backend loading and cache invalidation for hosted Streamlit updates |
 | `pipeline/person_cns.py` | Shared PubMed transport/XML parsing; older tier-only counter retained for compatibility |
 | `pipeline/unified_recount.py` | All-journal identity matching and resumable evidence refresh |
 | `pipeline/snapshot.py` | Registry linkage, evidence-derived counts, and shared publication-window calculations |

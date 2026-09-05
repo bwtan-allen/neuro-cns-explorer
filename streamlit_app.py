@@ -9,9 +9,16 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-from pipeline.data_quality import audit_dataset, record_issues, validate_snapshot
-from pipeline.profiles import contribution_evidence, normalize, profile_evidence
-from pipeline.snapshot import project_snapshot
+from app_runtime import load_backend
+
+BACKEND = load_backend()
+audit_dataset = BACKEND.data_quality.audit_dataset
+record_issues = BACKEND.data_quality.record_issues
+validate_snapshot = BACKEND.data_quality.validate_snapshot
+contribution_evidence = BACKEND.profiles.contribution_evidence
+normalize = BACKEND.profiles.normalize
+profile_evidence = BACKEND.profiles.profile_evidence
+project_snapshot = BACKEND.snapshot.project_snapshot
 
 
 st.set_page_config(page_title="Neuro CNS Publication Explorer", layout="wide")
@@ -29,7 +36,7 @@ def search_text(value):
 
 # Cached snapshots and frames are shared read-only; views transform copies.
 @st.cache_resource(show_spinner=False, max_entries=2)
-def read_snapshot(path, file_version):
+def read_snapshot(path, file_version, backend_revision):
     with open(path, encoding="utf-8") as handle:
         data = json.load(handle)
     validate_snapshot(data)
@@ -41,8 +48,8 @@ def selection_key(record, index):
 
 
 @st.cache_resource(show_spinner=False, max_entries=4)
-def load(path, file_version, start_year=None, end_year=None):
-    data = project_snapshot(read_snapshot(path, file_version), start_year, end_year)
+def load(path, file_version, backend_revision, start_year=None, end_year=None):
+    data = project_snapshot(read_snapshot(path, file_version, backend_revision), start_year, end_year)
     issues = audit_dataset(data)
     years = [str(y) for y in data["years"]]
     rows = []
@@ -530,7 +537,7 @@ def render_evidence(record, row):
 try:
     stat = DATA.stat()
     revision = (stat.st_mtime_ns, stat.st_size, stat.st_ino)
-    published = read_snapshot(str(DATA), revision)
+    published = read_snapshot(str(DATA), revision, BACKEND.revision)
 except (OSError, ValueError) as error:
     st.error(f"Cannot load the publication snapshot: {error}")
     st.stop()
@@ -549,7 +556,7 @@ else:
         "Publication window", options=published_years, value=(published_years[0], published_years[-1]),
         key="publication_window")
 try:
-    df, YEARS, snapshot, issue_rows = load(str(DATA), revision, start_year, end_year)
+    df, YEARS, snapshot, issue_rows = load(str(DATA), revision, BACKEND.revision, start_year, end_year)
 except (OSError, ValueError) as error:
     st.error(f"Cannot load the publication snapshot: {error}")
     st.stop()
