@@ -20,6 +20,8 @@ from .storage import write_json
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REGISTRY = ROOT / "data" / "researchers.json"
 STATUSES = {"unknown", "unreviewed", "source-backed"}
+CONTRIBUTION_CATEGORIES = {"discovery", "tool", "method", "resource"}
+MODEL_SCOPES = {"lab research", "historical research"}
 PARTICLES = {"da", "de", "del", "della", "den", "der", "di", "dos", "du", "la", "le", "van", "von"}
 INSTITUTION_ALIASES = {
     "ucsf": "University of California, San Francisco",
@@ -129,11 +131,89 @@ def _validate_claim(value):
         raise ValueError("An unknown claim cannot assert a value.")
 
 
+def validate_research_context(profile):
+    contributions = profile.get("contributions", [])
+    models = profile.get("model_organisms", [])
+    if not isinstance(contributions, list) or not isinstance(models, list):
+        raise ValueError("Contributions and model-organism claims must be lists; empty means not yet curated.")
+    ids = set()
+    for contribution in contributions:
+        _validate_claim(contribution)
+        if not isinstance(contribution.get("value"), str) or not contribution["value"].strip():
+            raise ValueError("A contribution needs a descriptive title.")
+        key = contribution.get("id", "")
+        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", key) or key in ids:
+            raise ValueError("Contribution IDs must be unique kebab-case identifiers within a profile.")
+        ids.add(key)
+        if contribution.get("category") not in CONTRIBUTION_CATEGORIES:
+            raise ValueError("Contribution category must be discovery, tool, method, or resource.")
+        for field in ("summary", "attribution"):
+            if not isinstance(contribution.get(field), str) or not contribution[field].strip():
+                raise ValueError(f"A contribution needs an explicit {field}, not a claim inferred from paper counts.")
+        keywords = contribution.get("keywords")
+        if (not isinstance(keywords, list) or not keywords
+                or any(not isinstance(term, str) or not term.strip() for term in keywords)
+                or len({normalize(term) for term in keywords}) != len(keywords)):
+            raise ValueError("Contribution keywords must be a nonempty list of distinct phrases.")
+        if contribution.get("scope") != "career-wide":
+            raise ValueError("Contribution profiles are career-wide, separate from the publication-count window.")
+        year = contribution.get("year")
+        if year is not None and (type(year) is not int or not 1800 <= year <= 2100):
+            raise ValueError("Contribution publication years must be integers or null.")
+    labels = set()
+    for model in models:
+        _validate_claim(model)
+        label = model.get("value")
+        if not isinstance(label, str) or not label.strip() or normalize(label) in labels:
+            raise ValueError("Model-organism claims need distinct, explicit model names.")
+        labels.add(normalize(label))
+        if normalize(label) in {"human", "humans"}:
+            raise ValueError("Specify Human participants or Human-derived cells/tissue instead of an ambiguous Human model.")
+        if model.get("scope") not in MODEL_SCOPES:
+            raise ValueError("A model-organism claim needs lab research or historical research scope.")
+
+
+def research_context(profile):
+    """Only sourced profile claims populate discovery filters; missing claims are unknown."""
+    contributions = profile.get("contributions", [])
+    models = profile.get("model_organisms", [])
+    sourced_contributions = [item for item in contributions if item["status"] == "source-backed"]
+    sourced_models = [item for item in models if item["status"] == "source-backed"]
+    return {
+        "contribution_titles": [item["value"] for item in sourced_contributions],
+        "contribution_keywords": sorted({term for item in sourced_contributions for term in item["keywords"]},
+                                        key=str.casefold),
+        "contribution_status": "source-backed examples" if sourced_contributions
+                               else "unreviewed" if contributions else "not yet curated",
+        "model_organisms": sorted({item["value"] for item in sourced_models}, key=str.casefold),
+        "model_organism_status": "source-backed examples" if sourced_models
+                                 else "unreviewed" if models else "unknown",
+    }
+
+
+def contribution_evidence(profile):
+    """Source-attributed discovery/tool rows, including unreviewed claims for inspection."""
+    rows = []
+    for item in profile.get("contributions", []):
+        for source in item.get("sources") or [{}]:
+            rows.append({
+                "Contribution": item["value"], "Category": item["category"], "Year": item.get("year"),
+                "Keywords": "; ".join(item["keywords"]), "Summary": item["summary"],
+                "Attribution": item["attribution"], "Status": item["status"], "Scope": item["scope"],
+                "Source": source.get("url", ""), "Source_title": source.get("title", ""),
+                "Accessed": source.get("accessed", ""), "Supports": source.get("supports", ""),
+                "PMID": source.get("pmid", ""), "DOI": source.get("doi", ""),
+                "Note": item.get("note", ""),
+            })
+    return rows
+
+
 def validate_registry(registry):
     if registry.get("schema_version") != 1 or not isinstance(registry.get("profiles"), dict):
         raise ValueError("Unsupported researcher registry schema.")
     linked = {}
     for researcher_id, profile in registry["profiles"].items():
+        validate_research_context(profile)
         if profile.get("id") != researcher_id or not re.fullmatch(r"pi_[0-9a-f]{32}", researcher_id):
             raise ValueError("Researcher IDs must be stable pi_ UUID identifiers.")
         if not isinstance(profile.get("name"), str) or not profile["name"].strip():
@@ -229,6 +309,7 @@ def migrate(snapshot, registry=None):
             "hhmi": claim("Listed in legacy HHMI cohort" if record["group"] == "HHMI" else None),
             "awards": [{**claim(award.get("award")), "year": award.get("year")} for award in record.get("awards", [])],
             "paper_overrides": [],
+            "contributions": [], "model_organisms": [],
             "legacy_snapshot": snapshot.get("generated"),
         }
         result["profiles"][researcher_id] = profile
@@ -263,6 +344,8 @@ def profile_evidence(profile):
     claims += [("Name alias", item) for item in profile["aliases"]]
     claims += [(f"Affiliation: {item['institution']}", item) for item in profile["affiliations"]]
     claims += [(f"Award ({item.get('year') or 'year unknown'})", item) for item in profile["awards"]]
+    claims += [(f"Model organism ({item['scope']})", item) for item in profile.get("model_organisms", [])]
+    claims += [(f"Contribution ({item['category']}, career-wide)", item) for item in profile.get("contributions", [])]
     rows = []
     for label, item in claims:
         for source in item.get("sources") or [{}]:
@@ -276,14 +359,15 @@ def profile_evidence(profile):
 
 def apply_updates(registry, updates):
     result = copy.deepcopy(registry)
-    allowed = {"name", "identity", "aliases", "orcid", "affiliations", "career", "hhmi", "awards", "paper_overrides"}
+    allowed = {"name", "identity", "aliases", "orcid", "affiliations", "career", "hhmi", "awards",
+               "paper_overrides", "contributions", "model_organisms"}
     for update in updates:
         researcher_id = update["researcher_id"]
         changes = update["changes"]
         if not update.get("reason") or not changes or not changes.keys() <= allowed:
             raise ValueError("Curation needs a reason and explicit editable profile fields; IDs cannot change.")
         profile = result["profiles"][researcher_id]
-        before = {key: copy.deepcopy(profile[key]) for key in changes}
+        before = {key: copy.deepcopy(profile.get(key)) for key in changes}
         profile.update(copy.deepcopy(changes))
         result["changes"].append({
             "researcher_id": researcher_id, "reason": update["reason"],

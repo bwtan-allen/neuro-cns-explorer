@@ -1746,7 +1746,137 @@
    },
    "awards": [],
    "paper_overrides": [],
-   "legacy_snapshot": "2026-09-01"
+   "legacy_snapshot": "2026-09-01",
+   "model_organisms": [
+    {
+     "value": "Fruit fly",
+     "status": "source-backed",
+     "scope": "lab research",
+     "sources": [
+      {
+       "url": "https://luolab.stanford.edu/research",
+       "title": "Luo Lab: Research",
+       "accessed": "2026-09-05",
+       "supports": "The lab explicitly describes neural-circuit organization and developmental assembly in fruit flies and mice, including fly olfactory-circuit assembly among its research areas."
+      }
+     ],
+     "note": "Model described on the live, undated lab research page as observed on the access date. The introductory motivation concerning the human brain does not establish human-participant research."
+    },
+    {
+     "value": "Mouse",
+     "status": "source-backed",
+     "scope": "lab research",
+     "sources": [
+      {
+       "url": "https://luolab.stanford.edu/research",
+       "title": "Luo Lab: Research",
+       "accessed": "2026-09-05",
+       "supports": "The lab explicitly names mice in its research statement and lists assembly of neural circuits in the mouse brain as a research area."
+      }
+     ],
+     "note": "An explicit lab-research model description, not an inference from article disease relevance or a PubMed Humans heading. This list is not asserted to be exhaustive."
+    }
+   ],
+   "contributions": [
+    {
+     "id": "trap2-characterization",
+     "value": "TRAP2 activity-dependent neuronal access",
+     "category": "tool",
+     "year": 2019,
+     "keywords": [
+      "TRAP2",
+      "activity-dependent labeling",
+      "genetic access",
+      "neuronal ensembles",
+      "memory retrieval"
+     ],
+     "summary": "Characterized TRAP2, an improved activity-dependent labeling/access tool in mice, and connected changing prelimbic cortical ensembles with remote fear-memory retrieval.",
+     "attribution": "Luo coauthored the study with Laura A. DeNardo and colleagues. The paper credits DeNardo and Luo with study design and manuscript preparation, and DeNardo with TRAP2 characterization.",
+     "scope": "career-wide",
+     "status": "source-backed",
+     "sources": [
+      {
+       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6387639/",
+       "title": "Temporal evolution of cortical ensembles promoting remote memory retrieval.",
+       "pmid": "30692687",
+       "doi": "10.1038/s41593-018-0318-7",
+       "accessed": "2026-09-05",
+       "supports": "The 2019 DeNardo et al. paper explicitly describes detailed TRAP2 characterization and its memory-ensemble application, with the specified author-contribution statement."
+      }
+     ],
+     "note": "2019 is the detailed-characterization publication, not an asserted invention or first-disclosure date. The paper cites Allen et al. 2017 for prior TRAP2 development and Guenthner et al. 2013 for original TRAP; TRAP and TRAP2 are not interchangeable."
+    },
+    {
+     "id": "marcm",
+     "value": "MARCM genetic mosaic analysis",
+     "category": "method",
+     "year": 1999,
+     "keywords": [
+      "MARCM",
+      "mosaic analysis",
+      "genetic mosaics",
+      "single-neuron labeling",
+      "neuronal morphogenesis",
+      "gene function"
+     ],
+     "summary": "Introduced a Drosophila genetic-mosaic method for selectively visualizing mutant neurons or clones and relating gene function to neuronal morphology.",
+     "attribution": "MARCM was co-developed by Tzumin Lee and Liqun Luo, who jointly authored the original 1999 report.",
+     "scope": "career-wide",
+     "status": "source-backed",
+     "sources": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/10197526/",
+       "title": "Mosaic analysis with a repressible cell marker for studies of gene function in neuronal morphogenesis.",
+       "pmid": "10197526",
+       "doi": "10.1016/S0896-6273(00)80701-1",
+       "accessed": "2026-09-05",
+       "supports": "The original 1999 Lee and Luo paper describes the genetic-mosaic method and lists the two collaborating authors."
+      },
+      {
+       "url": "https://luolab.stanford.edu/research/tool-development",
+       "title": "Luo Lab: Tool Development",
+       "accessed": "2026-09-05",
+       "supports": "The official lab page describes MARCM and connects it to the Lee and Luo 1999 report."
+      },
+      {
+       "url": "https://luolab.stanford.edu/people/lab-alumni",
+       "title": "Luo Lab: Lab Alumni",
+       "accessed": "2026-09-05",
+       "supports": "The official alumni page corroborates Tzumin Lee's full name and association with the lab."
+      }
+     ],
+     "note": "A selected career-wide method contribution predating the publication-count window; both co-developers are credited."
+    },
+    {
+     "id": "teneurin-partner-matching",
+     "value": "Teneurin-mediated synaptic partner matching",
+     "category": "discovery",
+     "year": 2012,
+     "keywords": [
+      "teneurin",
+      "synaptic partner matching",
+      "wiring specificity",
+      "olfactory circuits",
+      "Ten-m",
+      "Ten-a"
+     ],
+     "summary": "Identified Ten-m and Ten-a as molecules instructing matching between selected olfactory receptor neurons and projection neurons in Drosophila, with evidence supporting homophilic recognition.",
+     "attribution": "Luo coauthored the study with Weizhe Hong and Timothy J. Mosca.",
+     "scope": "career-wide",
+     "status": "source-backed",
+     "sources": [
+      {
+       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3345284/",
+       "title": "Teneurins instruct synaptic partner matching in an olfactory map.",
+       "pmid": "22425994",
+       "doi": "10.1038/nature10926",
+       "accessed": "2026-09-05",
+       "supports": "The 2012 Hong, Mosca, and Luo paper reports the Ten-m/Ten-a matching result in the Drosophila olfactory circuit."
+      }
+     ],
+     "note": "A bounded circuit-specific finding, not a claim that one molecule or investigator explains all synaptic specificity."
+    }
+   ]
   },
   "pi_51732be6035351ffb1fd2959e0d525f8": {
    "id": "pi_51732be6035351ffb1fd2959e0d525f8",
@@ -41291,7 +41421,90 @@
    },
    "awards": [],
    "paper_overrides": [],
-   "legacy_snapshot": "2026-09-01"
+   "legacy_snapshot": "2026-09-01",
+   "model_organisms": [
+    {
+     "value": "Mouse",
+     "status": "source-backed",
+     "scope": "historical research",
+     "sources": [
+      {
+       "url": "https://www.hhmi.org/news/storing-memory-involves-distant-parts-brain",
+       "title": "Storing a Memory Involves Distant Parts of the Brain",
+       "accessed": "2026-09-05",
+       "supports": "HHMI describes mouse studies by Svoboda and members of his Janelia laboratory, including their work on ALM and short-term memory."
+      }
+     ],
+     "note": "Explicit evidence of historical Janelia-lab mouse research. This is not a claim about the full organism inventory or current Allen-era personal-lab scope."
+    }
+   ],
+   "contributions": [
+    {
+     "id": "alm-motor-planning",
+     "value": "ALM persistent/preparatory activity for motor planning",
+     "category": "discovery",
+     "year": 2015,
+     "keywords": [
+      "ALM",
+      "motor planning",
+      "persistent activity",
+      "preparatory activity",
+      "robust neural dynamics",
+      "interhemispheric coupling"
+     ],
+     "summary": "Linked movement-selective preparatory activity in mouse anterior lateral motor cortex to upcoming movement and its transformation into movement commands. Follow-up work showed recovery after unilateral disruption, supporting interacting hemispheres in robust motor planning.",
+     "attribution": "Svoboda coauthored the 2015 study with Nuo Li, Tsai-Wen Chen, Zengcai V. Guo, and Charles R. Gerfen, and the 2016 study with Nuo Li, Kayvon Daie, and Shaul Druckmann. These are collaborative contributions, not sole-discovery claims.",
+     "scope": "career-wide",
+     "status": "source-backed",
+     "sources": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/25731172/",
+       "title": "A motor cortex circuit for motor planning and movement.",
+       "pmid": "25731172",
+       "doi": "10.1038/nature14178",
+       "accessed": "2026-09-05",
+       "supports": "The 2015 Li et al. paper names Svoboda as a coauthor and links mouse ALM preparatory activity, projection-neuron classes, and movement commands."
+      },
+      {
+       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5081260/",
+       "title": "Robust neuronal dynamics in premotor cortex during motor planning.",
+       "pmid": "27074502",
+       "doi": "10.1038/nature17643",
+       "accessed": "2026-09-05",
+       "supports": "The 2016 Li, Daie, Svoboda, and Druckmann paper reports recovery of preparatory activity after unilateral disruption. Its contribution statement credits Li, Svoboda, and Druckmann with conception and experimental design."
+      }
+     ],
+     "note": "The displayed year identifies the 2015 anchor; the second linked anchor is from 2016. This selected contribution family is not an exhaustive history or a priority claim for all motor-planning research."
+    },
+    {
+     "id": "scanimage",
+     "value": "ScanImage",
+     "category": "tool",
+     "year": 2003,
+     "keywords": [
+      "ScanImage",
+      "microscopy software",
+      "laser-scanning microscopy",
+      "open-source software",
+      "image acquisition"
+     ],
+     "summary": "The original publication described open-source software for controlling laser-scanning microscopes and acquiring and processing images.",
+     "attribution": "Svoboda coauthored the original ScanImage report with Thomas A. Pologruto and Bernardo L. Sabatini. Credit belongs to the collaborating authors and subsequent contributors, not to a sole inventor inferred from this profile.",
+     "scope": "career-wide",
+     "status": "source-backed",
+     "sources": [
+      {
+       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC161784/",
+       "title": "ScanImage: Flexible software for operating laser scanning microscopes.",
+       "pmid": "12801419",
+       "doi": "10.1186/1475-925X-2-13",
+       "accessed": "2026-09-05",
+       "supports": "The 2003 Pologruto, Sabatini, and Svoboda publication describes ScanImage and its laser-scanning microscopy software role."
+      }
+     ],
+     "note": "A career-wide tool contribution predating the 2016-2025 count window. Citing it here does not add it to the publication tally."
+    }
+   ]
   }
  },
  "changes": [
@@ -44892,6 +45105,241 @@
       ],
       "note": "Award-year cohort corroborated by full given/family name and a known institutional label. The listed institution is not assumed to be current; the cohort period is not a lab-start date.",
       "year": 2025
+     }
+    ]
+   }
+  },
+  {
+   "researcher_id": "pi_e94fd4d9c8295b33b40e5b5662956685",
+   "reason": "Add a bounded, source-backed career-contribution pilot and an explicitly historical mouse-research claim. Do not infer current lab models, sole discovery credit, or change publication-count attribution.",
+   "at": "2026-09-05T17:05:58+00:00",
+   "before": {
+    "model_organisms": null,
+    "contributions": null
+   },
+   "after": {
+    "model_organisms": [
+     {
+      "value": "Mouse",
+      "status": "source-backed",
+      "scope": "historical research",
+      "sources": [
+       {
+        "url": "https://www.hhmi.org/news/storing-memory-involves-distant-parts-brain",
+        "title": "Storing a Memory Involves Distant Parts of the Brain",
+        "accessed": "2026-09-05",
+        "supports": "HHMI describes mouse studies by Svoboda and members of his Janelia laboratory, including their work on ALM and short-term memory."
+       }
+      ],
+      "note": "Explicit evidence of historical Janelia-lab mouse research. This is not a claim about the full organism inventory or current Allen-era personal-lab scope."
+     }
+    ],
+    "contributions": [
+     {
+      "id": "alm-motor-planning",
+      "value": "ALM persistent/preparatory activity for motor planning",
+      "category": "discovery",
+      "year": 2015,
+      "keywords": [
+       "ALM",
+       "motor planning",
+       "persistent activity",
+       "preparatory activity",
+       "robust neural dynamics",
+       "interhemispheric coupling"
+      ],
+      "summary": "Linked movement-selective preparatory activity in mouse anterior lateral motor cortex to upcoming movement and its transformation into movement commands. Follow-up work showed recovery after unilateral disruption, supporting interacting hemispheres in robust motor planning.",
+      "attribution": "Svoboda coauthored the 2015 study with Nuo Li, Tsai-Wen Chen, Zengcai V. Guo, and Charles R. Gerfen, and the 2016 study with Nuo Li, Kayvon Daie, and Shaul Druckmann. These are collaborative contributions, not sole-discovery claims.",
+      "scope": "career-wide",
+      "status": "source-backed",
+      "sources": [
+       {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25731172/",
+        "title": "A motor cortex circuit for motor planning and movement.",
+        "pmid": "25731172",
+        "doi": "10.1038/nature14178",
+        "accessed": "2026-09-05",
+        "supports": "The 2015 Li et al. paper names Svoboda as a coauthor and links mouse ALM preparatory activity, projection-neuron classes, and movement commands."
+       },
+       {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5081260/",
+        "title": "Robust neuronal dynamics in premotor cortex during motor planning.",
+        "pmid": "27074502",
+        "doi": "10.1038/nature17643",
+        "accessed": "2026-09-05",
+        "supports": "The 2016 Li, Daie, Svoboda, and Druckmann paper reports recovery of preparatory activity after unilateral disruption. Its contribution statement credits Li, Svoboda, and Druckmann with conception and experimental design."
+       }
+      ],
+      "note": "The displayed year identifies the 2015 anchor; the second linked anchor is from 2016. This selected contribution family is not an exhaustive history or a priority claim for all motor-planning research."
+     },
+     {
+      "id": "scanimage",
+      "value": "ScanImage",
+      "category": "tool",
+      "year": 2003,
+      "keywords": [
+       "ScanImage",
+       "microscopy software",
+       "laser-scanning microscopy",
+       "open-source software",
+       "image acquisition"
+      ],
+      "summary": "The original publication described open-source software for controlling laser-scanning microscopes and acquiring and processing images.",
+      "attribution": "Svoboda coauthored the original ScanImage report with Thomas A. Pologruto and Bernardo L. Sabatini. Credit belongs to the collaborating authors and subsequent contributors, not to a sole inventor inferred from this profile.",
+      "scope": "career-wide",
+      "status": "source-backed",
+      "sources": [
+       {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC161784/",
+        "title": "ScanImage: Flexible software for operating laser scanning microscopes.",
+        "pmid": "12801419",
+        "doi": "10.1186/1475-925X-2-13",
+        "accessed": "2026-09-05",
+        "supports": "The 2003 Pologruto, Sabatini, and Svoboda publication describes ScanImage and its laser-scanning microscopy software role."
+       }
+      ],
+      "note": "A career-wide tool contribution predating the 2016-2025 count window. Citing it here does not add it to the publication tally."
+     }
+    ]
+   }
+  },
+  {
+   "researcher_id": "pi_a1cccefbe3a152c5b7209b9276db8cf0",
+   "reason": "Add a bounded source-backed contribution pilot for TRAP2 characterization, MARCM, and teneurin-mediated partner matching, and source lab models from explicit Luo Lab research descriptions rather than MeSH Humans headings.",
+   "at": "2026-09-05T17:05:58+00:00",
+   "before": {
+    "model_organisms": null,
+    "contributions": null
+   },
+   "after": {
+    "model_organisms": [
+     {
+      "value": "Fruit fly",
+      "status": "source-backed",
+      "scope": "lab research",
+      "sources": [
+       {
+        "url": "https://luolab.stanford.edu/research",
+        "title": "Luo Lab: Research",
+        "accessed": "2026-09-05",
+        "supports": "The lab explicitly describes neural-circuit organization and developmental assembly in fruit flies and mice, including fly olfactory-circuit assembly among its research areas."
+       }
+      ],
+      "note": "Model described on the live, undated lab research page as observed on the access date. The introductory motivation concerning the human brain does not establish human-participant research."
+     },
+     {
+      "value": "Mouse",
+      "status": "source-backed",
+      "scope": "lab research",
+      "sources": [
+       {
+        "url": "https://luolab.stanford.edu/research",
+        "title": "Luo Lab: Research",
+        "accessed": "2026-09-05",
+        "supports": "The lab explicitly names mice in its research statement and lists assembly of neural circuits in the mouse brain as a research area."
+       }
+      ],
+      "note": "An explicit lab-research model description, not an inference from article disease relevance or a PubMed Humans heading. This list is not asserted to be exhaustive."
+     }
+    ],
+    "contributions": [
+     {
+      "id": "trap2-characterization",
+      "value": "TRAP2 activity-dependent neuronal access",
+      "category": "tool",
+      "year": 2019,
+      "keywords": [
+       "TRAP2",
+       "activity-dependent labeling",
+       "genetic access",
+       "neuronal ensembles",
+       "memory retrieval"
+      ],
+      "summary": "Characterized TRAP2, an improved activity-dependent labeling/access tool in mice, and connected changing prelimbic cortical ensembles with remote fear-memory retrieval.",
+      "attribution": "Luo coauthored the study with Laura A. DeNardo and colleagues. The paper credits DeNardo and Luo with study design and manuscript preparation, and DeNardo with TRAP2 characterization.",
+      "scope": "career-wide",
+      "status": "source-backed",
+      "sources": [
+       {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6387639/",
+        "title": "Temporal evolution of cortical ensembles promoting remote memory retrieval.",
+        "pmid": "30692687",
+        "doi": "10.1038/s41593-018-0318-7",
+        "accessed": "2026-09-05",
+        "supports": "The 2019 DeNardo et al. paper explicitly describes detailed TRAP2 characterization and its memory-ensemble application, with the specified author-contribution statement."
+       }
+      ],
+      "note": "2019 is the detailed-characterization publication, not an asserted invention or first-disclosure date. The paper cites Allen et al. 2017 for prior TRAP2 development and Guenthner et al. 2013 for original TRAP; TRAP and TRAP2 are not interchangeable."
+     },
+     {
+      "id": "marcm",
+      "value": "MARCM genetic mosaic analysis",
+      "category": "method",
+      "year": 1999,
+      "keywords": [
+       "MARCM",
+       "mosaic analysis",
+       "genetic mosaics",
+       "single-neuron labeling",
+       "neuronal morphogenesis",
+       "gene function"
+      ],
+      "summary": "Introduced a Drosophila genetic-mosaic method for selectively visualizing mutant neurons or clones and relating gene function to neuronal morphology.",
+      "attribution": "MARCM was co-developed by Tzumin Lee and Liqun Luo, who jointly authored the original 1999 report.",
+      "scope": "career-wide",
+      "status": "source-backed",
+      "sources": [
+       {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10197526/",
+        "title": "Mosaic analysis with a repressible cell marker for studies of gene function in neuronal morphogenesis.",
+        "pmid": "10197526",
+        "doi": "10.1016/S0896-6273(00)80701-1",
+        "accessed": "2026-09-05",
+        "supports": "The original 1999 Lee and Luo paper describes the genetic-mosaic method and lists the two collaborating authors."
+       },
+       {
+        "url": "https://luolab.stanford.edu/research/tool-development",
+        "title": "Luo Lab: Tool Development",
+        "accessed": "2026-09-05",
+        "supports": "The official lab page describes MARCM and connects it to the Lee and Luo 1999 report."
+       },
+       {
+        "url": "https://luolab.stanford.edu/people/lab-alumni",
+        "title": "Luo Lab: Lab Alumni",
+        "accessed": "2026-09-05",
+        "supports": "The official alumni page corroborates Tzumin Lee's full name and association with the lab."
+       }
+      ],
+      "note": "A selected career-wide method contribution predating the publication-count window; both co-developers are credited."
+     },
+     {
+      "id": "teneurin-partner-matching",
+      "value": "Teneurin-mediated synaptic partner matching",
+      "category": "discovery",
+      "year": 2012,
+      "keywords": [
+       "teneurin",
+       "synaptic partner matching",
+       "wiring specificity",
+       "olfactory circuits",
+       "Ten-m",
+       "Ten-a"
+      ],
+      "summary": "Identified Ten-m and Ten-a as molecules instructing matching between selected olfactory receptor neurons and projection neurons in Drosophila, with evidence supporting homophilic recognition.",
+      "attribution": "Luo coauthored the study with Weizhe Hong and Timothy J. Mosca.",
+      "scope": "career-wide",
+      "status": "source-backed",
+      "sources": [
+       {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3345284/",
+        "title": "Teneurins instruct synaptic partner matching in an olfactory map.",
+        "pmid": "22425994",
+        "doi": "10.1038/nature10926",
+        "accessed": "2026-09-05",
+        "supports": "The 2012 Hong, Mosca, and Luo paper reports the Ten-m/Ten-a matching result in the Drosophila olfactory circuit."
+       }
+      ],
+      "note": "A bounded circuit-specific finding, not a claim that one molecule or investigator explains all synaptic specificity."
      }
     ]
    }

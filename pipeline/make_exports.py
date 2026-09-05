@@ -5,14 +5,11 @@ import json
 import sys
 from pathlib import Path
 
-from data_quality import count_available, validate_snapshot
-
-
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from pipeline.profiles import profile_evidence
+from pipeline.profiles import contribution_evidence, profile_evidence
 from pipeline.snapshot import project_snapshot
-from pipeline.data_quality import record_issues
+from pipeline.data_quality import count_available, record_issues, validate_snapshot
 
 
 def write(path, records, years, rows_filter, sort_key, career_year):
@@ -25,7 +22,9 @@ def write(path, records, years, rows_filter, sort_key, career_year):
             'Lab_start_year', 'First_senior_paper', 'Career_stage', 'Count_source',
             'Authorship_measure', 'Career_reference_year', 'Lab_age_source', 'Count_fetched_at', 'Count_method_version',
             'Researcher_ID', 'Publication_model', 'Identity_status', 'Current_institution', 'Institution_status',
-            'HHMI_status', 'HHMI_source_status', 'Topics', 'Methods', 'Organisms',
+            'HHMI_status', 'HHMI_source_status', 'Topics', 'Methods', 'Model_organisms',
+            'Model_organism_status', 'Paper_species_mentions', 'Contribution_titles',
+            'Contribution_keywords', 'Contribution_status',
             'Active_years_in_window', 'CNS_per_active_year', 'Unresolved_papers', 'Source_URLs', 'Review_notes',
             'Faculty_appointment_year', 'Faculty_appointment_status',
         ] + [f'CNS_{year}' for year in years])
@@ -50,13 +49,46 @@ def write(path, records, years, rows_filter, sort_key, career_year):
                 record.get('institution_status', 'unreviewed roster label'),
                 record.get('hhmi_status'), record.get('hhmi_source_status', 'unknown'),
                 '; '.join(record.get('topics', [])), '; '.join(record.get('methods', [])),
-                '; '.join(record.get('organisms', [])), record.get('active_years_in_window'),
+                '; '.join(record.get('model_organisms', [])), record.get('model_organism_status', 'unknown'),
+                '; '.join(record.get('paper_species_mentions', [])),
+                '; '.join(record.get('contribution_titles', [])), '; '.join(record.get('contribution_keywords', [])),
+                record.get('contribution_status', 'not yet curated'), record.get('active_years_in_window'),
                 record.get('cns_per_active_year'), record.get('unresolved_papers', 0),
                 '; '.join(sorted({row['URL'] for row in profile_evidence(record.get('profile', {})) if row['URL']})),
                 ' | '.join(issue['Issue'] for issue in record_issues(record, years)),
                 record.get('faculty_appointment_year'), record.get('faculty_appointment_status', 'unknown'),
             ] + [cby[year] if known else None for year in years])
     return len(rows)
+
+
+def write_profile_exports(directory, records):
+    contribution_columns = [
+        "Researcher_ID", "Name", "Contribution", "Category", "Year", "Keywords", "Summary", "Attribution",
+        "Status", "Scope", "Source", "Source_title", "Accessed", "Supports", "PMID", "DOI", "Note",
+    ]
+    model_columns = ["Researcher_ID", "Name", "Model_organism", "Status", "Scope", "Source", "Accessed", "Supports", "Note"]
+    contributions = []
+    models = []
+    for record in records:
+        identity = {"Researcher_ID": record.get("researcher_id", ""), "Name": record["name"]}
+        profile = record.get("profile", {})
+        contributions.extend({**identity, **item} for item in contribution_evidence(profile))
+        for model in profile.get("model_organisms", []):
+            for source in model.get("sources") or [{}]:
+                models.append({
+                    **identity, "Model_organism": model["value"], "Status": model["status"], "Scope": model["scope"],
+                    "Source": source.get("url", ""), "Accessed": source.get("accessed", ""),
+                    "Supports": source.get("supports", ""), "Note": model.get("note", ""),
+                })
+    for filename, columns, rows in (
+        ("researcher_contributions.csv", contribution_columns, contributions),
+        ("researcher_model_organisms.csv", model_columns, models),
+    ):
+        with (directory / filename).open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.DictWriter(handle, fieldnames=columns, lineterminator="\n")
+            writer.writeheader()
+            writer.writerows(rows)
+        print(f"{filename}: {len(rows)} source rows (career-wide; not count-window filtered)")
 
 
 def main(argv=None):
@@ -82,6 +114,7 @@ def main(argv=None):
         count = write(args.output_dir / filename, data['records'], years, predicate, sort_key,
                       data.get('career_reference_year', max(data['years'])))
         print(f"{filename}: {count}")
+    write_profile_exports(args.output_dir, data["records"])
     return 0
 
 

@@ -10,12 +10,16 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from pipeline.data_quality import audit_dataset, record_issues, validate_snapshot
-from pipeline.profiles import normalize, profile_evidence
+from pipeline.profiles import contribution_evidence, normalize, profile_evidence
 from pipeline.snapshot import project_snapshot
 
 
 st.set_page_config(page_title="Neuro CNS Publication Explorer", layout="wide")
 DATA = Path(__file__).resolve().with_name("neuro_stats.json")
+RESEARCH_CONTEXT_COLUMNS = [
+    "Contribution_titles", "Contribution_keywords", "Contribution_status",
+    "Model_organisms", "Model_organism_status", "Paper_species_mentions",
+]
 
 
 def search_text(value):
@@ -58,7 +62,9 @@ def load(path, file_version, start_year=None, end_year=None):
             if alias["given"].split():
                 names.append(f"{alias['given'].split()[0]} {alias['family']}")
         searchable = [*names, *(normalize(name) for name in names), record["institution"],
-                      record.get("field") or "", record.get("researcher_id") or ""]
+                      record.get("field") or "", record.get("researcher_id") or "",
+                      *record.get("contribution_titles", []), *record.get("contribution_keywords", []),
+                      *record.get("model_organisms", [])]
         faculty = profile.get("career", {}).get("faculty_appointment_year", {})
         proxies = record.get("career_proxies") or profile.get("career_proxies") or {}
         coverage = record.get("count_coverage") or {}
@@ -97,7 +103,12 @@ def load(path, file_version, start_year=None, end_year=None):
             "nonCNS_avg_per_yr": round(totals["noncns"] / len(years), 2) if totals["noncns"] is not None else None,
             "NeuronNatNeuro_total": totals["fieldtier"], "eLife_total": totals["elife"],
             "Topics": record.get("topics", []), "Methods": record.get("methods", []),
-            "Organisms": record.get("organisms", []),
+            "Model_organisms": record.get("model_organisms", []),
+            "Model_organism_status": record.get("model_organism_status", "unknown"),
+            "Paper_species_mentions": record.get("paper_species_mentions", []),
+            "Contribution_titles": record.get("contribution_titles", []),
+            "Contribution_keywords": record.get("contribution_keywords", []),
+            "Contribution_status": record.get("contribution_status", "not yet curated"),
             "Publication_model": record.get("publication_model", "legacy-aggregates"),
             "Window_start": data["years"][0], "Window_end": data["years"][-1],
             "Selected_years": ", ".join(years), "Career_reference_year": data["career_reference_year"],
@@ -177,13 +188,14 @@ def paper_frame(records):
                     "decision": paper.get("decision", default),
                     "reason": paper.get("reason") or paper.get("match") or "Unrecorded legacy decision reason",
                 })
-    return window_columns(pd.DataFrame(rows))
+    return window_columns(pd.DataFrame(rows).drop(columns=["organisms"], errors="ignore"))
 
 
 def included_comparison_frame(records):
     by_pmid = {}
     metadata_fields = ("year", "journal", "title", "last_author", "doi", "publication_types",
-                       "topics", "methods", "organisms", "tag_source", "tag_evidence")
+                       "topics", "methods", "species_mentions", "species_evidence", "species_notes",
+                       "tag_source", "tag_evidence", "tag_method_version")
     for index, record in enumerate(records):
         researcher_id = record.get("researcher_id")
         match_key = researcher_id or f"temporary-legacy-row-{index}"
@@ -204,7 +216,7 @@ def included_comparison_frame(records):
             for field in metadata_fields:
                 if included.get(field) != paper.get(field) and field not in included["metadata_conflicts"]:
                     included["metadata_conflicts"].append(field)
-    return window_columns(pd.DataFrame(by_pmid.values()))
+    return window_columns(pd.DataFrame(by_pmid.values()).drop(columns=["organisms"], errors="ignore"))
 
 
 def doi_link(value):
@@ -251,7 +263,8 @@ def render_paper_comparison(records, key, included_only=False):
     identity_fields = (["matched_researcher_ids", "matched_researchers", "match_reasons", "metadata_conflicts"]
                        if included_only else ["researcher", "researcher_id", "decision", "reason"])
     fields = ["pmid", "title", "journal", "year", "last_author", "publication_types", "tier",
-              "topics", "methods", "organisms", "tag_source", "tag_evidence", *identity_fields, "doi", "url", "doi_url"]
+              "topics", "methods", "species_mentions", "species_evidence", "species_notes",
+              "tag_source", "tag_evidence", "tag_method_version", *identity_fields, "doi", "url", "doi_url"]
     comparison = selected.reindex(columns=fields).copy()
     for column in comparison:
         comparison[column] = comparison[column].map(
@@ -269,9 +282,103 @@ def render_paper_comparison(records, key, included_only=False):
         if pd.notna(paper["doi_url"]):
             st.link_button(f"DOI · PMID {paper['pmid']}{context}", paper["doi_url"])
     st.caption("Last author is the saved matched name, not a full byline or verified corresponding author. "
-               "Metadata comparison is not an assessment of paper quality. Tags are rule-inferred, not curated expertise.")
+               "Metadata comparison is not an assessment of paper quality. Tags are rule-inferred, not curated expertise. "
+               "Paper species mentions do not define a lab's models or establish human study participants; "
+               "species_evidence and species_notes retain the matched text and its limitations.")
     st.download_button("Download selected paper comparison CSV", csv_bytes(selected),
                        f"paper_comparison_{PERIOD}.csv", "text/csv", key=f"{key}_download")
+
+
+def render_contribution_rows(rows):
+    previous = None
+    for item in rows:
+        claim = tuple(item[field] for field in (
+            "Contribution", "Category", "Year", "Keywords", "Summary", "Attribution", "Status", "Scope", "Note"))
+        if claim != previous:
+            year = item["Year"] if item["Year"] is not None else "year unknown"
+            st.markdown(f"**{item['Contribution']}** · {item['Category']} · {year}")
+            st.caption(f"Keywords: {item['Keywords']} · Status: {item['Status']} · Scope: {item['Scope']}")
+            st.markdown(item["Summary"])
+            st.markdown(f"**Team attribution:** {item['Attribution']}")
+            if item["Note"]:
+                st.caption(item["Note"])
+            previous = claim
+        if item["Source"]:
+            st.markdown(f"[{item['Source_title'] or 'Source'}]({item['Source']}) · "
+                        f"**Accessed:** {item['Accessed']}")
+            st.caption(f"Supports: {item['Supports']}")
+        else:
+            st.caption("Source: unrecorded · Access date: unknown")
+
+
+def render_research_context(record, row):
+    profile = record.get("profile") or {}
+    st.subheader("Selected discoveries & contributions")
+    st.caption("Career-wide, source-backed examples, independent of the publication-count window and last-author "
+               "ledger. This is not a complete contribution list, a ranking, or a claim of sole-inventor credit; "
+               "summaries and team roles are limited to the cited sources.")
+    contributions = contribution_evidence(profile)
+    sourced = [item for item in contributions if item["Status"] == "source-backed"]
+    unreviewed = [item for item in contributions if item["Status"] != "source-backed"]
+    if sourced:
+        render_contribution_rows(sourced)
+    elif unreviewed:
+        st.info("Contribution profile: unreviewed. No source-backed examples are curated yet; "
+                "the claims below are not established contributions.")
+    else:
+        st.info("Selected contributions: not yet curated. Missing entries do not mean a researcher has made no contributions.")
+    if unreviewed:
+        with st.expander("Unreviewed contribution claims (not established)"):
+            st.warning("These claims are unreviewed, not established contributions. They are excluded from "
+                       "contribution search and keyword filters.")
+            render_contribution_rows(unreviewed)
+    if contributions:
+        exported = window_columns(pd.DataFrame(contributions).assign(
+            Researcher_ID=row["Researcher_ID"], Name=row["Name"]))
+        st.download_button("Download contribution claims CSV", csv_bytes(exported),
+                           f"contribution_claims_{row['Researcher_ID']}_{PERIOD}.csv", "text/csv")
+        st.caption("Contribution CSV includes claim status, attribution and career-wide scope. Window columns record "
+                   "the current publication-count selection, not the dates eligible for this contribution profile.")
+
+    st.subheader("Lab models — source-backed")
+    st.caption("Career-wide profile metadata, not inferred from paper tags. Lab research and historical research "
+               "scopes and source access dates are retained; this is not a complete or necessarily current lab inventory.")
+    models = [
+        {"Model_organism": item["value"], "Status": item["status"], "Scope": item["scope"],
+         "Source": source.get("url", ""), "Accessed": source.get("accessed", ""),
+         "Supports": source.get("supports", ""), "Note": item.get("note", "")}
+        for item in profile.get("model_organisms", []) for source in item.get("sources") or [{}]
+    ]
+    sourced_models = [item for item in models if item["Status"] == "source-backed"]
+    unreviewed_models = [item for item in models if item["Status"] != "source-backed"]
+    model_columns = {"Source": st.column_config.LinkColumn("Source")}
+    if sourced_models:
+        for model in profile.get("model_organisms", []):
+            if model["status"] == "source-backed":
+                st.markdown(f"**{model['value']}** · **Scope:** {model['scope']} · source-backed")
+                if model.get("note"):
+                    st.caption(model["note"])
+        st.dataframe(pd.DataFrame(sourced_models), column_config=model_columns,
+                     use_container_width=True, hide_index=True)
+    elif unreviewed_models:
+        st.info("Lab model metadata: unreviewed. The available claims do not establish source-backed lab models.")
+    else:
+        st.info("Lab model metadata: unknown / not yet curated. Missing metadata is not evidence that a researcher "
+                "does not use a species.")
+    if unreviewed_models:
+        with st.expander("Unreviewed model claims (not established)"):
+            st.warning("These model claims are unreviewed and excluded from model search and filters.")
+            st.dataframe(pd.DataFrame(unreviewed_models), column_config=model_columns,
+                         use_container_width=True, hide_index=True)
+    if models:
+        exported = window_columns(pd.DataFrame(models).assign(Researcher_ID=row["Researcher_ID"], Name=row["Name"]))
+        st.download_button("Download lab-model claims CSV", csv_bytes(exported),
+                           f"model_claims_{row['Researcher_ID']}_{PERIOD}.csv", "text/csv")
+    mentions = ", ".join(row["Paper_species_mentions"]) or "unclassified / no saved mentions"
+    st.markdown(f"**Paper species mentions — {PERIOD} (not lab models):** {mentions}")
+    st.caption("These are mentions in included papers within the selected publication window, not lab-model claims. "
+               "MeSH Humans or disease relevance does not establish human participants. Matched text, evidence origin "
+               "and caveats are shown in the counted-paper evidence below.")
 
 
 def render_profile(record, row):
@@ -333,7 +440,7 @@ def render_profile(record, row):
             st.info("Affiliation history is unknown; no current institution is inferred.")
         evidence = pd.DataFrame(profile_evidence(profile))
         evidence["Value"] = evidence["Value"].map(lambda value: "unknown" if pd.isna(value) else str(value))
-        st.markdown("**Claim provenance — identity, aliases, ORCID, career, HHMI and awards**")
+        st.markdown("**Claim provenance — identity, aliases, ORCID, career, HHMI, awards, lab models and contributions**")
         st.dataframe(evidence, column_config={"URL": st.column_config.LinkColumn("Source URL")},
                      use_container_width=True, hide_index=True)
         exported = window_columns(evidence.assign(Researcher_ID=row["Researcher_ID"], Name=row["Name"]))
@@ -350,7 +457,8 @@ def render_evidence(record, row):
                f"Method: {record.get('count_method_version') or 'legacy/unversioned'} · "
                f"Source coverage: {row['Source_coverage']} · Selected-window coverage: {row['Annual_coverage']}")
     st.caption("Included papers represent heuristic last-author matches, not verified corresponding authorships. "
-               "Excluded and unresolved candidates do not contribute to any total.")
+               "Excluded and unresolved candidates do not contribute to any total. Paper species mentions are "
+               "rule-inferred text evidence, not lab models or proof of human study participants.")
     if row["Publication_model"] == "unresolved-identity":
         st.info("This identity cannot yet be resolved from full given names or a sourced ORCID. "
                 "Legacy aggregates are archived and are not used as established publication counts.")
@@ -376,7 +484,8 @@ def render_evidence(record, row):
                               else ~papers["decision"].eq("included")]
         if not selected.empty:
             columns = ["year", "pmid", "journal", "tier", "title", "publication_types", "last_author", "decision", "reason",
-                       "given_name_warning", "topics", "methods", "organisms", "tag_source", "tag_evidence", "doi", "url"]
+                       "given_name_warning", "topics", "methods", "species_mentions", "species_evidence", "species_notes",
+                       "tag_source", "tag_evidence", "tag_method_version", "doi", "url"]
             st.dataframe(selected.reindex(columns=columns),
                          column_config={"url": st.column_config.LinkColumn("PubMed / source")},
                          use_container_width=True, hide_index=True)
@@ -444,7 +553,8 @@ st.caption(
 st.caption(
     f"Snapshot built: {snapshot.get('generated', 'unrecorded')} · Selected publication years: {', '.join(YEARS)} "
     f"({N_YEARS} {'year' if N_YEARS == 1 else 'years'}) · Career reference year: {CAREER_YEAR}. "
-    "A build date is not a source-retrieval date. All counts, trajectories and exports use this selected window."
+    "A build date is not a source-retrieval date. Publication counts and trajectories use this selected window; "
+    "contribution and lab-model profiles are career-wide."
 )
 if snapshot.get("partial_calendar_year") or (published.get("partial_calendar_year")
                                             and published_years[-1] in snapshot["years"]):
@@ -470,9 +580,14 @@ with st.expander("Methodology and limitations"):
         "Unified counts derive every tier, including other non-CNS journals, from the same included-paper list. "
         "Legacy aggregate sources can differ in date and author-matching policies. Window averages divide by selected "
         "publication years, not lab activity, and incomplete calendar years are not annualized.\n\n"
-        "**Discovery tags:** topics, methods and organisms are rule-inferred from saved included-paper titles, MeSH "
-        "headings and keywords. Coverage is limited and false positives/negatives are possible. Untagged researchers "
-        "are not assumed to lack that expertise. Tags are recomputed from papers inside the selected window.\n\n"
+        "**Profile research context:** contribution titles/keywords and lab models enter search and filters only "
+        "with source-backed profile claims. They are career-wide selected examples, unaffected by publication years, "
+        "not a complete contribution list or sole-inventor attribution. Missing profiles are not yet curated / "
+        "unknown, not evidence of no contributions or models.\n\n"
+        "**Paper tags:** topics, methods and species mentions are rule-inferred from saved included-paper titles, "
+        "MeSH headings and keywords within the selected window. Species mentions are not lab models or proof of "
+        "study participants; MeSH Humans alone does not establish even a Human mention. Coverage is limited and "
+        "false positives/negatives are possible. Untagged researchers are not assumed to lack that expertise.\n\n"
         "**Interpretation:** use this for discovery, not journal-based judgments about scientists. "
         "[DORA's research-assessment recommendations](https://sfdora.org/read/)."
     )
@@ -488,19 +603,33 @@ st.sidebar.caption("Institution includes sourced current appointments and unrevi
                    "see Institution_status. Group and career stage can be legacy cohort labels.")
 award_opts = sorted({a for value in df["Awards"] for a in value.split(", ") if a})
 awards_sel = st.sidebar.multiselect("Award", award_opts, key="awards")
-name_q = st.sidebar.text_input("Search name / institution / field", key="search",
-                               help="Also matches recorded name aliases, bibliographic forms, and stable researcher IDs.")
+name_q = st.sidebar.text_input("Search name / institution / field / contributions", key="search",
+                               help="Also matches recorded name aliases, bibliographic forms, stable researcher IDs, "
+                                    "and source-backed contribution titles/keywords and lab models (career-wide). "
+                                    "Unreviewed research claims are not promoted to search.")
 tag_selections = {}
-for column, label in (("Topics", "Topic"), ("Methods", "Method"), ("Organisms", "Organism")):
-    options = sorted({tag for tags in df[column] for tag in tags})
-    key = column.lower()
-    removed = retain_choices(key, options)
-    if removed:
-        st.sidebar.info(f"{label} selection cleared because no included papers in this window carry: {', '.join(removed)}.")
-    tag_selections[column] = st.sidebar.multiselect(label, options, key=key)
-st.sidebar.caption("Tags are rule-inferred from included papers in this window, not verified expertise. "
+for heading, fields, career_wide in (
+    ("Career-wide profile context", (("Contribution_keywords", "Contribution keyword (source-backed)"),
+                                    ("Model_organisms", "Lab model (source-backed)")), True),
+    ("Selected-window paper tags", (("Topics", "Topic"), ("Methods", "Method"),
+                                   ("Paper_species_mentions", "Paper species mention (not lab model)")), False),
+):
+    st.sidebar.markdown(f"**{heading}**")
+    for column, label in fields:
+        options = sorted({tag for tags in df[column] for tag in tags}, key=str.casefold)
+        key = column.lower()
+        removed = retain_choices(key, options)
+        if removed:
+            reason = ("source-backed profile metadata no longer includes" if career_wide
+                      else "no included papers in this window carry")
+            st.sidebar.info(f"{label} selection cleared because {reason}: {', '.join(removed)}.")
+        tag_selections[column] = st.sidebar.multiselect(label, options, key=key)
+    if career_wide:
+        st.sidebar.caption("Sourced contribution keywords and lab models do not change with the publication window. "
+                           "Unknown / uncurated profiles stay visible unless a profile filter is selected.")
+st.sidebar.caption("Paper tags are rule-inferred mentions, not verified expertise or lab models. "
                    "Limited coverage: untagged people stay visible unless a tag is selected. "
-                   "OR within each category; AND across topic, method and organism.")
+                   "OR within each category; AND across all profile and paper-tag categories.")
 maximum = int(df["CNS_total"].max()) if df["CNS_total"].notna().any() else 0
 min_cns = st.sidebar.slider("Min CNS total", 0, max(1, maximum), 0, key="min_cns")
 min_cns_years = st.sidebar.slider("Min CNS years covered", 0, N_YEARS, 0, key="min_cns_years")
@@ -542,10 +671,14 @@ if f["Coverage_status"].eq("Incomplete selected window").any():
 if f["Publication_model"].eq("legacy-aggregates").any():
     st.caption(f"{int(f['Publication_model'].eq('legacy-aggregates').sum())} selected records use legacy aggregates, "
                "not unified all-journal paper evidence. Source and identity review status remain visible.")
-tagged = int(f[["Topics", "Methods", "Organisms"]].apply(
+tagged = int(f[["Topics", "Methods", "Paper_species_mentions"]].apply(
     lambda row: any(bool(tags) for tags in row), axis=1).sum())
-st.caption(f"Discovery tag coverage in this window: {tagged}/{len(f)} selected researchers have at least one "
-           "rule-inferred included-paper tag. Missing tags mean unclassified, not absence of a topic or method.")
+st.caption(f"Paper-tag coverage in this window: {tagged}/{len(f)} selected researchers have at least one "
+           "rule-inferred included-paper tag. Missing tags mean unclassified, not absence of a topic, method or species.")
+st.caption(f"Career-wide source-backed profiles in the selected cohort: "
+           f"{int(f['Contribution_status'].eq('source-backed examples').sum())}/{len(f)} with selected contributions; "
+           f"{int(f['Model_organism_status'].eq('source-backed examples').sum())}/{len(f)} with lab-model metadata. "
+           "Missing curation is unknown, not evidence of no contributions or models.")
 view = st.radio("View", ["Table", "Rankings", "Researcher detail", "CNS vs non-CNS", "Rising stars", "Data quality", "Compare"],
                 horizontal=True, key="view")
 if f.empty:
@@ -557,7 +690,7 @@ if view == "Table":
     sort_col = st.selectbox("Sort by", ["CNS_total", "nonCNS_total", "CNS_years_covered", "Name"])
     show = f.sort_values(sort_col, ascending=(sort_col == "Name"), na_position="last")
     columns = ["Name", "Researcher_ID", "Group", "Institution", "Institution_status", "Identity_status",
-               "Field", "Topics", "Methods", "Organisms", "Awards", "CNS_total", "NeuronNatNeuro_total",
+               "Field", *RESEARCH_CONTEXT_COLUMNS, "Topics", "Methods", "Awards", "CNS_total", "NeuronNatNeuro_total",
                "eLife_total", "nonCNS_total", "Count_status", "CNS_gap_years", "Career_stage",
                "Lab_start_year", "Lab_start_status", "Faculty_appointment_year", "Faculty_appointment_status",
                "Lab_age", "Lab_age_source", "Publication_model",
@@ -603,6 +736,7 @@ elif view == "Researcher detail":
     st.markdown(f"**{row['Name']}** — {row['Institution']} · _{row['Field']}_ · **{row['Group']}**")
     if row["Awards"]:
         st.markdown(f"🏅 **Award/cohort labels:** {row['Awards']} (claim sources below)")
+    render_research_context(record, row)
     for column, label, key in zip(st.columns(4),
                                   ["CNS", "Neuron + Nat Neurosci", "eLife", "non-CNS (includes subsets)"],
                                   ["CNS_total", "NeuronNatNeuro_total", "eLife_total", "nonCNS_total"]):
@@ -626,7 +760,8 @@ elif view == "Researcher detail":
 elif view == "Compare":
     st.subheader("Compare researchers")
     st.caption("Choose 2–4 filtered researchers by stable ID. Compare publication metadata and coverage, "
-               "not research quality. All sidebar filters and the selected publication window apply.")
+               "not research quality. All sidebar filters apply. Counts and paper species mentions use the selected "
+               "publication window; sourced contributions and lab models remain career-wide.")
     options = f.sort_values(["Name", "UI_key"])["UI_key"].tolist()
     retain_choices("compare_researcher_ids", options, options[:2])
     chosen = st.multiselect("Researchers to compare (2–4)", options, key="compare_researcher_ids",
@@ -649,6 +784,7 @@ elif view == "Compare":
         if comparison["Evidence_needs_refresh"].any():
             st.warning("Some saved evidence predates profile matching changes and needs refresh; the app does not fetch updates.")
         columns = ["Name", "Researcher_ID", "Institution", "Institution_status", "Identity_status", "Publication_model",
+                   *RESEARCH_CONTEXT_COLUMNS,
                    "CNS_total", "nonCNS_total", "NeuronNatNeuro_total", "eLife_total",
                    "CNS_avg_per_yr", "nonCNS_avg_per_yr", "CNS_per_active_year", "Active_years_in_window",
                    "Lab_start_year", "Lab_start_status", "Faculty_appointment_year", "Faculty_appointment_status",
@@ -706,7 +842,8 @@ elif view == "CNS vs non-CNS":
 elif view == "Rising stars":
     st.subheader("🌟 Early-career candidates and award cohorts")
     st.caption(f"All sidebar filters apply here too. Award/cohort labels can be historical or unreviewed. "
-               f"Only source-backed lab starts establish independence; other career dates are proxies as of {CAREER_YEAR}.")
+               f"Only source-backed lab starts establish independence; other career dates are proxies as of {CAREER_YEAR}. "
+               "Contributions and lab models are career-wide profile claims, separate from selected-window paper mentions.")
     rs = f[f["Group"].isin(["rising-star", "early-career awardee"]) | (f["N_awards"] > 0)].copy()
     ca, cb = st.columns(2)
     max_age = ca.slider("Max career age / proxy (yrs)", 3, 20, 12, key="rs_age")
@@ -720,7 +857,7 @@ elif view == "Rising stars":
                "Faculty_appointment_year", "Faculty_appointment_status",
                "ORCID_employment_year", "First_senior_paper", "Lab_age", "Lab_age_source", "CNS_total", "nonCNS_total",
                "Career_stage", "Count_status", "Identity_status", "Publication_model", "Annual_coverage",
-               "Topics", "Methods", "Organisms"]
+               *RESEARCH_CONTEXT_COLUMNS, "Topics", "Methods"]
     st.dataframe(rs[columns], use_container_width=True, height=460)
     plot = rs.copy()
     plot["Start"] = CAREER_YEAR - pd.to_numeric(plot["Lab_age"])
@@ -748,7 +885,9 @@ elif view == "Data quality":
                    f"{coverage.get('unified_evidence', 'unknown')} with unified evidence; "
                    f"{coverage.get('source_backed_identities', 'unknown')} source-backed identities; "
                    f"{coverage.get('source_backed_lab_starts', 'unknown')} source-backed independent-lab starts; "
-                   f"{coverage.get('source_backed_award_claims', 'unknown')} source-backed award claims.")
+                   f"{coverage.get('source_backed_award_claims', 'unknown')} source-backed award claims; "
+                   f"{coverage.get('source_backed_contribution_profiles', 'unknown')} source-backed contribution profiles; "
+                   f"{coverage.get('source_backed_model_profiles', 'unknown')} source-backed model profiles.")
     else:
         st.caption("Legacy snapshot: registry-wide source-coverage metadata is unavailable.")
     coverage_columns = st.columns(4)
@@ -756,12 +895,26 @@ elif view == "Data quality":
     coverage_columns[1].metric("Selected unified evidence", int(f["Publication_model"].eq("unified-papers").sum()))
     coverage_columns[2].metric("Source-backed identities", int(f["Identity_status"].eq("source-backed").sum()))
     coverage_columns[3].metric("Source-backed lab starts", int(f["Lab_start_verified"].sum()))
+    context_columns = st.columns(4)
+    context_columns[0].metric("Source-backed contribution profiles",
+                              int(f["Contribution_status"].eq("source-backed examples").sum()))
+    context_columns[1].metric("Contributions not yet curated", int(f["Contribution_status"].eq("not yet curated").sum()))
+    context_columns[2].metric("Source-backed model profiles",
+                              int(f["Model_organism_status"].eq("source-backed examples").sum()))
+    context_columns[3].metric("Model metadata unknown", int(f["Model_organism_status"].eq("unknown").sum()))
+    st.caption("Research-context coverage is career-wide and source-backed, not inferred from the selected papers. "
+               "Unknown model metadata is not proof that a researcher does not use a species. Selected contributions "
+               "are non-exhaustive examples; unreviewed claims are not promoted to search or model/keyword filters.")
     st.markdown("**Selected cohort coverage and source-review gaps**")
     gaps = pd.DataFrame([
         {"Review area": "Incomplete publication-window coverage", "Researchers": int(f["Coverage_status"].eq("Incomplete selected window").sum())},
         {"Review area": "Identity not source-backed", "Researchers": int(f["Identity_status"].ne("source-backed").sum())},
         {"Review area": "Independent-lab start unknown / unreviewed", "Researchers": int((~f["Lab_start_verified"]).sum())},
         {"Review area": "Current institution not source-backed", "Researchers": int(f["Current_institution"].isna().sum())},
+        {"Review area": "Contribution profiles not yet curated", "Researchers": int(f["Contribution_status"].eq("not yet curated").sum())},
+        {"Review area": "Contribution profiles with only unreviewed claims", "Researchers": int(f["Contribution_status"].eq("unreviewed").sum())},
+        {"Review area": "Lab model metadata unknown", "Researchers": int(f["Model_organism_status"].eq("unknown").sum())},
+        {"Review area": "Lab model profiles with only unreviewed claims", "Researchers": int(f["Model_organism_status"].eq("unreviewed").sum())},
         {"Review area": "Legacy, not unified paper evidence", "Researchers": int(f["Publication_model"].ne("unified-papers").sum())},
         {"Review area": "Evidence needs refresh after profile edits", "Researchers": int(f["Evidence_needs_refresh"].sum())},
         {"Review area": "Unresolved candidate papers", "Researchers": int(f["Unresolved_papers"].gt(0).sum())},

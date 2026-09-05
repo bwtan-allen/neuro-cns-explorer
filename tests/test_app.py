@@ -40,19 +40,39 @@ def ui_claim(value=None, status=None):
     }
 
 
-def ui_paper(pmid, year, tier="cns", topics=(), methods=(), organisms=(), **overrides):
+def ui_contribution(key, title, year, keywords, category="tool", status="source-backed", **overrides):
+    return {
+        **ui_claim(title, status), "id": key, "category": category, "year": year,
+        "summary": f"Synthetic source-bounded summary for {title}.",
+        "attribution": "Fixture Author contributed with the first author and collaborating team; not sole-inventor credit.",
+        "keywords": list(keywords), "scope": "career-wide", **overrides,
+    }
+
+
+def ui_model(value, scope="lab research", status="source-backed"):
+    return {**ui_claim(value, status), "scope": scope}
+
+
+def ui_paper(pmid, year, tier="cns", topics=(), methods=(), species_mentions=(), **overrides):
     return {
         "pmid": str(pmid), "year": year, "journal": "Fixture journal", "title": f"Fixture paper {pmid}",
         "tier": tier, "doi": f"10.0000/fixture.{pmid}", "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
         "last_author": "Fixture Author", "match": "full_name_and_affiliation",
         "publication_types": ["Journal Article"], "topics": list(topics), "methods": list(methods),
-        "organisms": list(organisms), "tag_source": "title/MeSH/keywords (rule-inferred)",
+        "mesh": [], "keywords": list(species_mentions), "species_mentions": list(species_mentions),
+        "species_evidence": {
+            label: [{"source": "keyword", "text": label, "matched_terms": [label.casefold()]}]
+            for label in species_mentions
+        },
+        "species_notes": [], "tag_method_version": 2,
+        "tag_source": "title/MeSH/keywords; species mentions are not lab models or proof of study participants",
         "tag_evidence": {f"topics:{topic}": ["fixture evidence"] for topic in topics},
         **overrides,
     }
 
 
-def ui_record(number, name=None, institution=None, papers=(), lab_start=2018, source_backed=True):
+def ui_record(number, name=None, institution=None, papers=(), lab_start=2018, source_backed=True,
+              contributions=None, model_organisms=None):
     name = name or f"Researcher {number}"
     institution = institution or f"Institute {number}"
     profile = {
@@ -71,6 +91,10 @@ def ui_record(number, name=None, institution=None, papers=(), lab_start=2018, so
         "hhmi": ui_claim("Fixture HHMI cohort", "unreviewed"),
         "awards": [{"year": 2019, **ui_claim("Fixture Award")}], "paper_overrides": [], "legacy_keys": [],
     }
+    if contributions is not None:
+        profile["contributions"] = contributions
+    if model_organisms is not None:
+        profile["model_organisms"] = model_organisms
     annual = {
         prefix: {str(year): sum(paper["year"] == year and paper["tier"] in tiers for paper in papers)
                  for year in (2019, 2020)}
@@ -91,16 +115,22 @@ def ui_record(number, name=None, institution=None, papers=(), lab_start=2018, so
 
 
 def ui_snapshot(*records):
-    return {
-        **snapshot(*records), "schema_version": 3,
+    return project_snapshot({
+        **snapshot(*records), "schema_version": 4, "tag_method_version": 2,
         "coverage": {
             "registered": len(records),
             "unified_evidence": sum(row.get("publication_model") == "unified-papers" for row in records),
             "source_backed_identities": sum(row["identity_status"] == "source-backed" for row in records),
             "source_backed_lab_starts": sum(
                 row["profile"]["career"]["lab_start_year"]["status"] == "source-backed" for row in records),
+            "source_backed_contribution_profiles": sum(
+                any(item["status"] == "source-backed" for item in row["profile"].get("contributions", []))
+                for row in records),
+            "source_backed_model_profiles": sum(
+                any(item["status"] == "source-backed" for item in row["profile"].get("model_organisms", []))
+                for row in records),
         },
-    }
+    })
 
 
 def discovery_records():
@@ -108,15 +138,23 @@ def discovery_records():
     sensory = ("Sensory systems",)
     imaging = ("Imaging and microscopy",)
     first = ui_record(1, papers=[
-        ui_paper(101, 2019, topics=memory, methods=("Optogenetics",), organisms=("Mouse",)),
-        *[ui_paper(pmid, 2020, tier, topics=sensory, methods=imaging, organisms=("Human",))
+        ui_paper(101, 2019, topics=memory, methods=("Optogenetics",), species_mentions=("Mouse",)),
+        *[ui_paper(pmid, 2020, tier, topics=sensory, methods=imaging, species_mentions=("Human",))
           for pmid, tier in ((102, "cns"), (103, "cns"), (104, "field"), (105, "elife"), (106, "other"))],
+    ], model_organisms=[ui_model("Mouse")], contributions=[
+        ui_contribution("scanimage", "ScanImage acquisition software", 2003, ("ScanImage",)),
+        ui_contribution("alm", "ALM preparatory activity", 2016, ("ALM",), category="discovery"),
     ])
     second = ui_record(2, papers=[
-        ui_paper(201, 2019, topics=memory, methods=("Electrophysiology",), organisms=("Mouse",)),
+        ui_paper(201, 2019, topics=memory, methods=("Electrophysiology",), species_mentions=("Mouse",)),
         ui_paper(202, 2020, "other", topics=("Neural circuits and behavior",),
-                 methods=("Computational modeling",), organisms=("Rat",)),
-    ], lab_start=None, source_backed=False)
+                 methods=("Computational modeling",), species_mentions=("Rat",)),
+    ], lab_start=None, source_backed=False, model_organisms=[ui_model("Drosophila", scope="historical research")],
+        contributions=[
+            ui_contribution("marcm", "MARCM clonal labeling", 1999, ("MARCM",)),
+            ui_contribution("trap2", "TRAP2 activity-dependent labeling", 2019, ("TRAP2",)),
+            ui_contribution("teneurins", "Teneurin partner matching", 2012, ("teneurins",), category="discovery"),
+        ])
     third = ui_record(3, papers=[ui_paper(301, 2020)], lab_start=None)
     return first, second, third
 
@@ -275,7 +313,8 @@ class AppTests(unittest.TestCase):
         self.assertNotIn("CNS_2020", exported.columns)
         self.assertEqual(json.loads(exported.loc["Researcher 1", "Topics"]), ["Learning and memory"])
         self.assertEqual(self.app.sidebar.multiselect(key="topics").options, ["Learning and memory"])
-        self.assertEqual(self.app.sidebar.multiselect(key="organisms").options, ["Mouse"])
+        self.assertEqual(self.app.sidebar.multiselect(key="paper_species_mentions").options, ["Mouse"])
+        self.assertEqual(self.app.sidebar.multiselect(key="model_organisms").options, ["Drosophila", "Mouse"])
         self.assertNotIn("Imaging and microscopy", self.app.sidebar.multiselect(key="methods").options)
         self.app.radio(key="view").set_value("Researcher detail").run()
         self.assertEqual(self.metric("CNS"), "1")
@@ -295,13 +334,285 @@ class AppTests(unittest.TestCase):
         self.assertEqual(self.metric("Researchers"), "2")
         self.app.sidebar.multiselect(key="methods").set_value(["Optogenetics", "Electrophysiology"]).run()
         self.assertEqual(self.metric("Researchers"), "2")
-        self.app.sidebar.multiselect(key="organisms").set_value(["Human"]).run()
+        self.app.sidebar.multiselect(key="paper_species_mentions").set_value(["Human"]).run()
         self.assertEqual(self.metric("Researchers"), "1")
         self.assertEqual(self.app.dataframe[0].value["Name"].tolist(), ["Researcher 1"])
         self.app.sidebar.multiselect(key="methods").set_value(["Electrophysiology"]).run()
         self.assertEqual(self.metric("Researchers"), "0")
         self.assertFalse(self.app.exception)
         self.assertTrue(any("Limited coverage" in item.value for item in self.app.sidebar.caption))
+
+    def test_legacy_mesh_humans_and_mouse_disease_paper_do_not_define_human_lab_models(self):
+        paper = ui_paper(701, 2020, title="Memory deficits in a mouse model of Alzheimer's disease",
+                         mesh=["Humans", "Mice", "Alzheimer Disease"])
+        for field in ("tag_method_version", "species_mentions", "species_evidence", "species_notes"):
+            paper.pop(field)
+        paper["organisms"] = ["Human", "Mouse"]
+        sourced = ui_record(1, papers=[paper], model_organisms=[ui_model("Mouse")])
+        unknown = ui_record(2, papers=[paper])
+        for row in (sourced, unknown):
+            row["organisms"] = ["Human", "Mouse"]
+        self.replace_snapshot({**snapshot(sourced, unknown), "schema_version": 3})
+        self.assertEqual(self.app.sidebar.multiselect(key="model_organisms").label, "Lab model (source-backed)")
+        self.assertEqual(self.app.sidebar.multiselect(key="model_organisms").options, ["Mouse"])
+        self.assertEqual(self.app.sidebar.multiselect(key="paper_species_mentions").options, ["Mouse"])
+        exported = self.download("Download filtered CSV").set_index("Researcher_ID")
+        self.assertEqual(json.loads(exported.loc[sourced["researcher_id"], "Model_organisms"]), ["Mouse"])
+        self.assertEqual(json.loads(exported.loc[unknown["researcher_id"], "Model_organisms"]), [])
+        self.assertEqual(exported.loc[unknown["researcher_id"], "Model_organism_status"], "unknown")
+        self.assertNotIn("Organisms", exported.columns)
+        self.app.radio(key="view").set_value("Researcher detail").run()
+        counted = self.download("Download counted-paper CSV").iloc[0]
+        self.assertEqual(json.loads(counted["species_mentions"]), ["Mouse"])
+        self.assertNotIn("Human", json.loads(counted["species_evidence"]))
+        self.assertTrue(any("MeSH 'Humans'" in note for note in json.loads(counted["species_notes"])))
+        self.assertEqual(counted["tag_method_version"], 2)
+        self.assertNotIn("organisms", counted.index)
+
+    def test_lab_models_and_paper_mentions_are_distinct_filters(self):
+        human_cells = ui_record(4, model_organisms=[ui_model("Human-derived cells/tissue")])
+        self.replace_snapshot(ui_snapshot(*discovery_records(), human_cells))
+        self.assertEqual(self.metric("Researchers"), "4")
+        self.assertEqual(self.app.sidebar.multiselect(key="paper_species_mentions").label,
+                         "Paper species mention (not lab model)")
+        self.assertIn("Human", self.app.sidebar.multiselect(key="paper_species_mentions").options)
+        self.assertNotIn("Human", self.app.sidebar.multiselect(key="model_organisms").options)
+        self.assertNotIn("Drosophila", self.app.sidebar.multiselect(key="paper_species_mentions").options)
+        self.app.sidebar.multiselect(key="paper_species_mentions").set_value(["Human"]).run()
+        self.assertEqual(self.app.dataframe[0].value["Name"].tolist(), ["Researcher 1"])
+        self.app.sidebar.multiselect(key="model_organisms").set_value(["Drosophila"]).run()
+        self.assertEqual(self.metric("Researchers"), "0")
+        self.app.sidebar.multiselect(key="paper_species_mentions").set_value([]).run()
+        self.assertEqual(self.app.dataframe[0].value["Name"].tolist(), ["Researcher 2"])
+        self.app.sidebar.multiselect(key="model_organisms").set_value(["Mouse", "Drosophila"]).run()
+        self.assertEqual(self.metric("Researchers"), "2")
+        self.app.sidebar.multiselect(key="paper_species_mentions").set_value(["Mouse"]).run()
+        self.assertEqual(self.metric("Researchers"), "2")
+        self.app.sidebar.multiselect(key="paper_species_mentions").set_value([])
+        self.app.sidebar.multiselect(key="model_organisms").set_value(["Human-derived cells/tissue"]).run()
+        self.assertEqual(self.app.dataframe[0].value["Name"].tolist(), ["Researcher 4"])
+        self.assertEqual(self.app.dataframe[0].value["CNS_total"].tolist(), [0])
+
+    def test_only_source_backed_research_claims_enter_search_and_filters(self):
+        first, _, unknown = discovery_records()
+        first["profile"]["contributions"].append(
+            ui_contribution("unverified-mixed", "Unverified mixed claim", 2010, ("UnverifiedKeyword",),
+                            status="unreviewed"))
+        first["profile"]["model_organisms"].append(ui_model("Zebrafish", status="unreviewed"))
+        unreviewed = ui_record(4, contributions=[
+            ui_contribution("unconfirmed", "Unconfirmed discovery", None, ("UnconfirmedKeyword",), status="unreviewed")
+        ], model_organisms=[ui_model("C. elegans", status="unreviewed")])
+        self.replace_snapshot(ui_snapshot(first, unknown, unreviewed))
+        self.assertEqual(self.app.sidebar.multiselect(key="contribution_keywords").options, ["ALM", "ScanImage"])
+        self.assertEqual(self.app.sidebar.multiselect(key="model_organisms").options, ["Mouse"])
+        exported = self.download("Download filtered CSV").set_index("Researcher_ID")
+        self.assertEqual(json.loads(exported.loc[first["researcher_id"], "Contribution_keywords"]), ["ALM", "ScanImage"])
+        self.assertEqual(json.loads(exported.loc[first["researcher_id"], "Model_organisms"]), ["Mouse"])
+        self.assertEqual(exported.loc[unreviewed["researcher_id"], "Contribution_status"], "unreviewed")
+        self.assertEqual(exported.loc[unreviewed["researcher_id"], "Model_organism_status"], "unreviewed")
+        for query, matches in (
+            ("ScanImage acquisition software", "1"), ("ScanImage", "1"), ("Mouse", "1"),
+            ("Unverified mixed claim", "0"), ("UnverifiedKeyword", "0"), ("Zebrafish", "0"),
+            ("Unconfirmed discovery", "0"), ("UnconfirmedKeyword", "0"), ("C. elegans", "0"),
+        ):
+            with self.subTest(query=query):
+                self.app.sidebar.text_input(key="search").set_value(query).run()
+                self.assertFalse(self.app.exception)
+                self.assertEqual(self.metric("Researchers"), matches)
+        self.app.sidebar.text_input(key="search").set_value("")
+        self.app.radio(key="view").set_value("Researcher detail").run()
+        self.assertTrue(any(item.label == "Unreviewed contribution claims (not established)" for item in self.app.expander))
+        self.assertTrue(any("unreviewed, not established contributions" in item.value for item in self.app.warning))
+        contributions = self.download("Download contribution claims CSV").set_index("Contribution")
+        self.assertEqual(contributions.loc["Unverified mixed claim", "Status"], "unreviewed")
+        self.assertIn("Fixture Author contributed", contributions.loc["Unverified mixed claim", "Attribution"])
+        self.app.selectbox(key="researcher_id").set_value(unreviewed["researcher_id"]).run()
+        self.assertTrue(any("Contribution profile: unreviewed" in item.value for item in self.app.info))
+        self.assertTrue(any("Lab model metadata: unreviewed" in item.value for item in self.app.info))
+        self.app.radio(key="view").set_value("Data quality").run()
+        gaps = self.app.dataframe[0].value.set_index("Review area")
+        self.assertEqual(gaps.loc["Contribution profiles with only unreviewed claims", "Researchers"], 1)
+        self.assertEqual(gaps.loc["Lab model profiles with only unreviewed claims", "Researchers"], 1)
+
+    def test_career_wide_contributions_and_model_filters_survive_count_windows(self):
+        first, second, third = discovery_records()
+        data = ui_snapshot(first, second, third)
+        self.replace_snapshot(data)
+        baseline = self.download("Download filtered CSV").set_index("Researcher_ID").sort_index()
+        model_options = self.app.sidebar.multiselect(key="model_organisms").options
+        keyword_options = self.app.sidebar.multiselect(key="contribution_keywords").options
+        self.app.sidebar.select_slider(key="publication_window").set_value((2020, 2020)).run()
+        exported = self.download("Download filtered CSV").set_index("Researcher_ID").sort_index()
+        context_columns = ["Contribution_titles", "Contribution_keywords", "Contribution_status",
+                           "Model_organisms", "Model_organism_status"]
+        pd.testing.assert_frame_equal(exported[context_columns], baseline[context_columns])
+        self.assertEqual(exported["CNS_total"].tolist(), [2, 0, 1])
+        self.assertEqual(exported["nonCNS_total"].tolist(), [3, 1, 0])
+        self.assertEqual(self.app.sidebar.multiselect(key="model_organisms").options, model_options)
+        self.assertEqual(self.app.sidebar.multiselect(key="contribution_keywords").options, keyword_options)
+        self.app.sidebar.multiselect(key="contribution_keywords").set_value(["ScanImage", "MARCM"]).run()
+        self.assertEqual(self.metric("Researchers"), "2")
+        self.app.sidebar.multiselect(key="model_organisms").set_value(["Drosophila"]).run()
+        for year, cns_count in ((2019, 1), (2020, 0)):
+            with self.subTest(year=year):
+                self.app.sidebar.select_slider(key="publication_window").set_value((year, year)).run()
+                self.assertFalse(self.app.exception)
+                self.assertEqual(self.app.sidebar.multiselect(key="model_organisms").value, ["Drosophila"])
+                self.assertEqual(self.app.sidebar.multiselect(key="contribution_keywords").value, ["ScanImage", "MARCM"])
+                self.assertEqual(self.app.sidebar.multiselect(key="model_organisms").options, model_options)
+                selected = self.download("Download filtered CSV").iloc[0]
+                self.assertEqual(selected["Researcher_ID"], second["researcher_id"])
+                self.assertEqual(selected["CNS_total"], cns_count)
+        self.app.sidebar.multiselect(key="model_organisms").set_value([])
+        self.app.sidebar.multiselect(key="contribution_keywords").set_value([])
+        for keyword, person, cns_count in (
+            ("ScanImage", first, 2), ("ALM", first, 2), ("MARCM", second, 0),
+            ("TRAP2", second, 0), ("teneurins", second, 0),
+        ):
+            with self.subTest(keyword=keyword):
+                self.app.sidebar.text_input(key="search").set_value(keyword).run()
+                self.assertFalse(self.app.exception)
+                self.assertEqual(self.metric("Researchers"), "1")
+                selected = self.download("Download filtered CSV").iloc[0]
+                self.assertEqual(selected["Researcher_ID"], person["researcher_id"])
+                self.assertEqual(selected["CNS_total"], cns_count)
+                self.assertEqual(selected["Window_start"], 2020)
+        self.assertEqual(json.loads(self.data_path.read_text(encoding="utf-8")), data)
+
+    def test_rich_contribution_and_model_sources_export_career_and_selected_scope(self):
+        first, second, unknown = discovery_records()
+        empty = ui_record(4, contributions=[], model_organisms=[])
+        scanimage = first["profile"]["contributions"][0]
+        scanimage["sources"].append({
+            "url": "https://example.org/fixture-scanimage-team", "accessed": "2026-09-04",
+            "title": "Fixture ScanImage team publication", "supports": "Synthetic support for the stated team roles.",
+            "pmid": "777", "doi": "10.0000/fixture.source",
+        })
+        self.replace_snapshot(ui_snapshot(first, second, unknown, empty))
+        self.app.sidebar.select_slider(key="publication_window").set_value((2020, 2020)).run()
+        self.app.radio(key="view").set_value("Researcher detail").run()
+        headings = [item.value for item in self.app.get("subheader")]
+        self.assertLess(headings.index("Selected discoveries & contributions"), headings.index("Researcher profile and sources"))
+        self.assertLess(headings.index("Selected discoveries & contributions"), headings.index("Counted-paper evidence"))
+        text = "\n".join(item.value for item in self.app.markdown)
+        self.assertIn(scanimage["summary"], text)
+        self.assertIn(scanimage["attribution"], text)
+        self.assertIn("https://example.org/fixture-scanimage-team", text)
+        self.assertIn("2026-09-04", text)
+        self.assertTrue(any("Keywords: ScanImage" in item.value and "Scope: career-wide" in item.value
+                            for item in self.app.caption))
+        self.assertTrue(any("not a complete contribution list" in item.value and "sole-inventor credit" in item.value
+                            for item in self.app.caption))
+        contributions = self.download("Download contribution claims CSV")
+        scanimage_rows = contributions[contributions["Contribution"].eq(scanimage["value"])]
+        self.assertEqual(len(scanimage_rows), 2)
+        self.assertEqual(scanimage_rows["Year"].tolist(), [2003, 2003])
+        self.assertTrue(scanimage_rows["Summary"].eq(scanimage["summary"]).all())
+        self.assertTrue(scanimage_rows["Attribution"].eq(scanimage["attribution"]).all())
+        self.assertEqual(set(scanimage_rows["Accessed"]), {"2020-02-03", "2026-09-04"})
+        self.assertEqual(scanimage_rows.iloc[1]["Source"], "https://example.org/fixture-scanimage-team")
+        self.assertEqual(scanimage_rows.iloc[1]["Supports"], "Synthetic support for the stated team roles.")
+        self.assertTrue(contributions["Scope"].eq("career-wide").all())
+        self.assertTrue(contributions["Status"].eq("source-backed").all())
+        self.assertTrue(contributions["Researcher_ID"].eq(first["researcher_id"]).all())
+        self.assertTrue(contributions["Window_start"].eq(2020).all())
+        self.assertTrue(contributions["Window_end"].eq(2020).all())
+        self.assertTrue(contributions["Selected_years"].astype(str).eq("2020").all())
+        models = self.download("Download lab-model claims CSV")
+        self.assertEqual(models["Model_organism"].tolist(), ["Mouse"])
+        self.assertEqual(models["Scope"].tolist(), ["lab research"])
+        self.assertEqual(models["Accessed"].tolist(), ["2020-02-03"])
+        self.assertEqual(models["Source"].tolist(), ["https://example.org/fixture-profile"])
+        self.assertTrue(models["Window_start"].eq(2020).all())
+        model_table = next(item.value for item in self.app.dataframe if "Model_organism" in item.value.columns)
+        self.assertEqual(model_table["Supports"].tolist(), ["Synthetic source for this fixture claim"])
+        claims = self.download("Download profile source claims CSV")
+        self.assertIn("Contribution (tool, career-wide)", claims["Claim"].tolist())
+        self.assertIn("Model organism (lab research)", claims["Claim"].tolist())
+        self.assertEqual(set(self.download("Download counted-paper CSV")["year"]), {2020})
+        self.app.selectbox(key="researcher_id").set_value(second["researcher_id"]).run()
+        contributions = self.download("Download contribution claims CSV")
+        self.assertEqual(contributions.loc[contributions["Contribution"].eq("MARCM clonal labeling"), "Year"].tolist(), [1999])
+        self.assertTrue(contributions["Window_start"].eq(2020).all())
+        self.assertEqual(self.download("Download lab-model claims CSV")["Scope"].tolist(), ["historical research"])
+        self.assertEqual(self.metric("CNS"), "0")
+        for person in (unknown, empty):
+            with self.subTest(profile=person["researcher_id"]):
+                self.app.selectbox(key="researcher_id").set_value(person["researcher_id"]).run()
+                self.assertTrue(any("Selected contributions: not yet curated" in item.value for item in self.app.info))
+                self.assertTrue(any("Lab model metadata: unknown / not yet curated" in item.value for item in self.app.info))
+                self.assertFalse(any(scanimage["summary"] in item.value for item in self.app.markdown))
+
+    def test_research_context_columns_are_distinct_in_tables_comparisons_and_downloads(self):
+        first, second, unknown = discovery_records()
+        self.replace_snapshot(ui_snapshot(first, second, unknown))
+        self.app.sidebar.select_slider(key="publication_window").set_value((2020, 2020)).run()
+        fields = {"Contribution_titles", "Contribution_keywords", "Contribution_status",
+                  "Model_organisms", "Model_organism_status", "Paper_species_mentions"}
+        for view, download in (("Table", "Download filtered CSV"), ("Compare", "Download researcher comparison CSV"),
+                               ("Rising stars", "Download rising stars / awardees CSV")):
+            with self.subTest(view=view):
+                self.app.radio(key="view").set_value(view).run()
+                if view == "Compare":
+                    self.app.multiselect(key="compare_researcher_ids").set_value(
+                        [person["researcher_id"] for person in (first, second, unknown)]).run()
+                self.assertFalse(self.app.exception)
+                self.assertTrue(fields <= set(self.app.dataframe[0].value.columns))
+                self.assertNotIn("Organisms", self.app.dataframe[0].value.columns)
+                exported = self.download(download).set_index("Researcher_ID")
+                self.assertTrue(fields <= set(exported.columns))
+                self.assertNotIn("Organisms", exported.columns)
+                self.assertEqual(json.loads(exported.loc[first["researcher_id"], "Model_organisms"]), ["Mouse"])
+                self.assertEqual(json.loads(exported.loc[first["researcher_id"], "Paper_species_mentions"]), ["Human"])
+                self.assertEqual(json.loads(exported.loc[first["researcher_id"], "Contribution_keywords"]), ["ALM", "ScanImage"])
+                self.assertEqual(exported.loc[first["researcher_id"], "Contribution_status"], "source-backed examples")
+                self.assertEqual(exported.loc[unknown["researcher_id"], "Contribution_status"], "not yet curated")
+                self.assertEqual(exported.loc[unknown["researcher_id"], "Model_organism_status"], "unknown")
+
+    def test_pilot_team_notes_and_model_scopes_are_visible_not_just_tags(self):
+        historical_note = "Historical Janelia-lab research, not current Allen-era personal-lab scope."
+        trap2_note = "2019 is detailed characterization, not invention; prior TRAP2 development was cited in 2017."
+        svoboda = ui_record(1, name="Karel Svoboda", institution="Allen fixture affiliation",
+                            papers=[ui_paper(101, 2020, species_mentions=("Mouse",))],
+                            model_organisms=[{
+                                **ui_model("Mouse", scope="historical research"), "note": historical_note,
+                            }], contributions=[
+                                ui_contribution("scanimage", "ScanImage", 2003, ("ScanImage",),
+                                                attribution="Thomas A. Pologruto, Bernardo L. Sabatini, and Karel Svoboda."),
+                            ])
+        luo = ui_record(2, name="Liqun Luo", papers=[ui_paper(201, 2020, species_mentions=("Drosophila",))],
+                       model_organisms=[ui_model("Fruit fly"), ui_model("Mouse")], contributions=[
+                           ui_contribution("trap2", "TRAP2 characterization", 2019, ("TRAP2",), note=trap2_note,
+                                           attribution="DeNardo characterized TRAP2; Luo collaborated on study design and writing."),
+                           ui_contribution("marcm", "MARCM", 1999, ("MARCM",),
+                                           attribution="Tzumin Lee and Liqun Luo jointly developed MARCM."),
+                           ui_contribution("teneurins", "Teneurin partner matching", 2012, ("teneurins",),
+                                           category="discovery",
+                                           attribution="Weizhe Hong, Timothy J. Mosca, and Liqun Luo."),
+                       ])
+        self.replace_snapshot(ui_snapshot(svoboda, luo))
+        self.assertEqual(self.app.sidebar.multiselect(key="model_organisms").options, ["Fruit fly", "Mouse"])
+        self.assertNotIn("Human", self.app.sidebar.multiselect(key="paper_species_mentions").options)
+        self.app.sidebar.select_slider(key="publication_window").set_value((2020, 2020)).run()
+        self.app.radio(key="view").set_value("Researcher detail").run()
+        self.assertTrue(any("**Mouse**" in item.value and "**Scope:** historical research" in item.value
+                            for item in self.app.markdown))
+        self.assertTrue(any(historical_note == item.value for item in self.app.caption))
+        self.assertTrue(any("Pologruto" in item.value and "Sabatini" in item.value for item in self.app.markdown))
+        self.assertEqual(self.metric("CNS"), "1")
+        self.app.selectbox(key="researcher_id").set_value(luo["researcher_id"]).run()
+        self.assertTrue(any("**Fruit fly**" in item.value and "**Scope:** lab research" in item.value
+                            for item in self.app.markdown))
+        self.assertTrue(any(trap2_note == item.value for item in self.app.caption))
+        text = "\n".join(item.value for item in self.app.markdown)
+        for credited in ("DeNardo", "Tzumin Lee", "Liqun Luo", "Weizhe Hong", "Timothy J. Mosca"):
+            self.assertIn(credited, text)
+        exported = self.download("Download contribution claims CSV").set_index("Contribution")
+        self.assertEqual(exported.loc["TRAP2 characterization", "Year"], 2019)
+        self.assertEqual(exported.loc["TRAP2 characterization", "Note"], trap2_note)
+        self.assertTrue(exported["Scope"].eq("career-wide").all())
+        self.assertTrue(exported["Window_start"].eq(2020).all())
+        self.assertEqual(self.metric("CNS"), "1")
 
     def test_disappearing_window_tag_is_cleared_with_a_visible_notice(self):
         self.replace_snapshot(ui_snapshot(*discovery_records()))
@@ -320,7 +631,9 @@ class AppTests(unittest.TestCase):
         self.app.sidebar.multiselect(key="awards").set_value(["Fixture Award"])
         self.app.sidebar.multiselect(key="topics").set_value(["Sensory systems"])
         self.app.sidebar.multiselect(key="methods").set_value(["Imaging and microscopy"])
-        self.app.sidebar.multiselect(key="organisms").set_value(["Human"])
+        self.app.sidebar.multiselect(key="paper_species_mentions").set_value(["Human"])
+        self.app.sidebar.multiselect(key="model_organisms").set_value(["Mouse"])
+        self.app.sidebar.multiselect(key="contribution_keywords").set_value(["ScanImage"])
         self.app.sidebar.multiselect(key="count_statuses").set_value(["No arithmetic flags"])
         self.app.sidebar.text_input(key="search").set_value("Researcher 1").run()
         for view in ("Table", "Rankings", "Researcher detail", "CNS vs non-CNS", "Rising stars", "Data quality", "Compare"):
@@ -388,7 +701,7 @@ class AppTests(unittest.TestCase):
     def test_compare_papers_deduplicates_pmids_and_preserves_matching_registry_ids(self):
         shared = ui_paper(501, 2020, title="Shared mouse imaging paper", last_author="Matched Senior Author",
                           topics=("Neural circuits and behavior",), methods=("Imaging and microscopy",),
-                          organisms=("Mouse",))
+                          species_mentions=("Mouse",), species_notes=["Synthetic mention, not a lab-model claim."])
         first = ui_record(1, papers=[shared, ui_paper(502, 2019), ui_paper(504, 2020)])
         second = ui_record(2, papers=[shared, ui_paper(503, 2020)])
         second["excluded_publications"] = [
@@ -412,9 +725,18 @@ class AppTests(unittest.TestCase):
                          {first["researcher_id"], second["researcher_id"]})
         self.assertEqual(json.loads(selected.loc[503, "matched_researcher_ids"]), [second["researcher_id"]])
         self.assertEqual(json.loads(selected.loc[501, "methods"]), ["Imaging and microscopy"])
+        self.assertEqual(json.loads(selected.loc[501, "species_mentions"]), ["Mouse"])
+        self.assertEqual(json.loads(selected.loc[501, "species_evidence"]), shared["species_evidence"])
+        self.assertEqual(json.loads(selected.loc[501, "species_notes"]), shared["species_notes"])
+        self.assertNotIn("organisms", selected.columns)
         metadata = next(item.value for item in self.app.dataframe if item.value.index.name == "Metadata")
         self.assertEqual(metadata.loc["last_author", "Paper 1 · PMID 501"], "Matched Senior Author")
         self.assertEqual(metadata.loc["publication_types", "Paper 1 · PMID 501"], '["Journal Article"]')
+        self.assertEqual(metadata.loc["species_mentions", "Paper 1 · PMID 501"], '["Mouse"]')
+        self.assertEqual(json.loads(metadata.loc["species_evidence", "Paper 1 · PMID 501"]), shared["species_evidence"])
+        self.assertEqual(json.loads(metadata.loc["species_notes", "Paper 1 · PMID 501"]), shared["species_notes"])
+        self.assertNotIn("organisms", metadata.index)
+        self.assertTrue(any("do not define a lab's models" in item.value for item in self.app.caption))
         links = {button.proto.url for button in self.app.get("link_button")}
         self.assertIn("https://pubmed.ncbi.nlm.nih.gov/501/", links)
         self.assertIn("https://doi.org/10.0000/fixture.501", links)
@@ -520,6 +842,8 @@ class AppTests(unittest.TestCase):
         self.assertTrue(pd.isna(selected.loc[selected["pmid"] == 902, "topics"].iloc[0]))
         metadata = next(item.value for item in self.app.dataframe if item.value.index.name == "Metadata")
         self.assertEqual(metadata.loc["topics", "Paper 2 · PMID 902"], "n/a")
+        self.assertEqual(metadata.loc["species_mentions", "Paper 2 · PMID 902"], "n/a")
+        self.assertNotIn("organisms", metadata.index)
         self.app.radio(key="view").set_value("Compare").run()
         self.assertTrue(any("PMID 202" in label for label in self.app.multiselect(key="compare_papers").options))
 
@@ -589,16 +913,28 @@ class AppTests(unittest.TestCase):
         self.assertEqual(self.metric("Selected unified evidence"), "3")
         self.assertEqual(self.metric("Source-backed identities"), "2")
         self.assertEqual(self.metric("Source-backed lab starts"), "1")
+        self.assertEqual(self.metric("Source-backed contribution profiles"), "2")
+        self.assertEqual(self.metric("Contributions not yet curated"), "1")
+        self.assertEqual(self.metric("Source-backed model profiles"), "2")
+        self.assertEqual(self.metric("Model metadata unknown"), "1")
+        gaps = self.app.dataframe[0].value.set_index("Review area")
+        self.assertEqual(gaps.loc["Contribution profiles not yet curated", "Researchers"], 1)
+        self.assertEqual(gaps.loc["Lab model metadata unknown", "Researchers"], 1)
         self.assertIn("Review", self.app.multiselect(key="issue_severity").value)
         exported = self.download("Download selected review flags")
         self.assertIn("unreviewed_identity", exported["Code"].tolist())
         self.assertIn("changed_identity_inputs", exported["Code"].tolist())
         self.assertIn("Researcher_ID", exported.columns)
         self.assertTrue(any("3 registered" in item.value for item in self.app.caption))
+        self.assertTrue(any("2 source-backed contribution profiles" in item.value
+                            and "2 source-backed model profiles" in item.value for item in self.app.caption))
+        self.assertTrue(any("Unknown model metadata is not proof" in item.value for item in self.app.caption))
         self.app.sidebar.text_input(key="search").set_value("no such investigator").run()
         self.assertFalse(self.app.exception)
         self.assertEqual(self.metric("Researchers"), "0")
         self.assertEqual(self.metric("Selected registered IDs"), "0")
+        self.assertEqual(self.metric("Source-backed contribution profiles"), "0")
+        self.assertEqual(self.metric("Source-backed model profiles"), "0")
         self.assertTrue(self.download("Download selected review flags").empty)
 
     def test_shared_projection_is_used_and_window_cache_invalidates_on_file_revision(self):

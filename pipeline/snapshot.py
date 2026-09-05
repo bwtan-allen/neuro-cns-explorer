@@ -8,8 +8,9 @@ from pathlib import Path
 
 from .data_quality import audit_dataset, count_available
 from .evidence import DEFAULT_DATABASE, EvidenceStore
-from .profiles import DEFAULT_REGISTRY, institution_name, load_registry, matching_fingerprint, profile_for
+from .profiles import DEFAULT_REGISTRY, institution_name, load_registry, matching_fingerprint, profile_for, research_context
 from .storage import write_json
+from .taxonomy import TAG_METHOD_VERSION, retag_paper
 from .unified_recount import decide, has_full_given_name
 
 
@@ -41,15 +42,18 @@ def window_record(record, years):
     row["fieldjournals_available"] = row["fieldtier_total"] is not None and row["elife_total"] is not None
     row["cns_gap_years"] = [year for year in years if row["cns_by_year"][year] == 0] if row["cns_available"] else None
     row["cns_years_covered"] = (len(years) - len(row["cns_gap_years"])) if row["cns_available"] else None
-    row["publications"] = [paper for paper in row.get("publications", []) if str(paper["year"]) in years]
+    row["publications"] = [retag_paper(paper) for paper in row.get("publications", []) if str(paper["year"]) in years]
     row["excluded_publications"] = [paper for paper in row.get("excluded_publications", [])
                                     if paper.get("year") is None or str(paper["year"]) in years]
     row["unresolved_papers"] = sum(paper.get("decision") == "unresolved" for paper in row["excluded_publications"])
     row["topics"] = sorted({tag for paper in row["publications"] for tag in paper.get("topics", [])})
     row["methods"] = sorted({tag for paper in row["publications"] for tag in paper.get("methods", [])})
-    row["organisms"] = sorted({tag for paper in row["publications"] for tag in paper.get("organisms", [])})
+    row.pop("organisms", None)
+    row["paper_species_mentions"] = sorted({tag for paper in row["publications"] for tag in paper.get("species_mentions", [])})
+    row["tag_method_version"] = TAG_METHOD_VERSION
     end_year = int(years[-1])
     profile = row.get("profile", {})
+    row.update(research_context(profile))
     career = profile.get("career", {}).get("lab_start_year", {})
     verified = career.get("status") == "source-backed" and career.get("value") is not None
     row["lab_start_verified"] = verified
@@ -98,6 +102,7 @@ def profile_record(record, profile):
     row["researcher_id"] = profile["id"]
     row["name"] = profile["name"]
     row["profile"] = copy.deepcopy(profile)
+    row.update(research_context(profile))
     current_year = datetime.date.today().year
     current = [item["institution"] for item in profile["affiliations"]
                if item.get("current") is True and item["status"] == "source-backed"
@@ -127,7 +132,8 @@ def with_evidence(record, profile, result, years):
     row = copy.deepcopy(record)
     covered = {year for year in years if result["start_year"] <= year <= result["end_year"]}
     decisions = []
-    for paper in result["papers"]:
+    for original in result["papers"]:
+        paper = retag_paper(original)
         decision, reason = decide(profile, paper, years[0], years[-1])
         decisions.append({**paper, "decision": decision, "reason": reason, "match": reason, "given_name_warning": ""})
     included = [paper for paper in decisions if paper["decision"] == "included"]
@@ -192,7 +198,7 @@ def build_snapshot(source, registry, store=None, start_year=None, end_year=None)
             row["identity_warning"] = "No usable full given-name alias or sourced ORCID; legacy counts are archived, not treated as established matches."
         records.append(with_evidence(row, profile, result, years) if result is not None else window_record(row, years))
     snapshot = {
-        **source, "years": years, "records": records, "schema_version": 3,
+        **source, "years": years, "records": records, "schema_version": 4, "tag_method_version": TAG_METHOD_VERSION,
         "generated": datetime.date.today().isoformat(),
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "authorship_measure": "last-author matches, not verified corresponding authorship",
@@ -206,6 +212,8 @@ def build_snapshot(source, registry, store=None, start_year=None, end_year=None)
         "source_backed_award_claims": sum(
             award["status"] == "source-backed" for record in records for award in record.get("awards", [])
         ),
+        "source_backed_contribution_profiles": sum(bool(record["contribution_titles"]) for record in records),
+        "source_backed_model_profiles": sum(bool(record["model_organisms"]) for record in records),
     }
     issues = audit_dataset(snapshot)
     fatal = {"duplicate_pmid", "paper_evidence_mismatch"}

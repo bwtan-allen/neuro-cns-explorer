@@ -2,6 +2,7 @@
 import json
 import sqlite3
 from pathlib import Path
+from .taxonomy import retag_paper
 
 
 DEFAULT_DATABASE = Path(__file__).resolve().parents[1] / "data" / "publications.sqlite3"
@@ -66,7 +67,7 @@ class EvidenceStore:
             WHERE rp.researcher_id = ? ORDER BY p.pmid
         """, (researcher_id,)).fetchall()
         return {**metadata, "papers": [
-            {**json.loads(row["evidence"]), "decision": row["decision"], "reason": row["reason"]}
+            {**retag_paper(json.loads(row["evidence"])), "decision": row["decision"], "reason": row["reason"]}
             for row in rows
         ]}
 

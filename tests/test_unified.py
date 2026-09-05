@@ -162,8 +162,8 @@ class UnifiedTests(unittest.TestCase):
 
     def test_taxonomy_does_not_infer_rat_from_rates(self):
         tags = classify("Firing rates in neural circuits")
-        self.assertNotIn("Rat", tags["organisms"])
-        self.assertIn("Mouse", classify("Mouse neuronal imaging")["organisms"])
+        self.assertNotIn("Rat", tags["species_mentions"])
+        self.assertIn("Mouse", classify("Mouse neuronal imaging")["species_mentions"])
         self.assertIn("Calcium imaging", classify("Calcium imaging of neurons")["methods"])
 
 
@@ -211,6 +211,24 @@ class EvidenceAndWindowTests(unittest.TestCase):
                 store.save(self.profile["id"], broken)
             self.assertEqual(store.result(self.profile["id"])["papers"][0]["pmid"], "1")
             self.assertEqual(store.coverage(), {"researchers": 1, "publications": 1})
+
+    def test_cached_organism_tags_are_upgraded_without_new_queries_or_dates(self):
+        old = copy.deepcopy(self.papers[0])
+        old.pop("tag_method_version")
+        old.pop("species_mentions")
+        old["organisms"] = ["Human", "Mouse"]
+        old["mesh"] = ["Humans", "Mice"]
+        old["tag_evidence"] = {"organisms:Human": ["humans"]}
+        original = result(self.profile, [old])
+        with EvidenceStore(self.database) as store:
+            store.save(self.profile["id"], original)
+            updated = store.result(self.profile["id"])
+            self.assertEqual(updated["fetched_at"], original["fetched_at"])
+            self.assertEqual(updated["papers"][0]["species_mentions"], ["Mouse"])
+            self.assertNotIn("organisms", updated["papers"][0])
+            self.assertEqual(updated["papers"][0]["decision"], "included")
+            saved = store.connection.execute("SELECT evidence FROM publications WHERE pmid = ?", (old["pmid"],)).fetchone()
+            self.assertIn('"organisms"', saved["evidence"])
 
     def test_selected_years_recompute_counts_and_tags(self):
         data = self.publish()

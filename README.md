@@ -17,8 +17,9 @@ streamlit run streamlit_app.py
 ```
 
 The explorer supports publication-window selection, shared sidebar filters,
-paper-derived topic/method/organism tags, researcher comparisons, source-bearing
-profiles, included/excluded paper evidence, and a data-quality review queue.
+source-backed discovery/contribution keywords and lab models, paper-derived
+topic/method/species mentions, researcher comparisons, source-bearing profiles,
+included/excluded paper evidence, and a data-quality review queue.
 Only the selected view is rendered. A changed snapshot invalidates the app cache.
 The app itself does not make PubMed calls or modify profiles.
 
@@ -42,11 +43,11 @@ neuro_stats.json + CSV exports -> Streamlit
 | `data/researchers.json` | Persistent `pi_...` IDs; separate given/family aliases; ORCID, affiliation history, career, HHMI, and award claims |
 | `data/publications.sqlite3` | Normalized PMID evidence, included/excluded/unresolved decisions, source queries, retrieval dates, and method versions |
 | `neuro_stats.json` | Published app snapshot; contains explicit coverage and source statuses |
-| `pipeline/profiles.py` | Safe legacy migration, claim validation, immutable-ID curation, and change history |
+| `pipeline/profiles.py` | Identity and research-profile curation, contribution/team attribution, lab-model claims, and change history |
 | `pipeline/person_cns.py` | Shared PubMed transport/XML parsing; older tier-only counter retained for compatibility |
 | `pipeline/unified_recount.py` | All-journal identity matching and resumable evidence refresh |
 | `pipeline/snapshot.py` | Registry linkage, evidence-derived counts, and shared publication-window calculations |
-| `pipeline/taxonomy.py` | Conservative, transparent title/MeSH/keyword discovery rules |
+| `pipeline/taxonomy.py` | Versioned topic/method/species-mention rules; never inferred lab-model claims |
 | `pipeline/award_sources.py` | Conservative source corroboration of existing McKnight Scholar claims |
 | `pipeline/data_quality.py` | Read-only arithmetic, identity, coverage, and provenance review flags |
 | `refresh_data.py` | Refresh orchestration; unified pipeline is the default when the registry exists |
@@ -70,6 +71,9 @@ URL, access date, and the specific fact supported.
 | Count of zero | Zero included matches under the recorded query and matching policy, not proof of no publications |
 | Missing count | Unavailable coverage, not zero |
 | Snapshot build date | Assembly date, not the date every underlying claim or paper was refreshed |
+| Source-backed lab model | A separately sourced description of lab/historical research, not a species word found in a paper |
+| Paper species mention | A title, keyword, or taxon heading; not proof of the study organism, participants, or a lab's models |
+| Selected contribution | A sourced, team-attributed career-wide example; not an exhaustive list or a merit ranking |
 
 ORCID links imported from the old pipeline remain unreviewed until a source
 establishes the link. Name-only ORCID search results are not promoted to identity
@@ -128,10 +132,32 @@ assembly succeeds.
 
 ## Discovery, windows, and comparisons
 
-Topic, method, and organism tags are **rule-inferred mentions from included paper
-titles, MeSH headings, and keywords**. They are not manually validated descriptions
-of a lab, nor proof that an organism was the study subject. Each paper retains
-matched-term evidence. Untagged legacy records are unknown, not irrelevant.
+Topic and method tags are **rule-inferred mentions from included paper titles,
+MeSH headings, and keywords**. Untagged records are unclassified, not irrelevant.
+Model organisms are now a different kind of information:
+
+- **Lab models:** only source-backed profile claims enter this filter. Missing
+  curation means **unknown**, not no animal/human work. Sources distinguish lab
+  research from historical work; neither automatically follows the count window.
+- **Paper species mentions:** exact taxon phrases retained for literature
+  discovery, with the originating title, keyword, or MeSH heading shown. These
+  must not be read as a lab's models or evidence of human participants.
+
+The previous version incorrectly promoted every matched species term from any
+included article into a researcher-level `Organisms` label. PubMed's **Humans**
+heading occurred in reviews and in mouse disease-model papers, creating misleading
+Human labels. That heading alone no longer produces a Human species tag. Title or
+keyword mentions remain visibly distinct from lab models. `humanized` does not
+match `human`, `non-human primates` does not create a Human tag, and `rates` does
+not match `rat`. The generic word `patient` is not used as a species classifier.
+Human-derived cells/tissue and human participants require separate explicit
+profile claims rather than a generic Human model label.
+
+Tag-method version 2 is rebuilt from saved paper metadata during evidence reads
+and snapshot assembly. This does not fetch new papers, change authorship decisions,
+alter publication counts, or invent new retrieval dates. The old ambiguous
+`Organisms` CSV column is replaced by `Model_organisms`, `Model_organism_status`,
+and `Paper_species_mentions`.
 
 Selected publication windows recompute totals, gap years, paper lists, tags, and
 downloads consistently. Missing years remain null. Current partial calendar years
@@ -139,6 +165,29 @@ are labeled; the app does not extrapolate them to a full year's output.
 Full-window averages use the selected number of calendar years. Active-lab-year
 rates are available only for source-backed independence dates and use publications
 within those active years, not all pre-lab papers.
+
+## Selected discoveries and scientific contributions
+
+Researcher profiles support **discovery, tool, method, and resource** contributions,
+with short search keywords, a bounded summary, publication year, explicit team
+attribution, and source links. They are **career-wide**: a 1999 method or a 2003
+software contribution remains visible while comparing 2020-2025 paper counts.
+These curated references do not enter the last-author count automatically.
+
+The initial source-backed examples cover **Karel Svoboda** and **Liqun Luo**.
+Other profiles show **not yet curated**, not an automatically generated claim of
+what a scientist is "famous for." Contribution keywords and sourced lab-model
+filters use established claims only; unreviewed suggestions retain their status
+in the profile but are not promoted into discovery filters. The selected examples
+are not a complete history of either scientist's work and do not assign sole
+credit to a PI for a team's work.
+
+Table/profile/comparison views and downloads distinguish contribution metadata
+from window-dependent counts. `exports/researcher_contributions.csv` retains
+summary, attribution, category/year, scope, source URL, and access date;
+`exports/researcher_model_organisms.csv` retains model claims with their research
+scope and sources. Both are career-wide even when count exports use a smaller
+publication window.
 
 Comparison views retain identity/source status and distinguish legacy aggregates
 from unified evidence. Mixed-method or unreviewed comparisons require caution.
@@ -168,7 +217,8 @@ python -m pipeline.profiles apply /path/to/profile-updates.json
 
 Each update needs `researcher_id`, `reason`, and `changes`. Use an ID from `show`,
 not a display-name guess. Editable top-level fields include `name`, `identity`,
-`aliases`, `orcid`, `affiliations`, `career`, `hhmi`, `awards`, and `paper_overrides`.
+`aliases`, `orcid`, `affiliations`, `career`, `hhmi`, `awards`, `paper_overrides`,
+`contributions`, and `model_organisms`.
 Provided fields/lists replace those fields; include the complete claim/list,
 including its statuses and sources. IDs and legacy links cannot be changed by
 this command. Before/after values are retained in the registry's change history.
@@ -178,6 +228,19 @@ An affiliation's observation date is not an invented start date. A faculty
 appointment is not automatically a lab-independence date. Paper overrides require
 a PMID, decision, reason, and sources, and do not bypass publication/date
 eligibility rules.
+
+A `contributions` entry includes a stable per-profile kebab-case `id`, title in
+`value`, `category`, `year` (or null), `keywords`, `summary`, `attribution`,
+`scope: "career-wide"`, `status`, and `sources`. Cite the primary paper or official
+tool/lab source supporting the specific contribution and attribution; an isolated
+name match or high publication count is insufficient. Sources can additionally
+carry `title`, `pmid`, and `doi`.
+
+A `model_organisms` entry uses the existing value/status/source claim format plus
+`scope: "lab research"` or `"historical research"`. Use official descriptions or
+explicitly reviewed evidence, not automatic MeSH unions. For human-related work,
+use a precise label such as `Human participants` or `Human-derived cells/tissue`.
+Omitted or empty contribution/model lists mean not yet curated.
 
 Existing McKnight Scholar claims can be corroborated against the official cohort
 page without promoting other awards or current-affiliation claims:

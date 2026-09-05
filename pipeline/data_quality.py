@@ -2,8 +2,14 @@
 import argparse
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
+
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from pipeline.profiles import research_context, validate_research_context
 
 
 METRICS = (
@@ -41,6 +47,14 @@ def validate_snapshot(data):
             if not re.fullmatch(r"pi_[0-9a-f]{32}", researcher_id) or researcher_id in researcher_ids:
                 raise ValueError("Registry-linked snapshots require a unique stable researcher ID per record.")
             researcher_ids.add(researcher_id)
+        if data.get("schema_version", 0) >= 4:
+            profile = record.get("profile", {})
+            validate_research_context(profile)
+            if "organisms" in record:
+                raise ValueError("Ambiguous organism tags must be separated into sourced lab models and paper species mentions.")
+            for key, value in research_context(profile).items():
+                if record.get(key) != value:
+                    raise ValueError(f"{record['name']}: {key} must derive from the source-backed profile, not publication tags.")
         for prefix, label, flag in METRICS:
             if flag in record and type(record[flag]) is not bool:
                 raise ValueError(f"{record['name']}: {flag} must be a boolean.")
@@ -65,6 +79,8 @@ def validate_snapshot(data):
                     raise ValueError(f"{record['name']}: publication evidence needs a string {field}.")
             if paper.get('tier') not in ('cns', 'field', 'elife', 'other') or type(paper.get('year')) is not int:
                 raise ValueError(f"{record['name']}: publication evidence needs a valid tier and integer year.")
+            if data.get("schema_version", 0) >= 4 and "organisms" in paper:
+                raise ValueError("A paper's organism mentions must not be represented as lab-model claims.")
 
 
 def record_issues(record, years):
@@ -138,6 +154,11 @@ def record_issues(record, years):
             add("Review", "unreviewed_identity", "The registry preserves this identity, but independent source evidence is still needed.")
         if record.get("institution_status") == "unreviewed roster label":
             add("Review", "unreviewed_affiliation", "This institution is a historical roster label, not a sourced current appointment.")
+        context = research_context(record["profile"])
+        if not context["model_organisms"]:
+            add("Review", "uncurated_lab_models", "Lab model organisms are not yet source-backed; article-species mentions do not establish a lab model.")
+        if not context["contribution_titles"]:
+            add("Review", "uncurated_contributions", "Selected scientific contributions have not yet been source-curated; this is not absence of contributions.")
     if record.get("evidence_needs_refresh"):
         add("Review", "changed_identity_inputs", "Profile matching inputs changed after this query; refresh to cover new aliases.")
     if record.get("unresolved_papers", 0):

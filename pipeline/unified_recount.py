@@ -12,7 +12,7 @@ from . import person_cns as pubmed
 from .evidence import DEFAULT_DATABASE, EvidenceStore
 from .inst_keywords import keywords_for
 from .profiles import DEFAULT_REGISTRY, load_registry, matching_fingerprint, normalize, normalize_orcid
-from .taxonomy import classify
+from .taxonomy import classify, retag_paper
 
 
 METHOD_VERSION = 3
@@ -197,7 +197,8 @@ def reclassify(profile, result):
     if not required <= {paper["pmid"] for paper in result["papers"]}:
         raise ValueError(f"{profile['name']}: newly referenced override papers require a fresh recount.")
     papers = []
-    for paper in result["papers"]:
+    for original in result["papers"]:
+        paper = retag_paper(original)
         decision, reason = decide(profile, paper, result["start_year"], result["end_year"])
         papers.append({**paper, "decision": decision, "reason": reason})
     return {
